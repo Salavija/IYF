@@ -19,7 +19,7 @@ public class DocumentRepositoryImpl implements DocumentRepository {
 
     @Override
     public long create(Document document) {
-        sessionFactory.getCurrentSession().save(Document.class);
+        sessionFactory.getCurrentSession().save(document);
         return  document.getId();
     }
 

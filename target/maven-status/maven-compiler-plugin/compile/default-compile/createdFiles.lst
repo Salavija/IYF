@@ -1,0 +1,13 @@
+it/docSys/model/CreatedDocument.class
+it/docSys/controllers/CreatedDocumentController.class
+it/docSys/services/CreatedDocumentService.class
+it/docSys/repository/DocumentRepository.class
+it/docSys/repository/CreatedDocumentRepository.class
+it/docSys/controllers/DocumentController.class
+it/docSys/model/States.class
+it/docSys/configs/CorsConfig.class
+it/docSys/model/SubmittedDocument.class
+it/docSys/App.class
+it/docSys/repository/impl/CreatedDocumentRepositoryImpl.class
+it/docSys/services/impl/CreatedDocumentServiceImpl.class
+it/docSys/model/Document.class

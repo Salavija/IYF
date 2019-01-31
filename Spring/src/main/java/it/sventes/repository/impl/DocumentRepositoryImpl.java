@@ -54,7 +54,11 @@ public class DocumentRepositoryImpl implements DocumentRepository {
     document1.setName(document.getName());
     document1.setRejectionDate(document.getRejectionDate());
     document1.setRejectionReason(document.getRejectionReason());
+<<<<<<< HEAD
     document1.setSubmissionDate(document.getSubmissionDate());
+=======
+    document1.setSendingDate(document.getSendingDate());
+>>>>>>> origin
     document1.setType(document.getType());
     session.flush();
 

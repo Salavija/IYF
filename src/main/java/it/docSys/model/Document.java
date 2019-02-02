@@ -2,15 +2,21 @@ package it.docSys.model;
 
 import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
     @Entity
     @Table(name = "document")
-    public class Document {
+    public class Document implements Serializable {
 
-        protected Document() {}
+        private Document() {}
 
-        public Document(Long id, String author, String type, @Length(min = 2, message = "*Title must have at least 2 characters") @Length(max = 200, message = "*Title must have maximum 200 characters") String name, String description, LocalDate submissionDate, LocalDate approvingDate, LocalDate rejectionDate, String addressee, String rejectionReason, byte attachments) {
+        public Document(Long id, String author, String type, @Length
+                (min = 2, message = "*Title must have at least 2 characters")
+        @Length(max = 200, message = "*Title must have maximum 200 characters")
+                String name, String description, LocalDate submissionDate, LocalDate approvingDate,
+                        LocalDate rejectionDate, String addressee, String rejectionReason,
+                        byte attachments) {
             this.id = id;
             this.author = author;
             this.type = type;

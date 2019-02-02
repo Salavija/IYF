@@ -1,94 +1,97 @@
-//package it.docSys.services.impl;
-//
-//
-//import it.docSys.model.Document;
-//import it.docSys.repository.DocumentRepository;
-//import it.docSys.services.DocumentService;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//import org.springframework.transaction.annotation.Transactional;
-//import java.util.List;
-//
-//
-//@Service
-//@Transactional(readOnly = true)
-//public class DocumentServiceImpl implements DocumentService {
-//
-//    @Autowired
-//    private DocumentRepository documentRepository;
-
-//    private ArrayList<Document> createdDocs = new ArrayList<>();
-//    private ArrayList<Document> sentDocs = new ArrayList<>();
-//    private ArrayList<Document> approvedDocs = new ArrayList<>();
-//    private ArrayList<Document> rejectedDocs = new ArrayList<>();
+package it.docSys.services.impl;
 
 
-//    @Autowired
-//    public DocumentServiceImpl(DocumentRepository documentRepository) {
-//        this.documentRepository = documentRepository;
+import it.docSys.DTO.DocumentDTO;
+import it.docSys.model.Document;
+import it.docSys.repository.DocumentRepository;
+import it.docSys.services.DocumentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+//TODO Finish Conversion of Entities to DTO and make CRUD Work!
+
+@Service
+@Transactional(readOnly = true)
+public class DocumentServiceImpl implements DocumentService {
+
+    @Autowired
+    private DocumentRepository documentRepository;
 
 
-//    @Override
-//    public Page<Document> findAllDocumentsPageable(Pageable pageable) {
-//        return documentRepository.findAll(pageable);
-//    }
-//
-//    @Override
-//    public void createNewDocument(Document document) {
-//        createdDocs.add(document);
-//    }
-//
-//    @Override
-//    public void deleteDocument(Document document) {
-//        createdDocs.remove(document);
-//    }
-//
-//    @Override
-//    public void sendDocument(Document document) {
-//        sentDocs.add(document);
-//    }
-//
-//    @Override
-//    public void approvedDocument(Document document) {
-//        approvedDocs.add(document);
-//    }
-//
-//    @Override
-//    public void rejectDocument(Document document) {
-//        rejectedDocs.add(document);
-//    }
-//
-//    @Override
-//    public Optional<Document> findById(Long id) {
-//        return documentRepository.findById(id);
-//    }
+    public DocumentServiceImpl(DocumentRepository documentRepository) {
+        this.documentRepository = documentRepository;
+    }
 
-//    @Transactional
-//    @Override
-//    public long create(Document document) {
-//        return documentRepository.saveAndFlush(Long);
-//    }
-//
+
+    @Transactional
+    @Override
+    public DocumentDTO create(DocumentDTO documentDTO) {
+        Document document;
+        return documentRepository.save(document);
+    }
+
 //    @Override
 //    public Document get(long id) {
-//        return documentRepository.get(id);
+//        return documentRepository.getOne(id);
 //    }
-//
-//    @Override
-//    public List<Document> list() {
-//        return documentRepository.list();
-//    }
-//
+
+        @Transactional
+        @Override
+        public DocumentDTO get(Long id) {
+            Document document = documentRepository.findById(id).orElse(null);
+            if (document != null) {
+                return new DocumentDTO(document.getId(), document.getAuthor(), document.getType(),
+                        document.getName(), document.getDescription(), document.getSubmissionDate(),
+                        document.getApprovingDate(), document.getRejectionDate(), document.getAddressee(),
+                        document.getRejectionReason(), document.getAttachments());
+            }
+            return null;
+    }
+
+    @Override
+    public List<DocumentDTO> listAll() {
+        return documentRepository.findAll().stream().map(document ->
+                new DocumentDTO(document.getId(), document.getAuthor(), document.getType(),
+                        document.getName(), document.getDescription(), document.getSubmissionDate(),
+                        document.getApprovingDate(), document.getRejectionDate(), document.getAddressee(),
+                        document.getRejectionReason(), document.getAttachments())).collect(Collectors.toList());
+    }
+
 //    @Transactional
 //    @Override
 //    public void update(long id, Document document) {
-//    documentRepository.update(id, document);
+//        Document doc =  documentRepository.getOne(id);
+//        documentRepository.save(doc);
 //    }
-//
-//    @Transactional
-//    @Override
-//    public void delete(long id) {
-//    documentRepository.delete(id);
-//    }
-//
-//}
+
+    @Transactional
+    @Override
+    public void update(long id, Document document) {
+        Document document1 = documentRepository.findById(id).orElse(null);
+        if (document1 != null){
+            document1.setId(document.getId());
+            document1.setAddressee(document.getAddressee());
+            document1.setApprovingDate(document.getApprovingDate());
+            document1.setAttachments(document.getAttachments());
+            document1.setAuthor(document.getAuthor());
+            document1.setDescription(document.getDescription());
+            document1.setName(document.getName());
+            document1.setRejectionDate(document.getRejectionDate());
+            document1.setRejectionReason(document.getRejectionReason());
+            document1.setSubmissionDate(document.getSubmissionDate());
+            document1.setType(document.getType());
+        }
+    }
+
+    @Transactional
+    @Override
+    public void delete(long id) {
+    documentRepository.deleteById(id);
+    }
+
+}
+

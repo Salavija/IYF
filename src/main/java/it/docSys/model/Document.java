@@ -9,7 +9,7 @@ import java.time.LocalDate;
     @Table(name = "document")
     public class Document implements Serializable {
 
-        private Document() {}
+        public Document() {}
 
         public Document(Long id, String author, String type, @Length
                 (min = 2, message = "*Title must have at least 2 characters")

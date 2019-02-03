@@ -1,9 +1,8 @@
 package it.docSys.DTO;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
-public class DocumentDTO implements Serializable {
+public class GetDocumentDTO {
 
     private Long id;
     private String author;
@@ -19,7 +18,7 @@ public class DocumentDTO implements Serializable {
 
 
 
-    public DocumentDTO(Long id, String author, String type, String name, String description,
+    public GetDocumentDTO(Long id, String author, String type, String name, String description,
                        LocalDate submissionDate, LocalDate approvingDate, LocalDate rejectionDate,
                        String addressee, String rejectionReason, byte attachments) {
         this.id = id;
@@ -35,7 +34,7 @@ public class DocumentDTO implements Serializable {
         this.attachments = attachments;
     }
 
-    public DocumentDTO() {}
+    public GetDocumentDTO() {}
 
     public Long getId() {
         return id;

@@ -1,6 +1,6 @@
 package it.docSys;
 
-import it.docSys.model.States;
+import it.docSys.configs.States;
 
 public class StatesTest {
 

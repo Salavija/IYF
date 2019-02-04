@@ -2,12 +2,11 @@ package it.docSys.model;
 
 import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 
     @Entity
     @Table(name = "document")
-    public class Document implements Serializable {
+    public class Document {
 
         public Document() {}
 

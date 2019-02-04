@@ -5,12 +5,15 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "document")
+@Table(name = "created_document")
 public class CreatedDocument {
 
-    protected CreatedDocument() {}
+    public CreatedDocument() {}
 
-    public CreatedDocument(Long id, String author, String type, @Length(min = 2, message = "*Title must have at least 2 characters") @Length(max = 200, message = "*Title must have maximum 200 characters") String name, String description, String addressee, byte attachments) {
+    public CreatedDocument(Long id, String author, String type, @Length(min = 2,
+            message = "*Title must have at least 2 characters") @Length(max = 200,
+            message = "*Title must have maximum 200 characters") String name,
+                           String description, String addressee, byte attachments) {
         this.id = id;
         this.author = author;
         this.type = type;
@@ -22,7 +25,7 @@ public class CreatedDocument {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "document_id")
+    @Column(name = "createdDocument_id")
     private Long id;
 
     @Column(name = "author", nullable = false)

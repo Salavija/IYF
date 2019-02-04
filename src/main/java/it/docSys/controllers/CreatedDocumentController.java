@@ -1,44 +1,76 @@
-//package it.docSys.controllers;
-//
-//import it.docSys.model.CreatedDocument;
-//import it.docSys.repository.CreatedDocumentRepository;
-//import it.docSys.services.CreatedDocumentService;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.*;
-//
-//@RestController
-//public class CreatedDocumentController {
-//
-//    @Autowired
-//    CreatedDocumentRepository createdDocumentService;
-//
-//    private static Logger logger = LoggerFactory.getLogger(CreatedDocumentController.class);
-//
-//    /*---Add new createdDocument---*/
-//    @PostMapping("/createdDocument")
-//    public ResponseEntity<?> create(@RequestBody CreatedDocument createdDocument) {
-//        long id = createdDocumentService.create(createdDocument);
-//        logger.info("A createdDocument has been added");
-//        return ResponseEntity.ok().body("New CreatedDocument has been saved with ID:" + id);
-//    }
-//
-//    /*---Update a createdDocument by id---*/
-//    @PutMapping("/createdDocument/{id}")
-//    public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody CreatedDocument createdDocument) {
-//        createdDocumentService.update(id, createdDocument);
-//        logger.info("A createdDocument has been updated");
-//        return ResponseEntity.ok().body("CreatedDocument has been updated successfully.");
-//    }
-//
-//    /*---Delete a document by id---*/
-//    @DeleteMapping("/createdDocument/{id}")
-//    public ResponseEntity<?> delete(@PathVariable("id") long id) {
-//        createdDocumentService.delete(id);
-//        logger.info("A createdDocument has been deleted");
-//        return ResponseEntity.ok().body("CreatedDocument has been deleted successfully.");
-//    }
-//
-//}
+package it.docSys.controllers;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import it.docSys.DTO.GetCreatedDocumentDTO;
+import it.docSys.DTO.PutCreatedDocumentDTO;
+import it.docSys.services.CreatedDocumentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@RestController
+@Api(value = "CreatedDocument Controller")
+@RequestMapping(value = "/api/createdDocuments")
+public class CreatedDocumentController {
+
+    @Autowired
+    private CreatedDocumentService createdDocumentService;
+
+    public CreatedDocumentController(CreatedDocumentService createdDocumentService) {
+        this.createdDocumentService = createdDocumentService;
+    }
+
+
+    private static Logger logger = LoggerFactory.getLogger(CreatedDocumentController.class);
+
+    /*---Add new createdDocument---*/
+
+    @PostMapping
+    @ApiOperation(value = "Save new createdDocument", notes = "Adds new createdDocument and saves to database")
+    public void save(@RequestBody final PutCreatedDocumentDTO putCreatedDocumentDTO){
+        logger.info("A createdDocument has been added");
+        createdDocumentService.create(putCreatedDocumentDTO);
+    }
+
+    /*---Update createdDocument by id---*/
+
+    @PutMapping("/{id}")
+    @ApiOperation(value = "Update existing createdDocument")
+    public void update(@PathVariable final Long id, @RequestBody PutCreatedDocumentDTO putCreatedDocumentDTO){
+        logger.info("A createdDocument has been updated");
+        createdDocumentService.update(id, putCreatedDocumentDTO);
+    }
+
+    /*---get createdDocument by id---*/
+
+    @GetMapping(value = "/{id}")
+    @ApiOperation(value = "Get createdDocument by id", notes = "Returns specific createdDocument by id")
+    public GetCreatedDocumentDTO getById(
+            @ApiParam(value = "id", required = true)
+            @PathVariable final Long id) {
+        logger.info("Specific createdDocument has been found");
+        return createdDocumentService.get(id);
+    }
+
+    /*---get all createdDocuments---*/
+
+    @GetMapping
+    @ApiOperation(value = "Get all createdDocuments", notes = "Returns all createdDocuments from database")
+    public List<GetCreatedDocumentDTO> getAllDocuments(){
+        logger.info("List of all createdDocuments");
+        return createdDocumentService.listAll();
+    }
+
+    /*---Delete a createdDocument by id---*/
+
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "Delete createdDocument by id")
+    public void delete(@ApiParam(value = "id", required = true) @PathVariable final Long id){
+        logger.info("A createdDocument has been deleted");
+        createdDocumentService.delete(id);
+    }
+}

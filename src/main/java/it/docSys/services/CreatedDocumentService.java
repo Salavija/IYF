@@ -24,7 +24,7 @@ public class CreatedDocumentService {
         this.createdDocumentRepository = createdDocumentRepository;
     }
 
-
+    @Transactional
     public void create(PutCreatedDocumentDTO putCreatedDocumentDTO) {
         CreatedDocument createdDocument = new CreatedDocument();
         createdDocument.setAddressee(putCreatedDocumentDTO.getAddressee());
@@ -37,7 +37,7 @@ public class CreatedDocumentService {
 //        document.setRejectionReason(putCreatedDocumentDTO.getRejectionReason());
 //        document.setSubmissionDate(putCreatedDocumentDTO.getSubmissionDate());
         createdDocument.setType(putCreatedDocumentDTO.getType());
-//        documentRepository.save(document);
+        createdDocumentRepository.save(createdDocument);
     }
 
 
@@ -53,6 +53,7 @@ public class CreatedDocumentService {
         return null;
     }
 
+    @Transactional
     public List<GetCreatedDocumentDTO> listAll() {
         return createdDocumentRepository.findAll().stream().map(createdDocument ->
                 new GetCreatedDocumentDTO(createdDocument.getId(), createdDocument.getAuthor(),

@@ -24,7 +24,7 @@ public class DocumentService {
         this.documentRepository = documentRepository;
     }
 
-
+    @Transactional
     public void create(PutDocumentDTO putDocumentDTO) {
     Document document = new Document();
     document.setAddressee(putDocumentDTO.getAddressee());
@@ -53,6 +53,7 @@ public class DocumentService {
             return null;
     }
 
+    @Transactional
     public List<GetDocumentDTO> listAll() {
         return documentRepository.findAll().stream().map(document ->
                 new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(),

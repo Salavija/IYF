@@ -1,8 +1,8 @@
 package it.docSys.DTO;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 
-public class GetCreatedDocumentDTO {
+public class GetCreatedDocumentDTO implements Serializable {
 
     private Long id;
     private String author;

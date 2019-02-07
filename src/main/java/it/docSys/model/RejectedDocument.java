@@ -6,18 +6,25 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "submitted_document")
-public class SubmittedDocument {
+@Table(name = "rejected_document")
+public class RejectedDocument {
 
-    public SubmittedDocument() {}
+    public RejectedDocument() {}
 
-    public SubmittedDocument(Long id, String author, String type, @Length(min = 2, message = "*Title must have at least 2 characters") @Length(max = 200, message = "*Title must have maximum 200 characters") String name, String description, LocalDate submissionDate, String addressee, byte attachments) {
+    public RejectedDocument(Long id, String author, String type,
+                            @Length(min = 2, message = "*Title must have at least 2 characters")
+                            @Length(max = 200, message = "*Title must have maximum 200 characters")                                    String name, String description, LocalDate submissionDate,
+                            LocalDate rejectionDate, String rejectionReason,
+                            String addressee, byte attachments) {
         this.id = id;
         this.author = author;
         this.type = type;
         this.name = name;
         this.description = description;
         this.submissionDate = submissionDate;
+//        this.approvingDate = approvingDate;
+        this.rejectionDate = rejectionDate;
+        this.rejectionReason = rejectionReason;
         this.addressee = addressee;
         this.attachments = attachments;
     }
@@ -44,17 +51,19 @@ public class SubmittedDocument {
     @Column(name = "submission_date")
     private LocalDate submissionDate;
 
-//    @Column(name = "approving_date")      NOT APPROVED ONLY SUBMITTED
+
+//    @Column(name = "approving_date")          NOT APPROVED
 //    private LocalDate approvingDate;
 
-//    @Column(name = "rejection_date")      NOT REJECTED ONLY SUBMITTED
-//    private LocalDate rejectionDate;
+
+    @Column(name = "rejection_date")
+    private LocalDate rejectionDate;
 
     @Column(name = "addressee")
     private String addressee;
 
-//    @Column(name = "rejection_reason")    NOT REJECTED ONLY SUBMITTED
-//    private String rejectionReason;
+    @Column(name = "rejection_reason")
+    private String rejectionReason;
 
     @Column(name = "attachments")
     private byte attachments;
@@ -124,15 +133,39 @@ public class SubmittedDocument {
         this.submissionDate = submissionDate;
     }
 
+    public LocalDate getRejectionDate() {
+        return rejectionDate;
+    }
+
+    public void setRejectionDate(LocalDate rejectionDate) {
+        this.rejectionDate = rejectionDate;
+    }
+
+    public String getRejectionReason() {
+        return rejectionReason;
+    }
+
+    public void setRejectionReason(String rejectionReason) {
+        this.rejectionReason = rejectionReason;
+    }
+
+//    public LocalDate getApprovingDate() {
+//        return approvingDate;
+//    }
+//
+//    public void setApprovingDate(LocalDate approvingDate) {
+//        this.approvingDate = approvingDate;
+//    }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        SubmittedDocument submittedDocument = (SubmittedDocument) o;
+        RejectedDocument rejectedDocument = (RejectedDocument) o;
 
-        return id.equals(submittedDocument.id);
+        return id.equals(rejectedDocument.id);
     }
 
     @Override

@@ -16,12 +16,13 @@ public class PutDocumentDTO implements Serializable {
     private String addressee;
     private String rejectionReason;
     private byte attachments;
+    private String state;
 
 
 
     public PutDocumentDTO(String author, String type, String name, String description,
                        LocalDate submissionDate, LocalDate approvingDate, LocalDate rejectionDate,
-                       String addressee, String rejectionReason, byte attachments) {
+                       String addressee, String rejectionReason, byte attachments, String state) {
 //        this.id = id;
         this.author = author;
         this.type = type;
@@ -33,6 +34,7 @@ public class PutDocumentDTO implements Serializable {
         this.addressee = addressee;
         this.rejectionReason = rejectionReason;
         this.attachments = attachments;
+        this.state = state;
     }
 
     public PutDocumentDTO() {}
@@ -123,5 +125,13 @@ public class PutDocumentDTO implements Serializable {
 
     public void setAttachments(byte attachments) {
         this.attachments = attachments;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

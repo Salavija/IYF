@@ -1,5 +1,5 @@
 package it.docSys.configs;
 
 public enum States {
-    PATEIKTAS, PRIIMTAS, ATMESTAS
+    SUKURTAS, PATEIKTAS, PRIIMTAS, ATMESTAS
 }

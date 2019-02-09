@@ -15,12 +15,13 @@ public class GetDocumentDTO {
     private String addressee;
     private String rejectionReason;
     private byte attachments;
+    private String state;
 
 
 
     public GetDocumentDTO(Long id, String author, String type, String name, String description,
                        LocalDate submissionDate, LocalDate approvingDate, LocalDate rejectionDate,
-                       String addressee, String rejectionReason, byte attachments) {
+                       String addressee, String rejectionReason, byte attachments, String state) {
         this.id = id;
         this.author = author;
         this.type = type;
@@ -32,6 +33,7 @@ public class GetDocumentDTO {
         this.addressee = addressee;
         this.rejectionReason = rejectionReason;
         this.attachments = attachments;
+        this.state = state;
     }
 
     public GetDocumentDTO() {}
@@ -122,5 +124,13 @@ public class GetDocumentDTO {
 
     public void setAttachments(byte attachments) {
         this.attachments = attachments;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

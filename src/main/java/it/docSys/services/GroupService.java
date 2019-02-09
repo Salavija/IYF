@@ -1,6 +1,7 @@
 package it.docSys.services;
 
 
+import it.docSys.model.Document;
 import it.docSys.model.GroupEntity;
 import it.docSys.DTO.GroupGetDTO;
 import it.docSys.DTO.GroupPutDTO;

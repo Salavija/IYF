@@ -1,17 +1,51 @@
-/home/sergej/Desktop/WorkDirectory/slimDoMas/src/main/java/it/docSys/repository/impl/DocumentRepositoryImpl.java
-/home/sergej/Desktop/WorkDirectory/slimDoMas/src/main/java/it/docSys/repository/CreatedDocumentRepository.java
-/home/sergej/Desktop/WorkDirectory/slimDoMas/src/main/java/it/docSys/model/States.java
-/home/sergej/Desktop/WorkDirectory/slimDoMas/src/main/java/it/docSys/App.java
-/home/sergej/Desktop/WorkDirectory/slimDoMas/src/main/java/it/docSys/controllers/DocumentController.java
-/home/sergej/Desktop/WorkDirectory/slimDoMas/src/main/java/it/docSys/services/impl/DocumentServiceImpl.java
-/home/sergej/Desktop/WorkDirectory/slimDoMas/src/main/java/it/docSys/configs/CorsConfig.java
-/home/sergej/Desktop/WorkDirectory/slimDoMas/src/main/java/it/docSys/controllers/CreatedDocumentController.java
-/home/sergej/Desktop/WorkDirectory/slimDoMas/src/main/java/it/docSys/repository/impl/CreatedDocumentRepositoryImpl.java
-/home/sergej/Desktop/WorkDirectory/slimDoMas/src/main/java/it/docSys/services/impl/CreatedDocumentServiceImpl.java
-/home/sergej/Desktop/WorkDirectory/slimDoMas/src/main/java/it/docSys/repository/DocumentRepository.java
-/home/sergej/Desktop/WorkDirectory/slimDoMas/src/main/java/it/docSys/model/CreatedDocument.java
-/home/sergej/Desktop/WorkDirectory/slimDoMas/src/main/java/it/docSys/repository/impl/JpaRepoTest.java
-/home/sergej/Desktop/WorkDirectory/slimDoMas/src/main/java/it/docSys/model/Document.java
-/home/sergej/Desktop/WorkDirectory/slimDoMas/src/main/java/it/docSys/services/CreatedDocumentService.java
-/home/sergej/Desktop/WorkDirectory/slimDoMas/src/main/java/it/docSys/model/SubmittedDocument.java
-/home/sergej/Desktop/WorkDirectory/slimDoMas/src/main/java/it/docSys/services/DocumentService.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/services/impl/DocumentServiceImpl.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/DTO/GroupPutDTO.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/DTO/DocTypeGetDTO.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/controllers/DocumentController.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/repository/GroupRepo.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/DTO/GetDocumentDTO.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/controllers/SubmittedDocumentController.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/model/DocType.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/model/SubmittedDocument.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/DTO/PutDocumentDTO.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/controllers/GroupController.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/DTO/GroupGetDTO.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/DTO/GetSubmittedDocumentDTO.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/model/GroupEntity.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/services/CreatedDocumentService.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/repository/ApprovedDocumentRepository.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/controllers/DocumentTypeController.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/model/CreatedDocument.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/DTO/GetRejectedDocumentDTO.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/DTO/GetApprovedDocumentDTO.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/model/RejectedDocument.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/services/DocTypeService.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/repository/SubmittedDocumentRepository.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/repository/impl/CreatedDocumentRepositoryImpl.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/repository/impl/DocumentRepositoryImpl.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/model/States.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/repository/RejectedDocumentRepository.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/services/RejectedDocumentService.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/services/SubmittedDocumentService.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/DTO/PutApprovedDocumentDTO.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/repository/impl/JpaRepoTest.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/repository/CreatedDocumentRepository.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/DTO/PutRejectedDocumentDTO.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/controllers/ApprovedDocumentController.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/DTO/PutCreatedDocumentDTO.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/services/ApprovedDocumentService.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/configs/CorsConfig.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/controllers/RejectedDocumentController.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/App.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/DTO/GetCreatedDocumentDTO.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/model/ApprovedDocument.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/DTO/PutSubmittedDocumentDTO.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/services/impl/CreatedDocumentServiceImpl.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/repository/DocTypeRepo.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/controllers/CreatedDocumentController.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/DTO/DocTypePutDTO.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/configs/States.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/services/GroupService.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/repository/DocumentRepository.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/services/DocumentService.java
+/home/ingrida/Documents/THE PROJECT_IYF/Master/2019-02-07/IYF-sergej/IYF-sergej/src/main/java/it/docSys/model/Document.java

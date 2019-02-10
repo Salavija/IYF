@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Api(value = "Document Status Controller")
-@RequestMapping(value = "/api/documents/states")
+@RequestMapping(value = "/api/states")
+///@RequestMapping(value = "/api/documents/states")
 public class DocumentStatusController {
 
     @Autowired

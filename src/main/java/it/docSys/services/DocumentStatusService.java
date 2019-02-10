@@ -49,17 +49,10 @@ public class DocumentStatusService {
 //            logger.warning("Coins must be Euros");
 //            throw new IllegalArgumentException("Coins has to have a value");
 //        }
-        //TODO Maybe it needs null check to? Should I use id to assign status? Maybe no...
+        //TODO Maybe it needs null check to? Should I use id to assign status? Maybe no... Should I use Some For/ForEach?
 
         switch (states) {
-//            case SUKURTAS: {
-//                if (document.getSubmissionDate() == null && document.getApprovingDate() == null && document.getRejectionDate() == null) {
-//
-//                    document.setState("Sukurtas");
-//                    return document.getState();
-//                    break;
-//                }
-//            }
+
             case PATEIKTAS: {
                 if (document.getSubmissionDate() != null && document.getApprovingDate() == null && (document.getRejectionDate() == null)) {
 
@@ -89,6 +82,8 @@ public class DocumentStatusService {
 
 
             }
+            default: document.setState(States.SUKURTAS);
+                break;
 
         }
         return document.getState();

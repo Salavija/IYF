@@ -1,5 +1,6 @@
 package it.docSys.model;
 
+import it.docSys.configs.States;
 import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -15,7 +16,7 @@ import java.time.LocalDate;
         @Length(max = 200, message = "*Title must have maximum 200 characters")
                 String name, String description, LocalDate submissionDate, LocalDate approvingDate,
                         LocalDate rejectionDate, String addressee, String rejectionReason,
-                        byte attachments) {
+                        byte attachments, States state) {
             this.id = id;
             this.author = author;
             this.type = type;
@@ -27,6 +28,7 @@ import java.time.LocalDate;
             this.addressee = addressee;
             this.rejectionReason = rejectionReason;
             this.attachments = attachments;
+            this.state = state;
         }
 
         @Id
@@ -65,6 +67,17 @@ import java.time.LocalDate;
 
         @Column(name = "attachments")
         private byte attachments;
+
+        public States getState() {
+            return state;
+        }
+
+        public void setState(States state) {
+            this.state = state;
+        }
+
+        @Column(name = "state")
+        private States state;
 
 
         public Long getId() {

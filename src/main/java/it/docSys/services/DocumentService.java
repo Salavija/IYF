@@ -37,6 +37,7 @@ public class DocumentService {
     document.setRejectionReason(putDocumentDTO.getRejectionReason());
     document.setSubmissionDate(putDocumentDTO.getSubmissionDate());
     document.setType(putDocumentDTO.getType());
+    document.setState(putDocumentDTO.getState());
     documentRepository.save(document);
     }
 
@@ -48,7 +49,7 @@ public class DocumentService {
                 return new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(),
                         document.getName(), document.getDescription(), document.getSubmissionDate(),
                         document.getApprovingDate(), document.getRejectionDate(), document.getAddressee(),
-                        document.getRejectionReason(), document.getAttachments());
+                        document.getRejectionReason(), document.getAttachments(), document.getState());
             }
             return null;
     }
@@ -59,7 +60,7 @@ public class DocumentService {
                 new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(),
                         document.getName(), document.getDescription(), document.getSubmissionDate(),
                         document.getApprovingDate(), document.getRejectionDate(), document.getAddressee(),
-                        document.getRejectionReason(), document.getAttachments())).collect(Collectors.toList());
+                        document.getRejectionReason(), document.getAttachments(), document.getState())).collect(Collectors.toList());
     }
 
 
@@ -78,6 +79,7 @@ public class DocumentService {
             document.setRejectionReason(putDocumentDTO.getRejectionReason());
             document.setSubmissionDate(putDocumentDTO.getSubmissionDate());
             document.setType(putDocumentDTO.getType());
+            document.setState(putDocumentDTO.getState());
         }
     }
 

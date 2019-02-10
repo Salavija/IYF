@@ -1,5 +1,7 @@
 package it.docSys.DTO;
 
+import it.docSys.configs.States;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -16,12 +18,13 @@ public class PutDocumentDTO implements Serializable {
     private String addressee;
     private String rejectionReason;
     private byte attachments;
+    private States state;
 
 
 
     public PutDocumentDTO(String author, String type, String name, String description,
                        LocalDate submissionDate, LocalDate approvingDate, LocalDate rejectionDate,
-                       String addressee, String rejectionReason, byte attachments) {
+                       String addressee, String rejectionReason, byte attachments, States state) {
 //        this.id = id;
         this.author = author;
         this.type = type;
@@ -33,6 +36,7 @@ public class PutDocumentDTO implements Serializable {
         this.addressee = addressee;
         this.rejectionReason = rejectionReason;
         this.attachments = attachments;
+        this.state = state;
     }
 
     public PutDocumentDTO() {}
@@ -123,5 +127,13 @@ public class PutDocumentDTO implements Serializable {
 
     public void setAttachments(byte attachments) {
         this.attachments = attachments;
+    }
+
+    public States getState() {
+        return state;
+    }
+
+    public void setState(States state) {
+        this.state = state;
     }
 }

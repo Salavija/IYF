@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import it.docSys.configs.States;
+import it.docSys.repository.Impl.DocumentRepositoryImpl;
 import it.docSys.services.DocumentStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DocumentStatusController {
 
     @Autowired
-    DocumentStatusService documentStatusService;
+    DocumentRepositoryImpl documentRepositoryImpl;
 
 //    @Autowired
 //    States states;
@@ -30,7 +31,7 @@ public class DocumentStatusController {
             @ApiParam(value = "state", required = true)
             @PathVariable final States states) {
 //        logger.info("Specific document has been found");
-        return documentStatusService.AssignStatusOfDocument(states);
+        return documentRepositoryImpl.AssignStatusOfDocument(states);
     }
 
     @GetMapping(value = "/{states/update}")
@@ -39,6 +40,6 @@ public class DocumentStatusController {
             @ApiParam(value = "state", required = true)
             @PathVariable final States states) {
 //        logger.info("Specific document has been found");
-        return documentStatusService.updateStatusOfDocument(states);
+        return documentRepositoryImpl.updateStatusOfDocument(states);
     }
 }

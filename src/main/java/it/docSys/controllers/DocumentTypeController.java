@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import it.docSys.DTO.DocTypeGetDTO;
 import it.docSys.DTO.DocTypePutDTO;
+import it.docSys.DTO.GroupGetDTO;
 import it.docSys.services.DocTypeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +41,16 @@ public class DocumentTypeController {
         return docTypeServ.getAllDocTypes();
     }
 
+    /*Dokumento tipo pagal id suradimas*/
+
+    @GetMapping("/{id}")
+    @ApiOperation(value = "Get document type by id")
+    public DocTypeGetDTO getById (
+            @ApiParam(value = "id", required = true)
+            @PathVariable long id) { //KADA REIKALINGAS FINAL PRIE PATH VARIABLE????????
+        return docTypeServ.getById(id);
+    }
+
 
     /*Naujo dokumento tipo ivedimas*/
 
@@ -71,6 +82,48 @@ public class DocumentTypeController {
         docTypeServ.updateDocType(title, putDTO);
         logger.info("Document type {} was updated", title);
     }
+
+
+    /*Grupiu, kurioms priklauso konkretus dokumento tipas(by doc title), suradimas*/
+
+    @GetMapping("/{title}/groups")
+    @ApiOperation(value = "Get all groups assigned to a particular document type")
+    public List<GroupGetDTO> docGroups (@PathVariable final String title) {
+        return docTypeServ.getGroupsOfDocType(title);
+    }
+
+
+//    /*Grupiu dokumento tipui priskyrimas (pagal id)*/
+//
+//    @PutMapping ("/{docType_id}/{group_id}") //TODO sutikrinti ar tikrai taip pavadinimai ir su kuo jie turi sutapti (pagal Juliu).
+//    @ApiOperation(value = "Add a group to a document type")
+//    public void asignGroupToDocType(@PathVariable final long docType_id, @PathVariable final long group_id) {
+//        docTypeServ.asignGroupToDocType (docType_id, group_id);
+//    }
+
+    /*Grupiu priskyrimas dokumento tipui (pagal title)*/
+
+    @PutMapping ("/{dt_title}/{g_title}")
+    @ApiOperation(value = "Assign group to a document type")
+    public void asignGroupToDocTypeByTitle(@PathVariable final String dt_title, @PathVariable final String g_title) {
+        docTypeServ.asignGroupToDocTypeByTitle(dt_title, g_title);
+    }
+
+
+    /*Grupes atskyrimas nuo dokumento tipo*/
+    @DeleteMapping("/{dt_title}/{g_title}")
+    @ApiOperation(value = "Remove group from document type")
+    public void deleteGroupFromDocType (@PathVariable final String dt_title, @PathVariable final String g_title) {
+        docTypeServ.deleteGroupFromDocType(dt_title, g_title);
+    }
+
+
+//    @DeleteMapping("/{title}")
+//    @ApiOperation(value ="Delete documentType type")
+//    public void deleteDocType(@PathVariable final String title) {
+//        docTypeServ.deleteDocType(title);
+//        logger.info("Document type {} was deleted", title);
+//    }
 
 
 }

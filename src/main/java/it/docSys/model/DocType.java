@@ -39,8 +39,10 @@ public class DocType implements Serializable {
     public DocType() {
     }
 
-    public DocType(String docType) {
-        this.title = docType;
+    public DocType(String title, List<Document> documents, Set<GroupEntity> groups) {
+        this.title = title;
+        this.documents = documents;
+        this.groups = groups;
     }
 
     /*geteriai ir seteriai*/
@@ -63,6 +65,21 @@ public class DocType implements Serializable {
         this.title = docType;
     }
 
+    public List<Document> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(List<Document> documents) {
+        this.documents = documents;
+    }
+
+    public Set<GroupEntity> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<GroupEntity> groups) {
+        this.groups = groups;
+    }
 
     //TODO Apie primary key pasiksiatyti destytojo kur jis yra daves papildoma medziaga.
 

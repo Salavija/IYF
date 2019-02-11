@@ -37,6 +37,26 @@ public class GroupService { //TODO pasitikrinti susiejima su sarysiais ir per Au
 
 
     @Transactional
+    public GroupGetDTO getGroupById (Long id) { //TODO kada Long, o kada long?????
+        GroupEntity group = groupRepo.findById(id).orElse(null);
+        if (group != null) {
+            return new GroupGetDTO(group.getTitle());
+        }
+        return null;
+    }
+
+
+    @Transactional
+    public GroupGetDTO getGroupByTitle (String title) {
+        GroupEntity group = groupRepo.findByTitle(title);
+        if (group != null) {
+            return new GroupGetDTO(group.getTitle());
+        }
+        return null;
+    }
+
+
+    @Transactional
     public void saveGroup (GroupPutDTO putDTO) {
         GroupEntity groupEntity = new GroupEntity();
         groupEntity.setTitle(putDTO.getTitle());
@@ -70,5 +90,7 @@ public class GroupService { //TODO pasitikrinti susiejima su sarysiais ir per Au
         }
         return  null;
     }
+
+    //TODO?? AR REIKIA PRISKYRIMO doko tipo grupei???
 
 }

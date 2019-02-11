@@ -3,6 +3,7 @@ package it.docSys.controllers;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import it.docSys.DTO.DocTypeGetDTO;
 import it.docSys.DTO.GroupGetDTO;
 import it.docSys.DTO.GroupPutDTO;
@@ -36,6 +37,15 @@ public class GroupController {
     public List<GroupGetDTO> getAllGroups () {
         logger.info("All groups were found and returned");
         return groupService.getAllGroups();
+    }
+
+    /*Grupes  pagal id suradimas*/
+    @GetMapping("/{id}")
+    @ApiOperation(value = "Get group by id")
+    public GroupGetDTO getGroupById (
+            @ApiParam(value = "id", required = true)
+            @PathVariable long id) { //KADA REIKALINGAS FINAL PRIE PATH VARIABLE????????
+        return groupService.getGroupById(id);
     }
 
 

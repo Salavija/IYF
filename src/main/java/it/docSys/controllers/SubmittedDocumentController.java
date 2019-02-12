@@ -13,9 +13,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
+
 import java.util.List;
 
 @RestController
+@ApiIgnore
 @Api(value = "Submitted Document Controller")
 @RequestMapping(value = "/api/submittedDocuments")
 public class SubmittedDocumentController {

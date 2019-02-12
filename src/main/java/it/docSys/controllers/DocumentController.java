@@ -50,8 +50,8 @@ public class DocumentController {
     @GetMapping(value = "/{id}")
     @ApiOperation(value = "Get document by id", notes = "Returns specific document by id")
     public GetDocumentDTO getById(
-        @ApiParam(value = "id", required = true)
-        @PathVariable final Long id) {
+            @ApiParam(value = "id", required = true)
+            @PathVariable final Long id) {
         logger.info("Specific document has been found");
         return documentService.get(id);
     }
@@ -72,5 +72,12 @@ public class DocumentController {
     public void delete(@ApiParam(value = "id", required = true) @PathVariable final Long id){
         logger.info("A document has been deleted");
         documentService.delete(id);
+    }
+
+    /*Dokumento tipo priskyrimas dokumentui*/
+    @PutMapping("/{d_id}/{dt_title}")
+    @ApiOperation(value = "Assign document type to a document")
+    public void assignDocTypeToDocument(@PathVariable final Long d_id, @PathVariable final String dt_title) {
+        documentService.assignDocTypeToDocument(d_id, dt_title);
     }
 }

@@ -10,9 +10,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
+
 import java.util.List;
 
+//Trying to ignore controller not to show in swaagger; And It works!!!
+
 @RestController
+@ApiIgnore
 @Api(value = "CreatedDocument Controller")
 @RequestMapping(value = "/api/createdDocuments")
 public class CreatedDocumentController {

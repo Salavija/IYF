@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import it.docSys.DTO.DocTypeGetDTO;
 import it.docSys.DTO.DocTypePutDTO;
+import it.docSys.DTO.GetDocumentDTO;
 import it.docSys.DTO.GroupGetDTO;
 import it.docSys.services.DocTypeService;
 import org.slf4j.Logger;
@@ -83,6 +84,13 @@ public class DocumentTypeController {
         logger.info("Document type {} was updated", title);
     }
 
+    /*Dokumentu priskirtu konkreciam dokumento tipui suradimas*/
+    @GetMapping("/{dt_title}")
+    @ApiOperation(value = "Gets all documents assigned to particular document type")
+    public List<GetDocumentDTO> documents (@PathVariable final String dt_title) {
+        return docTypeServ.getDocuments(dt_title);
+    }
+
 
     /*Grupiu, kurioms priklauso konkretus dokumento tipas(by doc title), suradimas*/
 
@@ -116,6 +124,7 @@ public class DocumentTypeController {
     public void deleteGroupFromDocType (@PathVariable final String dt_title, @PathVariable final String g_title) {
         docTypeServ.deleteGroupFromDocType(dt_title, g_title);
     }
+
 
 
 //    @DeleteMapping("/{title}")

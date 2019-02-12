@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class PutSubmittedDocumentDTO implements Serializable {
 
-//    private Long id;
+    //    private Long id;
     private String author;
     private String type;
     private String name;

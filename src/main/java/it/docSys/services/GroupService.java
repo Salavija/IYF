@@ -38,7 +38,7 @@ public class GroupService { //TODO pasitikrinti susiejima su sarysiais ir per Au
 
     @Transactional
     public GroupGetDTO getGroupById (Long id) { //TODO kada Long, o kada long?????
-        GroupEntity group = groupRepo.findById(id).orElse(null);
+        GroupEntity group = groupRepo.getOne(id);//.orElse(null);
         if (group != null) {
             return new GroupGetDTO(group.getTitle());
         }

@@ -1,5 +1,6 @@
 package it.docSys.services;
 
+import it.docSys.DTO.GetDocumentDTO;
 import it.docSys.DTO.GroupGetDTO;
 import it.docSys.model.DocType;
 import it.docSys.DTO.DocTypeGetDTO;
@@ -38,7 +39,7 @@ public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DO
 
     @Transactional
     public DocTypeGetDTO getById (Long id) {
-        DocType docType = docTypeRepo.findById(id).orElse(null); //TODO ka sitas orElse null tiksliau duos? Ne visur yra Jpvz.
+        DocType docType = docTypeRepo.getOne(id);//.orElse(null); //TODO ka sitas orElse null tiksliau duos? Ne visur yra Jpvz.
         if (docType != null) {
             return new DocTypeGetDTO(docType.getTitle());
         }
@@ -62,16 +63,33 @@ public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DO
 
     @Transactional
     public void updateDocType (String title, DocTypePutDTO putDTO) {
-        DocType docType = docTypeRepo.findByTitle(title);
+        if (docTypeRepo.existsByTitle(title)) {
+            DocType docType = docTypeRepo.findByTitle(title);
+            if (docType != null) {
+                docType.setTitle(putDTO.getTitle());
+            }
+        } else return;
+    } //TODO padaryti, kad mestu exception jei null ivestas ir pan ir kad leistu vesti tik ekzistuojancius pavadinimus!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+    /*Dokumentu priskirtu konkreciam dokumento tipui suradimas*/ //TODO per daug lauku rodo useriui manau.
+    @Transactional
+    public List<GetDocumentDTO> getDocuments (String dt_title) {
+        DocType docType = docTypeRepo.findByTitle(dt_title);
         if (docType != null) {
-            docType.setTitle(putDTO.getTitle());
+            return docType.getDocuments().stream().map(document ->
+                    new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(), document.getTitle(),
+                            document.getDescription(), document.getSubmissionDate(), document.getApprovingDate(), document.getRejectionDate(),
+                    document.getAddressee(), document.getRejectionReason(), document.getAttachments(), document.getState())).collect(Collectors.toList());
         }
-    } //TODO padaryti, kad mestu exception jei null ivestas ir pan!!!!!!!!!!!!!!!!!!!!!!!!
+        return null;
+    }
 
 
     /*Visu grupiu, kurioms priskirtas dokumento tipas, suradimas*/ /*title yra dokumento tipo pavadinimas*/
     @Transactional
-    public  List<GroupGetDTO> getGroupsOfDocType (String title) {
+    public List<GroupGetDTO> getGroupsOfDocType (String title) {
         DocType docType = docTypeRepo.findByTitle(title);
         if (docType != null) {
             return docType.getGroups().stream().map(group ->

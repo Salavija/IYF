@@ -22,10 +22,11 @@ public class DocType implements Serializable {
     private String title;
 
 
-    /*Sarysis  one to many su sukurtais dokais - 1 doko tipas gali tureti daug doku*/
+    /*Sarysis  one to many su sukurtais dokais - 1 doko tipas gali tureti daug doku*/ //TODO PUT paraysti, kad pridetu.
     @OneToMany (mappedBy = "docType")
     private List<Document> documents = new ArrayList<>();
-    public void addDocument (Document document) {
+
+    public void addDocument (Document document) { //TODO sitas metodas niekur nepanaudotas, nors galetu buti skiriant dokams tipus.
         this.documents.add(document);
         document.setType(this.title);
     } //TODO ar tikrai paeis taip, kad cia tik title paduodamas, o ne visas DocTipas. Turetu paeiti, nes Document entityj'e tipas yra String'as (setType priima stringa).

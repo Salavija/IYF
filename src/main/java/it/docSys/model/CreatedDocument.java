@@ -61,17 +61,6 @@ public class CreatedDocument {
     private byte attachments;
 
 
-
-/*Sarysis su dokumento tipu many to one - daug doku vienam tipe*/
-    @ManyToOne
-    @JoinColumn(name="docType_id")
-    private DocType docType;
-    public DocType getDocType() {
-        return docType;
-    }
-
-
-
     public Long getId() {
         return id;
     }

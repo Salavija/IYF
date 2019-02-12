@@ -1,5 +1,7 @@
 package it.docSys.DTO;
 
+import it.docSys.configs.States;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -8,7 +10,7 @@ public class PutDocumentDTO implements Serializable {
     //private Long id;
     private String author;
     private String type;
-    private String name;
+    private String title;
     private String description;
     private LocalDate submissionDate;
     private LocalDate approvingDate;
@@ -16,16 +18,17 @@ public class PutDocumentDTO implements Serializable {
     private String addressee;
     private String rejectionReason;
     private byte attachments;
+    private States state;
 
 
 
-    public PutDocumentDTO(String author, String type, String name, String description,
-                       LocalDate submissionDate, LocalDate approvingDate, LocalDate rejectionDate,
-                       String addressee, String rejectionReason, byte attachments) {
+    public PutDocumentDTO(String author, String type, String title, String description,
+                          LocalDate submissionDate, LocalDate approvingDate, LocalDate rejectionDate,
+                          String addressee, String rejectionReason, byte attachments, States state) {
 //        this.id = id;
         this.author = author;
         this.type = type;
-        this.name = name;
+        this.title = title;
         this.description = description;
         this.submissionDate = submissionDate;
         this.approvingDate = approvingDate;
@@ -33,6 +36,7 @@ public class PutDocumentDTO implements Serializable {
         this.addressee = addressee;
         this.rejectionReason = rejectionReason;
         this.attachments = attachments;
+        this.state = state;
     }
 
     public PutDocumentDTO() {}
@@ -61,12 +65,12 @@ public class PutDocumentDTO implements Serializable {
         this.type = type;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -123,5 +127,13 @@ public class PutDocumentDTO implements Serializable {
 
     public void setAttachments(byte attachments) {
         this.attachments = attachments;
+    }
+
+    public States getState() {
+        return state;
+    }
+
+    public void setState(States state) {
+        this.state = state;
     }
 }

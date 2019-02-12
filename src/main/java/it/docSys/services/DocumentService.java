@@ -33,7 +33,7 @@ public class DocumentService {
     document.setAttachments(putDocumentDTO.getAttachments());
     document.setAuthor(putDocumentDTO.getAuthor());
     document.setDescription(putDocumentDTO.getDescription());
-    document.setName(putDocumentDTO.getName());
+    document.setTitle(putDocumentDTO.getTitle());
     document.setRejectionDate(putDocumentDTO.getRejectionDate());
     document.setRejectionReason(putDocumentDTO.getRejectionReason());
     document.setSubmissionDate(putDocumentDTO.getSubmissionDate());
@@ -72,7 +72,7 @@ public class DocumentService {
             Document document = documentRepository.findById(id).orElse(null);
             if (document != null) {
                 return new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(),
-                        document.getName(), document.getDescription(), document.getSubmissionDate(),
+                        document.getTitle(), document.getDescription(), document.getSubmissionDate(),
                         document.getApprovingDate(), document.getRejectionDate(), document.getAddressee(),
                         document.getRejectionReason(), document.getAttachments(), document.getState());
             }
@@ -83,7 +83,7 @@ public class DocumentService {
     public List<GetDocumentDTO> listAll() {
         return documentRepository.findAll().stream().map(document ->
                 new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(),
-                        document.getName(), document.getDescription(), document.getSubmissionDate(),
+                        document.getTitle(), document.getDescription(), document.getSubmissionDate(),
                         document.getApprovingDate(), document.getRejectionDate(), document.getAddressee(),
                         document.getRejectionReason(), document.getAttachments(), document.getState())).collect(Collectors.toList());
     }
@@ -99,7 +99,7 @@ public class DocumentService {
             document.setAttachments(putDocumentDTO.getAttachments());
             document.setAuthor(putDocumentDTO.getAuthor());
             document.setDescription(putDocumentDTO.getDescription());
-            document.setName(putDocumentDTO.getName());
+            document.setTitle(putDocumentDTO.getTitle());
             document.setRejectionDate(putDocumentDTO.getRejectionDate());
             document.setRejectionReason(putDocumentDTO.getRejectionReason());
             document.setSubmissionDate(putDocumentDTO.getSubmissionDate());

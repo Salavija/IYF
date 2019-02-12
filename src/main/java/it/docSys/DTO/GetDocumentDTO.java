@@ -9,7 +9,7 @@ public class GetDocumentDTO {
     private Long id;
     private String author;
     private String type;
-    private String name;
+    private String title;
     private String description;
     private LocalDate submissionDate;
     private LocalDate approvingDate;
@@ -21,13 +21,13 @@ public class GetDocumentDTO {
 
 
 
-    public GetDocumentDTO(Long id, String author, String type, String name, String description,
+    public GetDocumentDTO(Long id, String author, String type, String title, String description,
                        LocalDate submissionDate, LocalDate approvingDate, LocalDate rejectionDate,
                        String addressee, String rejectionReason, byte attachments, States state) {
         this.id = id;
         this.author = author;
         this.type = type;
-        this.name = name;
+        this.title = title;
         this.description = description;
         this.submissionDate = submissionDate;
         this.approvingDate = approvingDate;
@@ -64,12 +64,12 @@ public class GetDocumentDTO {
         this.type = type;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {

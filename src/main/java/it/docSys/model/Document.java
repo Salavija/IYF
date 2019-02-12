@@ -14,13 +14,13 @@ import java.time.LocalDate;
         public Document(Long id, String author, String type, @Length
                 (min = 2, message = "*Title must have at least 2 characters")
         @Length(max = 200, message = "*Title must have maximum 200 characters")
-                String name, String description, LocalDate submissionDate, LocalDate approvingDate,
+                String title, String description, LocalDate submissionDate, LocalDate approvingDate,
                         LocalDate rejectionDate, String addressee, String rejectionReason,
                         byte attachments, States state) {
             this.id = id;
             this.author = author;
             this.type = type;
-            this.name = name;
+            this.title = title;
             this.description = description;
             this.submissionDate = submissionDate;
             this.approvingDate = approvingDate;
@@ -45,7 +45,7 @@ import java.time.LocalDate;
         @Column(name = "title", nullable = false, unique = true)
         @Length(min = 2, message = "*Title must have at least 2 characters")
         @Length(max = 200, message = "*Title must have maximum 200 characters")
-        private String name;
+        private String title;
 
         @Column(name = "description")
         private String description;
@@ -104,12 +104,12 @@ import java.time.LocalDate;
             this.type = type;
         }
 
-        public String getName() {
-            return name;
+        public String getTitle() {
+            return title;
         }
 
-        public void setName(String name) {
-            this.name = name;
+        public void setTitle(String title) {
+            this.title = title;
         }
 
         public String getDescription() {

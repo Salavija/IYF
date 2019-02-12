@@ -22,8 +22,8 @@ public class GetDocumentDTO {
 
 
     public GetDocumentDTO(Long id, String author, String type, String title, String description,
-                       LocalDate submissionDate, LocalDate approvingDate, LocalDate rejectionDate,
-                       String addressee, String rejectionReason, byte attachments, States state) {
+                          LocalDate submissionDate, LocalDate approvingDate, LocalDate rejectionDate,
+                          String addressee, String rejectionReason, byte attachments, States state) {
         this.id = id;
         this.author = author;
         this.type = type;

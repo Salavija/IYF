@@ -11,7 +11,7 @@ public class PutRejectedDocumentDTO implements Serializable {
     private String name;
     private String description;
     private LocalDate submissionDate;
-//    private LocalDate approvingDate;
+    //    private LocalDate approvingDate;
     private LocalDate rejectionDate;
     private String addressee;
     private String rejectionReason;

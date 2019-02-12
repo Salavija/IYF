@@ -1,9 +1,13 @@
 package it.docSys.services;
 
+import it.docSys.DTO.GetDocumentDTO;
+import it.docSys.DTO.GroupGetDTO;
 import it.docSys.model.DocType;
 import it.docSys.DTO.DocTypeGetDTO;
 import it.docSys.DTO.DocTypePutDTO;
+import it.docSys.model.GroupEntity;
 import it.docSys.repository.DocTypeRepo;
+import it.docSys.repository.GroupRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,40 +16,45 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class DocTypeService { //AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DOKU TIPU PAVADINIMUS. NEMANAU. PAKLAUSTI PRODUCT OWNERIO PASKAICIUS REIKALAVIMUS.
+public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DOKU TIPU PAVADINIMUS. NEMANAU. PAKLAUSTI PRODUCT OWNERIO PASKAICIUS REIKALAVIMUS.
 
     @Autowired
-    private DocTypeRepo docTypeRepo; //ar servise pas mane nebuvo kontruktoriaus, kur repo asignina???????????
+    private DocTypeRepo docTypeRepo; //ar ne geriau asigninti su autowired per kosntruktoriu?
 
-    public DocTypeService(DocTypeRepo docTypeRepo) {
+    @Autowired
+    private GroupRepo groupRepo;
+
+    public DocTypeService(DocTypeRepo docTypeRepo, GroupRepo groupRepo) {
         this.docTypeRepo = docTypeRepo;
+        this.groupRepo = groupRepo;
     }
 
-    //dokumentu tipu nuskaitymas
-    @Transactional(readOnly = true) //ar read only yra pas Juliu???? NERA
+
+    @Transactional(readOnly = true)
     public List<DocTypeGetDTO> getAllDocTypes () {
         return docTypeRepo.findAll().stream().map((doc) ->
                 new DocTypeGetDTO (doc.getTitle())).collect(Collectors.toList());
 
-    } //pas juliu get/put DTO yra kurie apraso doko duomenis grazinamo.
+    }
 
-
-    //naujo dokumento tipo kurimas
-//    @Transactional
-//    public void createNewDocType (String title) {
-//        DocType newDocType = new DocType(title);
-//        docTypeRepo.save(newDocType);
-//    }
-//KURIS BUDAS IS DVIEJU TEISINGESNIS.
     @Transactional
-    public void createDocType (DocTypePutDTO putDTO) { //cia siulo keisti i Stringa lempute controleryje.
+    public DocTypeGetDTO getById (Long id) {
+        DocType docType = docTypeRepo.getOne(id);//.orElse(null); //TODO ka sitas orElse null tiksliau duos? Ne visur yra Jpvz.
+        if (docType != null) {
+            return new DocTypeGetDTO(docType.getTitle());
+        }
+        return null;
+    }
+
+
+    @Transactional
+    public void createDocType (DocTypePutDTO putDTO) {
         DocType docType = new DocType();
-        docType.setTitle(putDTO.getTitle()); //iDTO pakeisti.
+        docType.setTitle(putDTO.getTitle());
         docTypeRepo.save(docType);
     }
 
 
-    //dokumento tipo istrynimas +
     @Transactional
     public void deleteDocType(String title) {
         docTypeRepo.deleteByTitle(title);
@@ -54,11 +63,74 @@ public class DocTypeService { //AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DOKU TI
 
     @Transactional
     public void updateDocType (String title, DocTypePutDTO putDTO) {
+        if (docTypeRepo.existsByTitle(title)) {
+            DocType docType = docTypeRepo.findByTitle(title);
+            if (docType != null) {
+                docType.setTitle(putDTO.getTitle());
+            }
+        } else return;
+    } //TODO padaryti, kad mestu exception jei null ivestas ir pan ir kad leistu vesti tik ekzistuojancius pavadinimus!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+    /*Dokumentu priskirtu konkreciam dokumento tipui suradimas*/ //TODO per daug lauku rodo useriui manau.
+    @Transactional
+    public List<GetDocumentDTO> getDocuments (String dt_title) {
+        DocType docType = docTypeRepo.findByTitle(dt_title);
+        if (docType != null) {
+            return docType.getDocuments().stream().map(document ->
+                    new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(), document.getTitle(),
+                            document.getDescription(), document.getSubmissionDate(), document.getApprovingDate(), document.getRejectionDate(),
+                    document.getAddressee(), document.getRejectionReason(), document.getAttachments(), document.getState())).collect(Collectors.toList());
+        }
+        return null;
+    }
+
+
+    /*Visu grupiu, kurioms priskirtas dokumento tipas, suradimas*/ /*title yra dokumento tipo pavadinimas*/
+    @Transactional
+    public List<GroupGetDTO> getGroupsOfDocType (String title) {
         DocType docType = docTypeRepo.findByTitle(title);
         if (docType != null) {
-            docType.setTitle(putDTO.getTitle());
+            return docType.getGroups().stream().map(group ->
+                    new GroupGetDTO(group.getTitle())).collect(Collectors.toList());
         }
-    } //padaryti, kad mestu exception jei null ivestas ir pan!!!!!!!!!!!!!!!!!!!!!!!!
+        return null;
+    }
+
+
+//    /*Grupes priskyrimas dokumento tipui (pagal id)*/
+//
+//    @Transactional //TODO
+//    public void asignGroupToDocType (long docType_id, long group_id) {
+//        GroupEntity group = groupRepo.findById(group_id);
+//        DocType docType = docTypeRepo.findById(docType_id);
+//        if (group != null) {
+//            group.getDocTypes().add(docType);
+//        }
+//    }
+
+
+    /*Grupes priskyrimas dokumento tipui (pagal title)*/
+    @Transactional
+    public void  asignGroupToDocTypeByTitle (String dt_title, String g_title) {
+        GroupEntity groupEntity = groupRepo.findByTitle(g_title);
+        DocType docType = docTypeRepo.findByTitle(dt_title);
+        if (groupEntity != null) {
+            groupEntity.getDocTypes().add(docType);
+        }
+    }
+
+    /*Grupes atskyrimas nuo dokumento tipo*/
+    @Transactional
+    public void deleteGroupFromDocType (String dt_title, String g_title) {
+        GroupEntity groupEntity = groupRepo.findByTitle(g_title);
+        DocType docType = docTypeRepo.findByTitle(dt_title);
+        if (groupEntity != null) {
+            groupEntity.getDocTypes().remove(docType);
+        }
+    }
+
 
 
 }

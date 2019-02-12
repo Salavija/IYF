@@ -3,45 +3,46 @@ package it.docSys.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "groupTable")
 public class GroupEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) //kodel sitas, gal kad nesikartotu kitose DB?
+    @GeneratedValue(strategy = GenerationType.AUTO) //kodel sitas, gal kad nesikartotu kitose DB? Ar tikrai AUTO geriausias?
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "title", unique = true) //ar reikia cia unique???? Pasiklaust Product Ownerio??????????????????
+    @Column(name = "title", unique = true)
     private String title;
 
-//    @Column(name = "members")
-//    private String members;
 
 //TODO Gal cia reiktu ne memberiu o Useriu objekto, kurie irgi turetu buti sukurti kaip Entity???
+    //TODO aha, reiketu, tik tikriauisiai per sarysi susieto "many to many" ir panaudoto konstruktoriuje.
 // Pvz padaryt linka User user virsuje. Kaip pasiulymo (ne kritikos) pvz:
-
-
 //    @Column(name = "users")
 //    private User user;
 
-////    @ManyToMany su grupe, vienas doko tipas su daug grupiu ir atvirksciai.
-//    @ManyToMany
-////    @JoinTable(table = @Table(name= "G_D"), //RAUDONUOJA table
-//    @JoinTable(name= "G_D",
-//            joinColumns = @JoinColumn (name="G_ID"), //nurodo esamos lenteles eilute
-//            inverseJoinColumns = @JoinColumn (name= "D_ID")) //nurodo susietos lenteles (DocType) eilute
-//    private List<DocType> docTypes; //gal set geriau naudoti ir hashset?? Kaip pas Juliu.
+
+    /*@ManyToMany su doko tipu, viena grupe gali tureti daug doku tipu ir atvirksciai.*/
+    @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(name= "G_Dt",
+            joinColumns = @JoinColumn (name="G_ID"), //nurodo esamos lenteles eilute
+            inverseJoinColumns = @JoinColumn (name= "Dt_ID")) //nurodo susietos lenteles (DocType) eilute
+    private Set<DocType> docTypes = new HashSet<>();
 
 
-    public GroupEntity(String title) {
+    public GroupEntity(String title, Set<DocType> docTypes) {
         this.title = title;
-//        this.members = members;
+        this.docTypes = docTypes;
     }
 
     public GroupEntity() {
     }
+
 
     public Long getId() {
         return id;
@@ -59,17 +60,15 @@ public class GroupEntity implements Serializable {
         this.title = title;
     }
 
-//    public String getMembers() {
-//        return members;
-//    }
-//
-//    public void setMembers(String members) {
-//        this.members = members;
-//    }
+    public Set<DocType> getDocTypes() {
+        return docTypes;
+    }
 
-//    @Override String toString() { //KAM REIKALINGAS SITAS OVERRIDINIMAS???????????? PAS JULIU YRA.
-//
-//    }
+    public void setDocTypes(Set<DocType> docTypes) {
+        this.docTypes = docTypes;
+    }
+
+  //TODO ??Override String toString??
 
     @Override
     public boolean equals(Object o) {

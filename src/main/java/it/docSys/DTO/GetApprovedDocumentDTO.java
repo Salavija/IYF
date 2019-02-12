@@ -12,7 +12,7 @@ public class GetApprovedDocumentDTO implements Serializable {
     private String description;
     private LocalDate submissionDate;
     private LocalDate approvingDate;
-//    private LocalDate rejectionDate;
+    //    private LocalDate rejectionDate;
     private String addressee;
     //    private String rejectionReason;
     private byte attachments;
@@ -20,7 +20,7 @@ public class GetApprovedDocumentDTO implements Serializable {
 
 
     public GetApprovedDocumentDTO(Long id, String author, String type, String name, String description,
-                                   LocalDate submissionDate, LocalDate approvingDate,
+                                  LocalDate submissionDate, LocalDate approvingDate,
                                   String addressee, byte attachments) {
         this.id = id;
         this.author = author;

@@ -48,7 +48,7 @@ public class CreatedDocumentService {
             return new GetCreatedDocumentDTO(createdDocument.getId(), createdDocument.getAuthor(),
                     createdDocument.getType(), createdDocument.getName(),
                     createdDocument.getDescription(), createdDocument.getAddressee(),
-                     createdDocument.getAttachments());
+                    createdDocument.getAttachments());
         }
         return null;
     }

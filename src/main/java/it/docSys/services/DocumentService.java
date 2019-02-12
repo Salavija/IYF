@@ -27,17 +27,17 @@ public class DocumentService {
 
     @Transactional
     public void create(PutDocumentDTO putDocumentDTO) {
-    Document document = new Document();
-    document.setAddressee(putDocumentDTO.getAddressee());
-    document.setApprovingDate(putDocumentDTO.getApprovingDate());
-    document.setAttachments(putDocumentDTO.getAttachments());
-    document.setAuthor(putDocumentDTO.getAuthor());
-    document.setDescription(putDocumentDTO.getDescription());
-    document.setTitle(putDocumentDTO.getTitle());
-    document.setRejectionDate(putDocumentDTO.getRejectionDate());
-    document.setRejectionReason(putDocumentDTO.getRejectionReason());
-    document.setSubmissionDate(putDocumentDTO.getSubmissionDate());
-    document.setType(putDocumentDTO.getType());
+        Document document = new Document();
+        document.setAddressee(putDocumentDTO.getAddressee());
+        document.setApprovingDate(putDocumentDTO.getApprovingDate());
+        document.setAttachments(putDocumentDTO.getAttachments());
+        document.setAuthor(putDocumentDTO.getAuthor());
+        document.setDescription(putDocumentDTO.getDescription());
+        document.setTitle(putDocumentDTO.getTitle());
+        document.setRejectionDate(putDocumentDTO.getRejectionDate());
+        document.setRejectionReason(putDocumentDTO.getRejectionReason());
+        document.setSubmissionDate(putDocumentDTO.getSubmissionDate());
+        document.setType(putDocumentDTO.getType());
 
         if (putDocumentDTO.getSubmissionDate() != null && putDocumentDTO.getApprovingDate() == null &&
                 putDocumentDTO.getRejectionDate() == null && (putDocumentDTO.getRejectionReason() == null ||
@@ -67,16 +67,16 @@ public class DocumentService {
     }
 
 
-        @Transactional
-        public GetDocumentDTO get(Long id) {
-            Document document = documentRepository.findById(id).orElse(null);
-            if (document != null) {
-                return new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(),
-                        document.getTitle(), document.getDescription(), document.getSubmissionDate(),
-                        document.getApprovingDate(), document.getRejectionDate(), document.getAddressee(),
-                        document.getRejectionReason(), document.getAttachments(), document.getState());
-            }
-            return null;
+    @Transactional
+    public GetDocumentDTO get(Long id) {
+        Document document = documentRepository.getOne(id);//.orElse(null);
+        if (document != null) {
+            return new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(),
+                    document.getTitle(), document.getDescription(), document.getSubmissionDate(),
+                    document.getApprovingDate(), document.getRejectionDate(), document.getAddressee(),
+                    document.getRejectionReason(), document.getAttachments(), document.getState());
+        }
+        return null;
     }
 
     @Transactional
@@ -91,7 +91,7 @@ public class DocumentService {
 
     @Transactional
     public void update(long id, PutDocumentDTO putDocumentDTO) {
-        Document document = documentRepository.findById(id).orElse(null);
+        Document document = documentRepository.getOne(id);//.orElse(null);
         if (document != null) {
 //            document.setId(putDocumentDTO.getId());
             document.setAddressee(putDocumentDTO.getAddressee());
@@ -134,7 +134,7 @@ public class DocumentService {
 
 //TODO CHECK for empty string is always failing and gives always true condition or NullPointer even on String WTF??
 //TODO Switch just in case we need it
-            //            switch (states) {
+    //            switch (states) {
 ////
 ////                case PATEIKTAS: {
 ////                    if (document1.getSubmissionDate() != null && document1.getApprovingDate() == null && (document1.getRejectionDate() == null)) {
@@ -180,9 +180,8 @@ public class DocumentService {
 
 
     @Transactional
-     public void delete(long id) {
-    documentRepository.deleteById(id);
+    public void delete(long id) {
+        documentRepository.deleteById(id);
     }
 
 }
-

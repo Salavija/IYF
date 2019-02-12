@@ -9,17 +9,17 @@ public class GetCreatedDocumentDTO implements Serializable {
     private String type;
     private String name;
     private String description;
-//    private LocalDate submissionDate;
+    //    private LocalDate submissionDate;
 //    private LocalDate approvingDate;
 //    private LocalDate rejectionDate;
     private String addressee;
-//    private String rejectionReason;
+    //    private String rejectionReason;
     private byte attachments;
 
 
 
     public GetCreatedDocumentDTO(Long id, String author, String type, String name, String description,
-                          String addressee, byte attachments) {
+                                 String addressee, byte attachments) {
         this.id = id;
         this.author = author;
         this.type = type;

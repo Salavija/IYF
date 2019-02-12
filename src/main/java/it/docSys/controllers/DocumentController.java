@@ -50,8 +50,8 @@ public class DocumentController {
     @GetMapping(value = "/{id}")
     @ApiOperation(value = "Get document by id", notes = "Returns specific document by id")
     public GetDocumentDTO getById(
-        @ApiParam(value = "id", required = true)
-        @PathVariable final Long id) {
+            @ApiParam(value = "id", required = true)
+            @PathVariable final Long id) {
         logger.info("Specific document has been found");
         return documentService.get(id);
     }

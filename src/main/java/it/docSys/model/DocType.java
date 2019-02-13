@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Entity  //serializable: 24 psl Java Persistance 11 paskaitos medziaga papildoma.
+@Entity
 @Table (name = "doc_type")
 public class DocType implements Serializable {
 
@@ -17,19 +17,18 @@ public class DocType implements Serializable {
     @Column(name = "documentType_id")
     private Long id;
 
-    @Column(name = "doc_type", unique = true, nullable = false)//TODO nutarek, kad ilgis turi buti max 200 simboliu.
-    //TODO Length (min = 3, message = "Document type must have at least 5 characters") Padaryti validacija,s kaip pas d4stytoja. Cia is AUros shopo pvz.
+    @Column(name = "doc_type", unique = true, nullable = false)
     private String title;
 
 
-    /*Sarysis  one to many su sukurtais dokais - 1 doko tipas gali tureti daug doku*/ //TODO PUT paraysti, kad pridetu.
+    /*Sarysis  one to many su sukurtais dokais - 1 doko tipas gali tureti daug doku*/
     @OneToMany (mappedBy = "docType")
     private List<Document> documents = new ArrayList<>();
-    public void addDocument (Document document) { //TODO sitas metodas niekur nepanaudotas, nors galetu buti skiriant dokams tipus.
+
+    public void addDocument (Document document) {
         this.documents.add(document);
         document.setType(this.title);
-    } //TODO ar tikrai paeis taip, kad cia tik title paduodamas, o ne visas DocTipas. Turetu paeiti, nes Document entityj'e tipas yra String'as (setType priima stringa).
-
+    }
 
     /*Many to many sarysis su grupemis (1 doko tipas daug grupiu ir atvirksciai)*/
     @ManyToMany(mappedBy = "docTypes")
@@ -81,7 +80,6 @@ public class DocType implements Serializable {
         this.groups = groups;
     }
 
-    //TODO Apie primary key pasiksiatyti destytojo kur jis yra daves papildoma medziaga.
 
 
     @Override

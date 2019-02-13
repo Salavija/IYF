@@ -73,6 +73,7 @@ public class Document {
     @ManyToOne
     @JoinColumn(name="docType_id")
     private DocType docType;
+
     public DocType getDocType() {
         return docType;
     }

@@ -9,7 +9,7 @@ public class GroupPutDTO {
     @NotNull
     @Length(min = 1, max = 200)
     private String title;
-//    private String members; //vardai/pavardes/pareigos??? listas?
+//    private String members;
 
     public GroupPutDTO(@NotNull @Length(min = 1, max = 200) String title) {
         this.title = title;

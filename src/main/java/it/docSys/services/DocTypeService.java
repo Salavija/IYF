@@ -39,7 +39,7 @@ public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DO
 
     @Transactional
     public DocTypeGetDTO getById (Long id) {
-        DocType docType = docTypeRepo.getOne(id);//.orElse(null); //TODO ka sitas orElse null tiksliau duos? Ne visur yra Jpvz.
+        DocType docType = docTypeRepo.getOne(id);//.orElse(null);
         if (docType != null) {
             return new DocTypeGetDTO(docType.getTitle());
         }
@@ -69,11 +69,11 @@ public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DO
                 docType.setTitle(putDTO.getTitle());
             }
         } else return;
-    } //TODO padaryti, kad mestu exception jei null ivestas ir pan ir kad leistu vesti tik ekzistuojancius pavadinimus!!!!!!!!!!!!!!!!!!!!!!!!
+    }
 
 
 
-    /*Dokumentu priskirtu konkreciam dokumento tipui suradimas*/ //TODO per daug lauku rodo useriui manau.
+    /*Dokumentu priskirtu konkreciam dokumento tipui suradimas*/
     @Transactional
     public List<GetDocumentDTO> getDocuments (String dt_title) {
         DocType docType = docTypeRepo.findByTitle(dt_title);

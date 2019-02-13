@@ -73,4 +73,11 @@ public class DocumentController {
         logger.info("A document has been deleted");
         documentService.delete(id);
     }
+
+    /*Dokumento tipo priskyrimas dokumentui*/
+    @PutMapping("/{d_id}/{dt_title}")
+    @ApiOperation(value = "Assign document type to a document")
+    public void assignDocTypeToDocument(@PathVariable final Long d_id, @PathVariable final String dt_title) {
+        documentService.assignDocTypeToDocument(d_id, dt_title);
+    }
 }

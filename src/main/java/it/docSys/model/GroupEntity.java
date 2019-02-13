@@ -12,19 +12,13 @@ import java.util.Set;
 public class GroupEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) //kodel sitas, gal kad nesikartotu kitose DB? Ar tikrai AUTO geriausias?
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
     @Column(name = "title", unique = true)
     private String title;
 
-
-//TODO Gal cia reiktu ne memberiu o Useriu objekto, kurie irgi turetu buti sukurti kaip Entity???
-    //TODO aha, reiketu, tik tikriauisiai per sarysi susieto "many to many" ir panaudoto konstruktoriuje.
-// Pvz padaryt linka User user virsuje. Kaip pasiulymo (ne kritikos) pvz:
-//    @Column(name = "users")
-//    private User user;
 
 
     /*@ManyToMany su doko tipu, viena grupe gali tureti daug doku tipu ir atvirksciai.*/
@@ -68,7 +62,6 @@ public class GroupEntity implements Serializable {
         this.docTypes = docTypes;
     }
 
-  //TODO ??Override String toString??
 
     @Override
     public boolean equals(Object o) {
@@ -80,7 +73,6 @@ public class GroupEntity implements Serializable {
         return id.equals(groupEntity.id);
     }
 
-    //TODO nezinau ar id ar title det geriau
 
     @Override
     public int hashCode() {

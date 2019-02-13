@@ -4,7 +4,9 @@ package it.docSys.services;
 import it.docSys.DTO.GetDocumentDTO;
 import it.docSys.DTO.PutDocumentDTO;
 import it.docSys.configs.States;
+import it.docSys.model.DocType;
 import it.docSys.model.Document;
+import it.docSys.repository.DocTypeRepo;
 import it.docSys.repository.DocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,10 @@ public class DocumentService {
 
     @Autowired
     private DocumentRepository documentRepository;
+
+    /*Dokuemnto tipo priskyrimui*/
+    @Autowired
+    private DocTypeRepo docTypeRepo;
 
 
     public DocumentService(DocumentRepository documentRepository) {
@@ -183,5 +189,27 @@ public class DocumentService {
     public void delete(long id) {
         documentRepository.deleteById(id);
     }
+
+
+    /*Dokumento tipo priskyrimas dokumentui*/
+    @Transactional
+    public void assignDocTypeToDocument(Long d_id, String dt_title) {
+        DocType docType = docTypeRepo.findByTitle(dt_title);
+        Document document = documentRepository.findById(d_id).orElse(null);
+        if (docType != null) {
+            docType.getDocuments().add(document);
+        }
+    }
+
+    /*Dokumento tipo atskyrimas nuo dokumento*/
+    @Transactional
+    public void deleteDocTypeFromDocument(Long d_id, String dt_title) {
+        DocType docType = docTypeRepo.findByTitle(dt_title);
+        Document document = documentRepository.findById(d_id).orElse(null);
+        if (docType != null) {
+            docType.getDocuments().remove(document);
+        }
+    }
+
 
 }

@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class GroupService { //TODO pasitikrinti susiejima su sarysiais ir per Autowired, pagal pavyzdi.
+public class GroupService {
 
     @Autowired
     private GroupRepo groupRepo;
@@ -37,7 +37,7 @@ public class GroupService { //TODO pasitikrinti susiejima su sarysiais ir per Au
 
 
     @Transactional
-    public GroupGetDTO getGroupById (Long id) { //TODO kada Long, o kada long?????
+    public GroupGetDTO getGroupById (Long id) {
         GroupEntity group = groupRepo.getOne(id);//.orElse(null);
         if (group != null) {
             return new GroupGetDTO(group.getTitle());
@@ -76,13 +76,13 @@ public class GroupService { //TODO pasitikrinti susiejima su sarysiais ir per Au
         if (groupEntity != null) {
             groupEntity.setTitle(putDTO.getTitle());
         }
-    } //TODO padaryti, kad mestu exception jei null ivestas ir pan!!!!!!!!!!!!!!!!!!!!!!!!
+    }
 
 
     /*Visu dokumentu tipu priklausanciu grupei suradimas*/ /*String title yra grupes title, ateina is controlerio*/
 
     @Transactional
-    public List<DocTypeGetDTO> getGroupDocTypes (String title) { //TODO ar tikrai su title???
+    public List<DocTypeGetDTO> getGroupDocTypes (String title) {
         GroupEntity group = groupRepo.findByTitle(title);
         if (group != null) {
             return group.getDocTypes().stream().map(docType ->
@@ -91,6 +91,5 @@ public class GroupService { //TODO pasitikrinti susiejima su sarysiais ir per Au
         return  null;
     }
 
-    //TODO?? AR REIKIA PRISKYRIMO doko tipo grupei???
 
 }

@@ -56,7 +56,8 @@ public class DocumentService {
             putDocumentDTO.setState(States.PRIIMTAS);
 
         } else if (putDocumentDTO.getRejectionDate() != null || putDocumentDTO.getRejectionReason() != null &&
-                (putDocumentDTO.getSubmissionDate() == null && putDocumentDTO.getApprovingDate() == null)) {
+                (putDocumentDTO.getSubmissionDate() == null && putDocumentDTO.getApprovingDate() == null) ||
+                putDocumentDTO.getRejectionReason() !="") {
             putDocumentDTO.setState(States.ATMESTAS);
 
         } else if ((putDocumentDTO.getSubmissionDate() == null &&

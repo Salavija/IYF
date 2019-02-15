@@ -69,6 +69,14 @@ public class UserController {
         userService.deleteUser(userId);
     }
 
+    /*--Assign User to Group--*/
+
+    @PutMapping("/{g_groupId}/{u_userId}")
+    @ApiOperation(value = "Assign user to group")
+    public void assignUserToGroup(@PathVariable final Long groupId, @PathVariable final Long userId) {
+        userService.assignUserToGroup(groupId, userId);
+    }
+
 //    @GetMapping(value = "/{id}")
 //    @ApiOperation(value = "Get users by id")
 //    public UserGetDTO getById(

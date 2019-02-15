@@ -3,19 +3,38 @@ package it.docSys.DTO;
 
 public class UserGetDTO {
 
+    private String userName;
     private Long userId;
     private String firstName;
     private String lastName;
     private String password;
+    private String role;
 
 
-    public UserGetDTO(Long userId, String firstName, String lastName, String password) {
+    public UserGetDTO(Long userId, String userName, String firstName, String lastName, String password, String role) {
         this.userId = userId;
+        this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
+        this.role = role;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public Long getUserId() {
         return userId;

@@ -28,6 +28,12 @@ public class GroupEntity implements Serializable {
             inverseJoinColumns = @JoinColumn (name= "Dt_ID")) //nurodo susietos lenteles (DocType) eilute
     private Set<DocType> docTypes = new HashSet<>();
 
+    @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(name= "G_Us",
+            joinColumns = @JoinColumn (name="G_ID"), //nurodo esamos lenteles eilute
+            inverseJoinColumns = @JoinColumn (name= "Us_ID")) //nurodo susietos lenteles (User) eilute
+    private Set<User> users = new HashSet<>();
+
 
     public GroupEntity(String title, Set<DocType> docTypes) {
         this.title = title;
@@ -37,6 +43,13 @@ public class GroupEntity implements Serializable {
     public GroupEntity() {
     }
 
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 
     public Long getId() {
         return id;

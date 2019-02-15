@@ -113,7 +113,7 @@ public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DO
 
     /*Grupes priskyrimas dokumento tipui (pagal title)*/
     @Transactional
-    public void  asignGroupToDocTypeByTitle (String dt_title, String g_title) {
+    public void asignGroupToDocTypeByTitle (String dt_title, String g_title) {
         GroupEntity groupEntity = groupRepo.findByTitle(g_title);
         DocType docType = docTypeRepo.findByTitle(dt_title);
         if (groupEntity != null) {

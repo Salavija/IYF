@@ -29,15 +29,14 @@ const categories = [
             { id: 'Kurti naują', icon: <PermMediaOutlinedIcon /> },
             { id: 'Hosting', icon: <PublicIcon /> },
             { id: 'Functions', icon: <SettingsEthernetIcon /> },
-            { id: 'ML Kit', icon: <SettingsInputComponentIcon /> },
         ],
     },
     {
         id: 'Admin',
         children: [
             { id: 'Vartotojai', icon: <PeopleIcon /> },
-            { id: 'Performance', icon: <TimerIcon /> },
-            { id: 'Test Lab', icon: <PhonelinkSetupIcon /> },
+            { id: 'Prašymų tipai', icon: <TimerIcon /> },
+            { id: 'Grupės', icon: <PhonelinkSetupIcon /> },
         ],
     },
 ];

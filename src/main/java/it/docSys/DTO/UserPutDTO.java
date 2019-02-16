@@ -1,34 +1,52 @@
 package it.docSys.DTO;
 
+
+import it.docSys.model.Document;
+import it.docSys.model.GroupEntity;
+
+import java.util.Set;
+
 public class UserPutDTO {
 
-    //private Long userId;
     private String userName;
+//    private Long userId;
     private String firstName;
     private String lastName;
     private String password;
     private String role;
+    private Set<GroupEntity> groups;
+    private Set<Document> documents;
 
 
-    public UserPutDTO(String userName, String firstName, String lastName, String password, String role) {
-     //   this.userId = userId;
+    public UserPutDTO(String userName, String firstName, String lastName, String password,
+                      String role, Set<GroupEntity> groups, Set<Document> documents) {
+//        this.userId = userId;
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.role = role;
+        this.groups = groups;
+        this.documents = documents;
     }
 
+    public Set<Document> getDocuments() {
+        return documents;
+    }
 
-//    public Long getUserId() {
-//        return userId;
-//    }
+    public void setDocuments(Set<Document> documents) {
+        this.documents = documents;
+    }
 
+    public UserPutDTO() {}
 
-//    public void setUserId(Long userId) {
-//        this.userId = userId;
-//    }
+    public Set<GroupEntity> getGroups() {
+        return groups;
+    }
 
+    public void setGroups(Set<GroupEntity> groups) {
+        this.groups = groups;
+    }
 
     public String getUserName() {
         return userName;
@@ -46,13 +64,23 @@ public class UserPutDTO {
         this.role = role;
     }
 
+//    public Long getUserId() {
+//        return userId;
+//    }
+//
+//
+//    public void setUserId(Long userId) {
+//        this.userId = userId;
+//    }
+
+
     public String getFirstName() {
         return firstName;
     }
 
 
-    public void setFirstName(String name) {
-        this.firstName = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
 
@@ -74,5 +102,5 @@ public class UserPutDTO {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }
+

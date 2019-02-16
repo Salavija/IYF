@@ -26,20 +26,21 @@ public class UserService {
 //    @Autowired
 //    private DocumentRepository documentRepository;
 
-    public UserService() {}
+    public UserService() {
+    }
 
-    public UserService(UserRepository userRepository//, DocumentRepository documentRepository
+    public UserService(UserRepository userRepository, GroupRepo groupRepository//, DocumentRepository documentRepository
     ) {
         this.userRepository = userRepository;
-//        this.groupRepository = groupRepository;
+        this.groupRepository = groupRepository;
 //        this.documentRepository = documentRepository;
     }
 
     @Transactional(readOnly = true)
     public List<UserGetDTO> findAllUser() {
         return userRepository.findAll().stream().map((user) ->
-                new UserGetDTO(user.getUserId(), user.getUserName(), user.getFirstName(),
-                        user.getLastName(), user.getRole(), user.getPassword())).collect(Collectors.toList());
+                new UserGetDTO(user.getUserId(), user.getUserName(), user.getFirstName(), user.getLastName(),
+                        user.getPassword(), user.getRole(), user.getGroups(), user.getDocuments())).collect(Collectors.toList());
     }
 
     @Transactional
@@ -47,7 +48,7 @@ public class UserService {
         User user = userRepository.getOne(userId);//.orElse(null);
         if (user != null) {
             return new UserGetDTO(user.getUserId(), user.getUserName(), user.getFirstName(), user.getLastName(),
-                    user.getPassword(), user.getRole());
+                    user.getPassword(), user.getRole(), user.getGroups(), user.getDocuments());
         }
         return null;
     }
@@ -58,7 +59,7 @@ public class UserService {
         User user = userRepository.getOne(id);//.orElse(null);
         if (user != null) {
             return new UserGetDTO(user.getUserId(), user.getUserName(), user.getFirstName(), user.getLastName(),
-                    user.getPassword(), user.getRole());
+                    user.getPassword(), user.getRole(), user.getGroups(), user.getDocuments());
         }
         return null;
     }
@@ -71,32 +72,46 @@ public class UserService {
         user.setLastName(userputDTO.getLastName());
         user.setPassword(userputDTO.getPassword());
         user.setRole(userputDTO.getRole());
+        user.setGroups(userputDTO.getGroups());
+        user.setDocuments(userputDTO.getDocuments());
         userRepository.save(user);
     }
 
     @Transactional
     public void updateUser(Long userId, UserPutDTO userputDTO) {
         User user = userRepository.getOne(userId);//.orElse(null);
-        if(user!= null){
+        if (user != null) {
             user.setUserName(userputDTO.getUserName());
             user.setFirstName(userputDTO.getFirstName());
             user.setLastName(userputDTO.getLastName());
             user.setPassword(userputDTO.getPassword());
             user.setRole(userputDTO.getRole());
+            user.setGroups(userputDTO.getGroups());
+            user.setDocuments(userputDTO.getDocuments());
         }
     }
 
     @Transactional
-    public void deleteUser(long id){
+    public void deleteUser(long id) {
         userRepository.deleteById(id);
     }
 
     @Transactional
-    public void assignUserToGroup (Long userId, Long groupId) {
+    public void assignUserToGroup(Long userId, Long groupId) {
         GroupEntity group = groupRepository.getOne(groupId);
         User user = userRepository.getOne(userId);
         if (group != null) {
             group.getUsers().add(user);
         }
+    }
+
+    @Transactional
+    public List<UserGetDTO> getUserGroups(String userName) {
+//        GroupEntity group = groupRepository.findByTitle();
+        User user = userRepository.findByUserName(userName);
+        if (user != null) {
+            return user.getGroups().stream().map(group ->
+                    new UserGetDTO(group.getTitle())).collect(Collectors.toList());
+        } return null;
     }
 }

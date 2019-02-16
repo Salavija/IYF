@@ -9,15 +9,15 @@ public class User {
 
     public User() {}
 
-    public User(Long userId, String userName, String firstName, String lastName, String password, String role// Set<GroupEntity> groups, Set<Document> documents
+    public User(Long userId, String userName, String firstName, String lastName, String password, String role, Set<GroupEntity> groups, Set<Document> documents
     ) {
         this.userId = userId;
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-//        this.groups = groups;                           //Maybe it should be deleted?
-//        this.documents = documents;
+        this.groups = groups;                           //Maybe it should be deleted?
+        this.documents = documents;
         this.role = role;                             //Admin or User
 
       //TODO Should be min 2 Roles; 1. Admin 2. Employee; Just to redirect after login;
@@ -50,6 +50,22 @@ public class User {
     @JoinTable(name = "user_of_group",
             joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
     private Set<GroupEntity> groups = new HashSet<>();
+
+    public Set<GroupEntity> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<GroupEntity> groups) {
+        this.groups = groups;
+    }
+
+    public Set<Document> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(Set<Document> documents) {
+        this.documents = documents;
+    }
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(name = "user_document",

@@ -22,6 +22,7 @@ public class GroupEntity implements Serializable {
 
 
     /*@ManyToMany su doko tipu, viena grupe gali tureti daug doku tipu ir atvirksciai.*/
+
     @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(name= "G_Dt",
             joinColumns = @JoinColumn (name="G_ID"), //nurodo esamos lenteles eilute
@@ -35,9 +36,11 @@ public class GroupEntity implements Serializable {
     private Set<User> users = new HashSet<>();
 
 
-    public GroupEntity(String title, Set<DocType> docTypes) {
+    public GroupEntity(Long id, String title, Set<DocType> docTypes, Set<User> users) {
+        this.id = id;
         this.title = title;
         this.docTypes = docTypes;
+        this.users = users;
     }
 
     public GroupEntity() {

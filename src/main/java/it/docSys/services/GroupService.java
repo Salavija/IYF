@@ -86,7 +86,7 @@ public class GroupService {
         GroupEntity group = groupRepo.findByTitle(title);
         if (group != null) {
             return group.getDocTypes().stream().map(docType ->
-                    new DocTypeGetDTO(docType.getTitle())).collect(Collectors.toList());
+                    new DocTypeGetDTO(docType.getId(), docType.getTitle())).collect(Collectors.toList());
         }
         return  null;
     }

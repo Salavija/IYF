@@ -44,7 +44,9 @@ public class DocumentTypeController {
 
     /*Dokumento tipo pagal id suradimas*/
 
-    @GetMapping("/{id}")
+    //Trying to change mapping to avoid: Ambiguous handler methods mapped for '/api/documents/types/33
+
+    @GetMapping("/api/documents/types/{id}")
     @ApiOperation(value = "Get document type by id")
     public DocTypeGetDTO getById (
             @ApiParam(value = "id", required = true)

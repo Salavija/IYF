@@ -40,7 +40,8 @@ public class UserService {
     public List<UserGetDTO> findAllUser() {
         return userRepository.findAll().stream().map((user) ->
                 new UserGetDTO(user.getUserId(), user.getUserName(), user.getFirstName(), user.getLastName(),
-                        user.getPassword(), user.getRole(), user.getGroups(), user.getDocuments())).collect(Collectors.toList());
+                        user.getPassword(), user.getRole())).collect(Collectors.toList());
+//        , user.getGroups(), user.getDocuments()
     }
 
     @Transactional
@@ -48,7 +49,8 @@ public class UserService {
         User user = userRepository.getOne(userId);//.orElse(null);
         if (user != null) {
             return new UserGetDTO(user.getUserId(), user.getUserName(), user.getFirstName(), user.getLastName(),
-                    user.getPassword(), user.getRole(), user.getGroups(), user.getDocuments());
+                    user.getPassword(), user.getRole()//, user.getGroups(), user.getDocuments()
+            );
         }
         return null;
     }
@@ -59,7 +61,8 @@ public class UserService {
         User user = userRepository.getOne(id);//.orElse(null);
         if (user != null) {
             return new UserGetDTO(user.getUserId(), user.getUserName(), user.getFirstName(), user.getLastName(),
-                    user.getPassword(), user.getRole(), user.getGroups(), user.getDocuments());
+                    user.getPassword(), user.getRole()//, user.getGroups(), user.getDocuments()
+            );
         }
         return null;
     }
@@ -72,8 +75,8 @@ public class UserService {
         user.setLastName(userputDTO.getLastName());
         user.setPassword(userputDTO.getPassword());
         user.setRole(userputDTO.getRole());
-        user.setGroups(userputDTO.getGroups());
-        user.setDocuments(userputDTO.getDocuments());
+//        user.setGroups(userputDTO.getGroups());
+//        user.setDocuments(userputDTO.getDocuments());
         userRepository.save(user);
     }
 
@@ -86,8 +89,8 @@ public class UserService {
             user.setLastName(userputDTO.getLastName());
             user.setPassword(userputDTO.getPassword());
             user.setRole(userputDTO.getRole());
-            user.setGroups(userputDTO.getGroups());
-            user.setDocuments(userputDTO.getDocuments());
+//            user.setGroups(userputDTO.getGroups());
+//            user.setDocuments(userputDTO.getDocuments());
         }
     }
 
@@ -105,13 +108,13 @@ public class UserService {
         }
     }
 
-    @Transactional
-    public List<UserGetDTO> getUserGroups(String userName) {
-//        GroupEntity group = groupRepository.findByTitle();
-        User user = userRepository.findByUserName(userName);
-        if (user != null) {
-            return user.getGroups().stream().map(group ->
-                    new UserGetDTO(group.getTitle())).collect(Collectors.toList());
-        } return null;
-    }
+//    @Transactional
+//    public List<UserGetDTO> getUserGroups(String userName) {
+////        GroupEntity group = groupRepository.findByTitle();
+//        User user = userRepository.findByUserName(userName);
+//        if (user != null) {
+//            return user.getGroups().stream().map(group ->
+//                    new UserGetDTO(group.getTitle())).collect(Collectors.toList());
+//        } return null;
+//    }
 }

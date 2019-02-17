@@ -2,14 +2,24 @@ package it.docSys.DTO;
 
 public class DocTypeGetDTO {
 
+    private Long id;
 
     private String title;
 
-    public DocTypeGetDTO(String title) {
+    public DocTypeGetDTO(Long id, String title) {
+      this.id = id;
       this.title = title;
     }
 
     public DocTypeGetDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {

@@ -195,7 +195,7 @@ public class DocumentService {
     /*Dokumento tipo priskyrimas dokumentui*/
     @Transactional
     public void assignDocTypeToDocument(Long d_id, String dt_title) {
-        DocType docType = docTypeRepo.findByTitle(dt_title);
+        DocType docType = docTypeRepo.getByTitle(dt_title);
         Document document = documentRepository.findById(d_id).orElse(null);
         if (docType != null) {
             docType.getDocuments().add(document);
@@ -205,7 +205,7 @@ public class DocumentService {
     /*Dokumento tipo atskyrimas nuo dokumento*/
     @Transactional
     public void deleteDocTypeFromDocument(Long d_id, String dt_title) {
-        DocType docType = docTypeRepo.findByTitle(dt_title);
+        DocType docType = docTypeRepo.getByTitle(dt_title);
         Document document = documentRepository.findById(d_id).orElse(null);
         if (docType != null) {
             docType.getDocuments().remove(document);

@@ -32,7 +32,7 @@ public class GroupService {
     @Transactional
     public List<GroupGetDTO> getAllGroups() {
         return groupRepo.findAll().stream().map(groupEntity ->
-                new GroupGetDTO(groupEntity.getTitle())).collect(Collectors.toList()); //cannot resolve constructor????????
+                new GroupGetDTO(groupEntity.getId(), groupEntity.getTitle())).collect(Collectors.toList()); //cannot resolve constructor????????
     }
 
 
@@ -40,7 +40,7 @@ public class GroupService {
     public GroupGetDTO getGroupById (Long id) {
         GroupEntity group = groupRepo.getOne(id);//.orElse(null);
         if (group != null) {
-            return new GroupGetDTO(group.getTitle());
+            return new GroupGetDTO(group.getId(), group.getTitle());
         }
         return null;
     }
@@ -48,9 +48,9 @@ public class GroupService {
 
     @Transactional
     public GroupGetDTO getGroupByTitle (String title) {
-        GroupEntity group = groupRepo.findByTitle(title);
+        GroupEntity group = groupRepo.getByTitle(title);
         if (group != null) {
-            return new GroupGetDTO(group.getTitle());
+            return new GroupGetDTO(group.getId(), group.getTitle());
         }
         return null;
     }
@@ -72,7 +72,7 @@ public class GroupService {
 
     @Transactional
     public void updateGroup(String title, GroupPutDTO putDTO) {
-        GroupEntity groupEntity = groupRepo.findByTitle(title);
+        GroupEntity groupEntity = groupRepo.getByTitle(title);
         if (groupEntity != null) {
             groupEntity.setTitle(putDTO.getTitle());
         }
@@ -83,7 +83,7 @@ public class GroupService {
 
     @Transactional
     public List<DocTypeGetDTO> getGroupDocTypes (String title) {
-        GroupEntity group = groupRepo.findByTitle(title);
+        GroupEntity group = groupRepo.getByTitle(title);
         if (group != null) {
             return group.getDocTypes().stream().map(docType ->
                     new DocTypeGetDTO(docType.getId(), docType.getTitle())).collect(Collectors.toList());

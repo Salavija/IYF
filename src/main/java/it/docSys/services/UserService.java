@@ -1,5 +1,6 @@
 package it.docSys.services;
 
+import it.docSys.DTO.GroupGetDTO;
 import it.docSys.DTO.UserGetDTO;
 import it.docSys.DTO.UserPutDTO;
 import it.docSys.model.GroupEntity;
@@ -99,6 +100,8 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    /* Assign User to particular group */
+
     @Transactional
     public void assignUserToGroup(Long userId, Long groupId) {
         GroupEntity group = groupRepository.getOne(groupId);
@@ -108,13 +111,15 @@ public class UserService {
         }
     }
 
-//    @Transactional
-//    public List<UserGetDTO> getUserGroups(String userName) {
-////        GroupEntity group = groupRepository.findByTitle();
-//        User user = userRepository.findByUserName(userName);
-//        if (user != null) {
-//            return user.getGroups().stream().map(group ->
-//                    new UserGetDTO(group.getTitle())).collect(Collectors.toList());
-//        } return null;
-//    }
+    /*Gets all groups  of particular user*/
+
+    @Transactional
+    public List<GroupGetDTO> getUserGroups (String username) {
+        User user = userRepository.findByUserName(username);
+        if (user != null) {
+            return user.getGroups().stream().map(group ->
+                    new GroupGetDTO(group.getId(), group.getTitle())).collect(Collectors.toList());
+        }
+        return null;
+    }
 }

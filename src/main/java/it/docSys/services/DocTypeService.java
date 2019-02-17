@@ -96,7 +96,7 @@ public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DO
         DocType docType = docTypeRepo.getByTitle(title);
         if (docType != null) {
             return docType.getGroups().stream().map(group ->
-                    new GroupGetDTO(group.getTitle())).collect(Collectors.toList());
+                    new GroupGetDTO(group.getId(), group.getTitle())).collect(Collectors.toList());
         }
         return null;
     }
@@ -117,8 +117,8 @@ public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DO
     /*Grupes priskyrimas dokumento tipui (pagal title)*/
 
     @Transactional
-    public void asignGroupToDocTypeByTitle (String dt_title, String g_title) {
-        GroupEntity groupEntity = groupRepo.findByTitle(g_title);
+    public void assignGroupToDocTypeByTitle (String dt_title, String g_title) {
+        GroupEntity groupEntity = groupRepo.getByTitle(g_title);
         DocType docType = docTypeRepo.getByTitle(dt_title);
         if (groupEntity != null) {
             groupEntity.getDocTypes().add(docType);
@@ -129,7 +129,7 @@ public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DO
 
     @Transactional
     public void deleteGroupFromDocType (String dt_title, String g_title) {
-        GroupEntity groupEntity = groupRepo.findByTitle(g_title);
+        GroupEntity groupEntity = groupRepo.getByTitle(g_title);
         DocType docType = docTypeRepo.getByTitle(dt_title);
         if (groupEntity != null) {
             groupEntity.getDocTypes().remove(docType);

@@ -10,14 +10,14 @@ public class User {
 
     public User() {}
 
-    public User(Long userId, String userName, String firstName, String lastName, String password, String role//, Set<GroupEntity> groups, Set<Document> documents
+    public User(Long userId, String userName, String firstName, String lastName, String password, String role, Set<GroupEntity> groups//, Set<Document> documents
     ) {
         this.userId = userId;
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-//        this.groups = groups;                           //Maybe it should be deleted?
+        this.groups = groups;                           //Maybe it should be deleted?
 //        this.documents = documents;
         this.role = role;                             //Admin or User
 
@@ -47,6 +47,9 @@ public class User {
     @Column(name = "role", nullable = false)
     private String role;
 
+    @ManyToMany(mappedBy = "users")
+    private Set<GroupEntity> groups = new HashSet<>();
+
 //    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 //    @JoinTable(name = "user_of_group",
 //            joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
@@ -61,13 +64,13 @@ public class User {
 //    private Set<Document> documents = new HashSet<>();
 
 
-//    public Set<GroupEntity> getGroups() {
-//        return groups;
-//    }
-//
-//    public void setGroups(Set<GroupEntity> groups) {
-//        this.groups = groups;
-//    }
+    public Set<GroupEntity> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<GroupEntity> groups) {
+        this.groups = groups;
+    }
 //
 //    public Set<Document> getDocuments() {
 //        return documents;

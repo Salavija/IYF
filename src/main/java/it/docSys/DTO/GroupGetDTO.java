@@ -2,26 +2,27 @@ package it.docSys.DTO;
 
 public class GroupGetDTO {
 
-//    private Long id;
+    private Long id;
     private String title;
 //    private String members;
 
 
-    public GroupGetDTO(String title) {
+    public GroupGetDTO(Long id, String title) {
+        this.id = id;
         this.title = title;
-//        this.members = members;
+
     }
 
     public GroupGetDTO() {
     }
 
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

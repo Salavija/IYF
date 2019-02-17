@@ -87,6 +87,7 @@ public class DocumentTypeController {
     }
 
     /*Dokumentu priskirtu konkreciam dokumento tipui suradimas*/
+
     @GetMapping("/{dt_title}")
     @ApiOperation(value = "Gets all documents assigned to particular document type")
     public List<GetDocumentDTO> documents (@PathVariable final String dt_title) {
@@ -116,7 +117,7 @@ public class DocumentTypeController {
     @PutMapping ("/{dt_title}/{g_title}")
     @ApiOperation(value = "Assign group to a document type")
     public void asignGroupToDocTypeByTitle(@PathVariable final String dt_title, @PathVariable final String g_title) {
-        docTypeServ.asignGroupToDocTypeByTitle(dt_title, g_title);
+        docTypeServ.assignGroupToDocTypeByTitle(dt_title, g_title);
     }
 
 

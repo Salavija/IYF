@@ -1,6 +1,7 @@
 package it.docSys.controllers;
 
 import io.swagger.annotations.Api;
+import it.docSys.DTO.GroupGetDTO;
 import it.docSys.DTO.UserGetDTO;
 import it.docSys.DTO.UserPutDTO;
 import it.docSys.services.UserService;
@@ -33,7 +34,7 @@ public class UserController {
 
     /*---Update existing user by userId---*/
 
-    @PutMapping("/{userId}")
+    @PutMapping("/update/{userId}")
     @ApiOperation(value = "Update existing user")
     public void update(@PathVariable final Long userId, @RequestBody UserPutDTO userPutDTO){
         logger.info("A user has been updated");
@@ -42,7 +43,7 @@ public class UserController {
 
     /*---get user by id---*/
 
-    @GetMapping(value = "/{userId}")
+    @GetMapping(value = "/get/{userId}")
     @ApiOperation(value = "Get user by id", notes = "Returns specific user by id")
     public UserGetDTO getById(
             @ApiParam(value = "userId", required = true)
@@ -62,7 +63,7 @@ public class UserController {
 
     /*---Delete a user by id---*/
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/delete/{userId}")
     @ApiOperation(value = "Delete user by id")
     public void delete(@ApiParam(value = "userId", required = true) @PathVariable final Long userId){
         logger.info("A user has been deleted");
@@ -71,11 +72,30 @@ public class UserController {
 
     /*--Assign User to Group--*/
 
-    @PutMapping("/{g_groupId}/{u_userId}")
+    @PutMapping("/{groupId}/{userId}")
     @ApiOperation(value = "Assign user to group")
     public void assignUserToGroup(@PathVariable final Long groupId, @PathVariable final Long userId) {
-        userService.assignUserToGroup(groupId, userId);
+        userService.assignUserToGroup(userId, groupId);
     }
+
+    /*Get Groups of this user*/
+
+    @GetMapping("/{username}/groups")
+    @ApiOperation(value = "Get all groups assigned to particular user")
+    public List<GroupGetDTO> userGroups (@PathVariable final String username) {
+        return userService.getUserGroups(username);
+    }
+
+//    @GetMapping(value = "/{userName}")
+//    @ApiOperation(value = "Get user groups", notes = "Returns specific user groups")
+//    public List<GroupGetDTO> getByUserName(
+//            @ApiParam(value = "userName", required = true)
+//            @PathVariable final String userName) {
+//        logger.info("Specific user groups has been found");
+//        return userService.getUserGroups(userName);
+//    }
+
+
 
 //    @GetMapping(value = "/{id}")
 //    @ApiOperation(value = "Get users by id")

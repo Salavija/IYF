@@ -72,10 +72,10 @@ public class UserController {
 
     /*--Assign User to Group--*/
 
-    @PutMapping("/{groupId}/{userId}")
+    @PutMapping("/{groupId}/{docUserId}")
     @ApiOperation(value = "Assign user to group")
-    public void assignUserToGroup(@PathVariable final Long groupId, @PathVariable final Long userId) {
-        userService.assignUserToGroup(userId, groupId);
+    public void assignUserToGroup(@PathVariable final Long groupId, @PathVariable final Long docUserId) {
+        userService.assignUserToGroup(docUserId, groupId);
     }
 
     /*Get Groups of this user*/

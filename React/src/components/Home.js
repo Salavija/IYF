@@ -56,20 +56,20 @@ function Home(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Prisijungimas
         </Typography>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={props.getUser}>
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
+            <InputLabel htmlFor="name">Prisijungimo vardas</InputLabel>
+            <Input id="name" name="name" autoComplete="name" autoFocus />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
+            <InputLabel htmlFor="password">Slaptažodis</InputLabel>
             <Input name="password" type="password" id="password" autoComplete="current-password" />
           </FormControl>
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            label="Prisiminti"
           />
           <Button
             type="submit"
@@ -78,7 +78,7 @@ function Home(props) {
             color="primary"
             className={classes.submit}
           >
-            Sign in
+            Prisijungti
           </Button>
         </form>
       </Paper>

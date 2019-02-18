@@ -5,16 +5,17 @@ import Home from "./components/Home";
 // import About from "./components/About";
 import Error from "./components/Error";
 import Navigation from "./components/Navigation";
-import Docs from "./components/Documents/DocumentsList/DocumentsListPage";
-import NewDocument from "./components/Documents/NewDocument/CreateNew";
-import Types from "./components/Documents/Types/TypePage";
+import Docs from "./components/RoleUser/Documents/DocumentsList/DocumentsListPage";
+import NewDocument from "./components/RoleUser/Documents/NewDocument/CreateNew";
+import Types from "./components/RoleUser/Documents/Types/TypePage";
 // import Paperbase from './components/Header/Paperbase';
 // import Navi from './components/Navi';
 
 import { Container } from "reactstrap";
-import GroupPage from "./components/Users/Groups/GroupPage";
-import UserPage from "./components/Users/Users.js/UserPage";
-import CreateUserPage from "./components/Users/CreateUser/CreateUserPage";
+import GroupPage from "./components/RoleAdmin/Users/Groups/GroupPage";
+import UserPage from "./components/RoleAdmin/Users/Users.js/UserPage";
+import CreateUserPage from "./components/RoleAdmin/Users/CreateUser/CreateUserPage";
+import Login from './components/Login';
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
             {/* <Navi /> */}
             {/* <Paperbase /> */}
             <Switch>
+              <Route path="/login" exact component={Login} />
               <Route path="/" component={Home} exact />
               <Route path="/users" component={UserPage} />
               <Route path="/create-user" component={CreateUserPage} />

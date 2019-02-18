@@ -39,6 +39,12 @@ class Navigation extends React.Component {
               <NavLink href="/">Prisijungti</NavLink>
             </NavItem>
             <NavItem>
+              <NavLink href="/home-admin">AdminPradzia</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/home-user">UserPradzia</NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink href="/users">Vartotojai</NavLink>
             </NavItem>
             <NavItem>

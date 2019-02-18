@@ -16,6 +16,8 @@ import GroupPage from "./components/RoleAdmin/Users/Groups/GroupPage";
 import UserPage from "./components/RoleAdmin/Users/Users.js/UserPage";
 import CreateUserPage from "./components/RoleAdmin/Users/CreateUser/CreateUserPage";
 import Login from './components/Login';
+import Admin from './components/RoleAdmin/AdminHome'
+import User from './components/RoleUser/UserHome'
 
 class App extends Component {
   render() {
@@ -29,6 +31,8 @@ class App extends Component {
             <Switch>
               <Route path="/login" exact component={Login} />
               <Route path="/" component={Home} exact />
+              <Route path="/home-admin" component={Admin} exact />
+              <Route path="/home-user" component={User} exact />
               <Route path="/users" component={UserPage} />
               <Route path="/create-user" component={CreateUserPage} />
               <Route path="/documents" component={Docs} />

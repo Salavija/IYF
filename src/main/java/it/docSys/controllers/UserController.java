@@ -14,8 +14,8 @@ import io.swagger.annotations.ApiParam;
 import java.util.List;
 
 @RestController
-@Api(value = "User Controller")
-@RequestMapping(value = "/api/users")
+@Api(value = "DocUser Controller")
+@RequestMapping(value = "/api/docUsers")
 public class UserController {
 
     private static Logger logger = LoggerFactory.getLogger(UserController.class);

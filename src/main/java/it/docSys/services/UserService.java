@@ -76,7 +76,7 @@ public class UserService {
         user.setLastName(userputDTO.getLastName());
         user.setPassword(userputDTO.getPassword());
         user.setRole(userputDTO.getRole());
-        user.setGroups(userputDTO.getGroups());
+//        user.setGroups(userputDTO.getGroups());
 //        user.setDocuments(userputDTO.getDocuments());
         userRepository.save(user);
     }
@@ -90,7 +90,7 @@ public class UserService {
             user.setLastName(userputDTO.getLastName());
             user.setPassword(userputDTO.getPassword());
             user.setRole(userputDTO.getRole());
-            user.setGroups(userputDTO.getGroups());
+//            user.setGroups(userputDTO.getGroups());
 //            user.setDocuments(userputDTO.getDocuments());
         }
     }

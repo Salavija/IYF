@@ -17,7 +17,7 @@ class NewGroup extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      title: "",
+      title: "", // pradinis 
       dropdownOpen: false
     };
   }
@@ -25,19 +25,28 @@ class NewGroup extends React.Component {
   toggle() {
     this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen
+      //gavimas praeito state
     }));
   }
 
-  addNewGroup() {
-    axios.post("http://localhost:8081/api/groups", {
+  addNewGroup = () =>  {
+    const newGroup = {
       title: this.state.title,
-    })
+    }
+    this.props.onGroupAdded(newGroup);
+    axios.post("http://localhost:8081/api/groups", newGroup)
     .then(function(response) {
       console.log(response);
     })
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  onInputChange = (event) => {
+    console.log(event.target.value);
+    this.setState({title:event.target.value})
+//paemimas inputo ir idejimas i state
   }
 
 // }
@@ -56,7 +65,7 @@ class NewGroup extends React.Component {
             </h3>
             <Form>
               <FormGroup>
-                <Input type="text" name="title" id="title" placeholder="Pavadinimas" />
+                <Input type="text" name="title" id="title" placeholder="Pavadinimas" onChange ={this.onInputChange}/>
                 <FormText>Nurodykite grupės pavadinimą</FormText>
               </FormGroup>
               <br />

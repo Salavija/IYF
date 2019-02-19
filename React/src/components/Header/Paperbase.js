@@ -164,7 +164,7 @@ class Paperbase extends React.Component {
             <MuiThemeProvider theme={theme}>
                 {/* <div className={classes.root}> */}
                     <CssBaseline />
-                    {/* <nav className={classes.drawer}> */}
+                    <nav className={classes.drawer}>
                         <Hidden smUp implementation="js">
                             <Navigator
                                 PaperProps={{ style: { width: drawerWidth } }}
@@ -176,7 +176,7 @@ class Paperbase extends React.Component {
                         {/* <Hidden xsDown implementation="css"> */}
                             <Navigator PaperProps={{ style: { width: drawerWidth } }} />
                         {/* </Hidden> */}
-                    {/* </nav> */}
+                    </nav>
                 {/* </div> */}
             </MuiThemeProvider>
         );

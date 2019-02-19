@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import './App.css';
 
 import Home from "./components/Home";
 // import About from "./components/About";
@@ -18,16 +19,20 @@ import CreateUserPage from "./components/RoleAdmin/Users/CreateUser/CreateUserPa
 import Login from './components/Login';
 import Admin from './components/RoleAdmin/AdminHome'
 import User from './components/RoleUser/UserHome'
+// import NavBarSide from './components/SideBar/NavBarSide'
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div>
+          <div className="navi">
+          {/* <Paperbase /> */}
+          </div>
           <Container>
             <Navigation />
+            {/* <NavBarSide /> */}
             {/* <Navi /> */}
-            {/* <Paperbase /> */}
             <Switch>
               <Route path="/login" exact component={Login} />
               <Route path="/" component={Home} exact />

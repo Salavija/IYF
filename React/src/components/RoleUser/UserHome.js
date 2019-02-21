@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import {Link} from "react-router-dom";
+import { Button, Form} from 'reactstrap';
 
 const headingP = <h3>Welcome Peasant!</h3>;
 const actionsP = <h5>Choose the action</h5>;
@@ -13,7 +14,9 @@ export default class UserHome extends React.Component {
             <div style={style}>
                 {headingP}
                 {actionsP}
+                <Link to={"/create-new-document"}>
                 <Button outline color="success">Sukurti dokumenta</Button>{' '}
+                </Link>
                 <Button outline color="primary">Taisyti dokumenta</Button>{' '}
                 <Button outline color="secondary">Trinti dokumenta</Button>{' '}
                 <Button outline color="info">Perziuret visus dokus</Button>{' '}

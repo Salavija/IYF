@@ -17,7 +17,9 @@ export default class UserHome extends React.Component {
                 <Link to={"/create-new-document"}>
                 <Button outline color="success">Sukurti dokumenta</Button>{' '}
                 </Link>
+                <Link to={"./Documents/DocumentEdit/DocEdition.js"}>
                 <Button outline color="primary">Taisyti dokumenta</Button>{' '}
+                 </Link>
                 <Button outline color="secondary">Trinti dokumenta</Button>{' '}
                 <Button outline color="info">Perziuret visus dokus</Button>{' '}
                 <Button outline color="warning">Perziureti konkretu dokumenta</Button>{' '}

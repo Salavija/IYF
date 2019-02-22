@@ -95,6 +95,10 @@ class Document extends React.Component {
       </div>
     );
   }
+
+  editDocument(e, document) {
+    
+  }
 }
 Document.Prototypes = {
     id: PropTypes.string.isRequired,

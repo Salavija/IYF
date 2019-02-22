@@ -4,17 +4,18 @@ import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap
 
 const headingP = <h3>You again?</h3>;
 const headingR = <h5>You are able to write???</h5>;
-const style = {margin: '20px', textAlign: 'center'};
+const style = {margin: '20px', textAlign: 'left'};
+const headingStyle = {margin: '20px;', textAlign: 'center'};
 
 export default class CreateNew extends React.Component {
     render() {
         return (
             <Form>
-                <div style={style}>
+                <div style={headingStyle}>
                     {headingP}
                     {headingR}
                 </div>
-
+                <div style={style}>
                 <FormGroup row>
                     <Label for="DocTypeSelect" sm={4}>Select Document type... if you are able to read</Label>
                     <Col sm={10}>
@@ -32,7 +33,7 @@ export default class CreateNew extends React.Component {
                 <FormGroup row>
                     <Label for="description" sm={4}>Your cries are going here... as if someone will read them...</Label>
                     <Col sm={10}>
-                        <Input type="textarea" name="description" id="description1" />
+                        <Input type="textarea" name="description" id="description1" placeholder="Blah-blah-blah" />
                     </Col>
                 </FormGroup>
 
@@ -49,18 +50,19 @@ export default class CreateNew extends React.Component {
                     <Col sm={10}>
                         <Input type="file" name="file1" id="File" />
                         <FormText color="muted">
-                            Give me another evidence of your uselessness, make me happy.
+                            Give me another evidence of your uselessness - make me happy.
                         </FormText>
                     </Col>
                 </FormGroup>
-
+                </div>
 
 
                 <FormGroup check row>
-                    <Col sm={{ size: 10, offset: 2 }}>
-                        <Button>Send a Pigeon</Button>
+                    <Col sm={{ size: 10 }}>
+                        <Button outline color="success" size="lg" block>Create Document or in your case Send a Pigeon</Button>
                     </Col>
                 </FormGroup>
+
             </Form>
         );
     }

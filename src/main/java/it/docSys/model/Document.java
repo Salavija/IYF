@@ -4,6 +4,7 @@ import it.docSys.configs.States;
 import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "document")
@@ -11,7 +12,7 @@ public class Document {
 
     public Document() {}
 
-    public Document(Long id, String author, String type, @Length
+    public Document(Long id, DocUser author, String type, @Length
             (min = 2, message = "*Title must have at least 2 characters")
     @Length(max = 200, message = "*Title must have maximum 200 characters")
             String title, String description, LocalDate submissionDate, LocalDate approvingDate,
@@ -37,7 +38,7 @@ public class Document {
     private Long id;
 
     @Column(name = "author", nullable = false)
-    private String author;
+    private DocUser author;
 
     @Column(name ="type", nullable = false)
     private String type; // Or some other type of data???
@@ -68,8 +69,11 @@ public class Document {
     @Column(name = "attachments")
     private byte attachments;
 
+    private Set<DocUser> users;
+
 
     /*Sarysis su dokumento tipu many to one - daug doku vienam tipe*/
+
     @ManyToOne
     @JoinColumn(name="docType_id")
     private DocType docType;
@@ -78,6 +82,27 @@ public class Document {
         return docType;
     }
 
+    /*Sarysis su Useriu many to one - daug doku vienas autorius*/
+
+    @ManyToOne
+    @JoinColumn(name="docUser_user_id")
+    private DocUser docUser;
+
+    public void setDocType(DocType docType) {
+        this.docType = docType;
+    }
+
+    public DocUser getDocUser() {
+        return docUser;
+    }
+
+    public void setDocUser(DocUser docUser) {
+        this.docUser = docUser;
+    }
+
+    public void addUser(DocUser docUser) {
+        this.users.add(docUser);
+    }
 
     public States getState() {
         return state;
@@ -90,6 +115,10 @@ public class Document {
     @Column(name = "state")
     private States state;
 
+    public void setAuthor(DocUser author) {
+        this.author = author;
+    }
+
 
     public Long getId() {
         return id;
@@ -99,13 +128,13 @@ public class Document {
         this.id = id;
     }
 
-    public String getAuthor() {
+    public DocUser getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+//    public void setAuthor(String author) {
+//        this.author = author;
+//    }
 
     public String getType() {
         return type;
@@ -151,7 +180,7 @@ public class Document {
         return rejectionDate;
     }
 
-    public void setRejectionDate(LocalDate rejectionDate) {
+    public void setRejectionDate(LocalDate rejectionDateString) {
         this.rejectionDate = rejectionDate;
     }
 

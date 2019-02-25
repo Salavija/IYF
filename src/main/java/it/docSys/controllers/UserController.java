@@ -1,6 +1,7 @@
 package it.docSys.controllers;
 
 import io.swagger.annotations.Api;
+import it.docSys.DTO.GetDocumentDTO;
 import it.docSys.DTO.GroupGetDTO;
 import it.docSys.DTO.UserGetDTO;
 import it.docSys.DTO.UserPutDTO;
@@ -84,6 +85,22 @@ public class UserController {
     @ApiOperation(value = "Get all groups assigned to particular user")
     public List<GroupGetDTO> userGroups (@PathVariable final String username) {
         return userService.getUserGroups(username);
+    }
+
+    /*--Assign Document to User--*/
+
+    @PutMapping("/user/{getDocumentDTO}/{userName}")
+    @ApiOperation(value = "Assign document to user")
+    public void assignDocumentToUser(@PathVariable final GetDocumentDTO getDocumentDTO, @PathVariable final String userName) {
+        userService.assignDocumentToUser(getDocumentDTO, userName);
+    }
+
+    /*Get Documents of this user*/
+
+    @GetMapping("/user/{username}/documents")
+    @ApiOperation(value = "Get all documents assigned to particular user")
+    public List<GetDocumentDTO> userDocuments (@PathVariable final String username) {
+        return userService.getUserDocuments(username);
     }
 
 //    @GetMapping(value = "/{userName}")

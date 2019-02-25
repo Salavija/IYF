@@ -3,6 +3,9 @@ package it.docSys.DTO;
 import it.docSys.configs.States;
 
 import java.time.LocalDate;
+import java.util.List;
+
+//TODO Team Example ID's ALL Strings, My version was Long; Trying to get thenm Strings;
 
 public class GetDocumentDTO {
 
@@ -46,6 +49,10 @@ public class GetDocumentDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<String> getId() {
+        return id;
     }
 
     public String getAuthor() {

@@ -36,6 +36,8 @@ public class GroupEntity implements Serializable {
     private Set<DocUser> docUsers = new HashSet<>();
 
 
+
+
     public GroupEntity(Long id, String title, Set<DocType> docTypes, Set<DocUser> docUsers) {
         this.id = id;
         this.title = title;
@@ -76,6 +78,11 @@ public class GroupEntity implements Serializable {
 
     public void setDocTypes(Set<DocType> docTypes) {
         this.docTypes = docTypes;
+    }
+
+
+    public void addUser(DocUser docUser) {
+        this.docUsers.add(docUser);
     }
 
 

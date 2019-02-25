@@ -1,12 +1,13 @@
 package it.docSys.services;
 
-import it.docSys.DTO.GroupGetDTO;
-import it.docSys.DTO.UserGetDTO;
-import it.docSys.DTO.UserPutDTO;
+import it.docSys.DTO.*;
 import it.docSys.model.DocUser;
+import it.docSys.model.Document;
 import it.docSys.model.GroupEntity;
+import it.docSys.repository.DocumentRepository;
 import it.docSys.repository.GroupRepo;
 import it.docSys.repository.UserRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,8 +25,9 @@ public class UserService {
 
     @Autowired
     private GroupRepo groupRepository;
-//    @Autowired
-//    private DocumentRepository documentRepository;
+
+    @Autowired
+    private DocumentRepository documentRepository;
 
     public UserService() {
     }
@@ -109,6 +111,7 @@ public class UserService {
         if (group != null) {
             group.getDocUsers().add(user);
         }
+        groupRepository.save(group);
     }
 
     /*Gets all groups  of particular user*/
@@ -122,4 +125,80 @@ public class UserService {
         }
         return null;
     }
+
+    /* Assign Document to particular User */
+
+    @Transactional
+    public void assignDocumentToUser(GetDocumentDTO getDocumentDTO, String userName) {
+//        Document document = documentRepository.getOne(docId);
+        DocUser user = userRepository.findByUserName(userName);
+        if (user != null) {
+            List<Document> documents = documentRepository.findAllById(getDocumentDTO.getId());
+            for (Document document : documents) {
+                user.addDocument(document);
+
+
+            }
+            userRepository.save(user);
+        }
+    }
+
+    //TODO MY ORIGINAL
+
+//    @Transactional
+//    public void assignDocumentToUser(Long docId, Long docUserId) {
+//        Document document = documentRepository.getOne(docId);
+//        DocUser user = userRepository.getOne(docUserId);
+//        if (user != null) {
+//            user.getDocuments().add(document);
+//        }
+//        userRepository.save(user);
+//    }
+
+//    @Transactional
+//    public void addGroupsToUser(UserAddGroupsCommand userAddGroupsCommand, String username) {
+//        User user = userRepository.findByUsername(username);
+//        if (user != null) {
+//            List<UserGroup> userGroupList = userGroupRepository.findAllById(userAddGroupsCommand.getId());
+//            for (UserGroup userGroup : userGroupList) {
+//                user.addGroup(userGroup);
+//            }
+//            userRepository.save(user);
+//        }
+//    }
+
+    /*Gets all groups  of particular user*/
+
+    @Transactional
+    public List<GetDocumentDTO> getUserDocuments (String username) {
+        DocUser user = userRepository.findByUserName(username);
+        if (user != null) {
+            return user.getDocuments().stream().map(document -> {
+                GetDocumentDTO getDocumentDTO = new GetDocumentDTO();
+                BeanUtils.copyProperties(document, getDocumentDTO);
+                return getDocumentDTO;
+            }).collect(Collectors.toList());
+        }  else {
+            throw new NullPointerException("No user found");
+//                    new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(),
+//                    document.getTitle(), document.getDescription(), document.getSubmissionDate(),
+//                    document.getApprovingDate(), document.getRejectionDate(), document.getAddressee(),
+//                    document.getRejectionReason(), document.getAttachments(), document.getState())).collect(Collectors.toList());
+        }
+
+    }
+
+//    @Transactional(readOnly = true)
+//    public List<UserGroupGetCommand> getUsersGroups(String username) {
+//        User user = userRepository.findByUsername(username);
+//        if (user != null) {
+//            return user.getUserGroups().stream().map(userGroup -> {
+//                UserGroupGetCommand userGroupGetCommand = new UserGroupGetCommand();
+//                BeanUtils.copyProperties(userGroup, userGroupGetCommand);
+//                return userGroupGetCommand;
+//            }).collect(Collectors.toList());
+//        } else {
+//            throw new NullPointerException("User does not exist");
+//        }
+//    }
 }

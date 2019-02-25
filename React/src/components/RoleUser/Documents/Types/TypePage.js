@@ -1,36 +1,46 @@
 import React from 'react';
-// import tableD from './Document';
+import axios from "axios";
 import TypeCreation from './TypeCreation'
+import Types from './Types'
 
 
 class TypePage extends React.Component {
-    // constructor(props) {
-    //     super(props)
-    //     this.state = {
-    //         name: '',
-    //         email: '',
-    //         msg: ''
-    //     }
-    //     this.handleSubmit = this.handleSubmit.bind(this)
-    // }
+    constructor(props) {
+        super(props);
+        this.state = {
+            types: []
+        };
+    }
+    componentDidMount = () => {
+        axios
+            .get("http://localhost:8081/api/types")
+            .then(answer => {
+                this.setState({ types: answer.data });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
 
+    onTypeAdded = type => {
+        this.setState({ types: [...this.state.types, type] });
+    };
 
-    // documentToDB() {
-    //     axios
-    //       .post("http://localhost:8081//api/documents")
-    //       .then(response => {
-    //           console.log(response)
-    //       })
-    //       .catch(error => console.log(error.response));
-    // }
+    onTypeDeleted = type => {
+        this.setState(previousState => {
+            return {
+                types: previousState.types.filter(d => d.title !== type.title)
+            };
+        })
+    }
     render() {
         return (
             <div>
-
-                <TypeCreation />
+                <TypeCreation onTypeAdded={this.onTypeAdded} />
+                <Types types={this.state.types} onTypeDeleted={this.onTypeDeleted} />
             </div>
         );
-    };
+    }
 }
 
 export default TypePage;

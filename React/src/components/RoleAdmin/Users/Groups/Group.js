@@ -15,17 +15,17 @@ class Group extends React.Component {
         console.log(err);
       });
   };
-  handleRemoveE(event) {
-    alert("Grupė " + this.state.title + " ištrintas");
-    event.preventDefault();
-  }
+  // handleRemoveE(event) {
+  //   alert("Grupė " + this.state.title + " ištrintas");
+  //   event.preventDefault();
+  // }
 
-  removeGroup = (e, group) => {
-    e.preventDefault();
-    if (this.props.removeClick) {
-      this.props.removeClick(group);
-    }
-  };
+  // removeGroup = (e, group) => {
+  //   e.preventDefault();
+  //   if (this.props.removeClick) {
+  //     this.props.removeClick(group);
+  //   }
+  // };
   render() {
     return (
       <tr key={this.props.key}>

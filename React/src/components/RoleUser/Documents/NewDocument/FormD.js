@@ -7,6 +7,7 @@ import { Jumbotron } from 'reactstrap';
 import FileUpl from './FileUpl';
 // import axios from 'axios';
 import TypesListGet from './../Types/TypesListGet';
+import axios from "axios";
 
 
 class FormD extends React.Component {
@@ -15,6 +16,9 @@ class FormD extends React.Component {
 
         this.toggle = this.toggle.bind(this);
         this.state = {
+            type: "",
+            title: "",
+            describtion: "",
             dropdownOpen: false
         };
     }
@@ -23,6 +27,36 @@ class FormD extends React.Component {
         this.setState(prevState => ({
             dropdownOpen: !prevState.dropdownOpen
         }));
+    }
+
+    onDocumentAdded = document => {
+        this.setState({ documents: [...this.state.documents, document] });
+    };
+
+    addNewDocument = () => {
+        const newDocument = {
+            type: this.state.type,
+            title: this.state.title,
+            describtion: this.state.describtion,
+        }
+        this.props.onDocumentAdded(newDocument);
+        axios.post("http://localhost:8081/api/documents", newDocument)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    onInputChange = (event) => {
+        console.log(event.target.value);
+        this.setState({ 
+            type: event.target.value,
+            title: event.target.value,
+            describtion: event.target.value
+         })
+        //paemimas inputo ir idejimas i state
     }
 
     render() {
@@ -34,7 +68,7 @@ class FormD extends React.Component {
                         <h3><b>Dokumento kūrimo forma</b></h3>
                         <p className="lead"><i>Užpildykite visus laukus</i></p>
 
-                        <Form>
+                        <Form onChange={this.onInputChange}>
                             <FormGroup>
                                 <TypesListGet />
                                 <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
@@ -58,7 +92,7 @@ class FormD extends React.Component {
                             </FormGroup>
                             <br></br>
                             <FileUpl />
-                            <Button color="success">Pridėti</Button>{' '}
+                            <Button color="success" onClick={this.addNewDocument}>Pridėti</Button>{' '}
                         </Form>
                         
                     </Jumbotron>

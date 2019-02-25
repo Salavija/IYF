@@ -15,28 +15,28 @@ import PermMediaOutlinedIcon from '@material-ui/icons/PhotoSizeSelectActual';
 import PublicIcon from '@material-ui/icons/Public';
 import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';
 // import SettingsInputComponentIcon from '@material-ui/icons/SettingsInputComponent';
-import TimerIcon from '@material-ui/icons/Timer';
+// import TimerIcon from '@material-ui/icons/Timer';
 // import SettingsIcon from '@material-ui/icons/Settings';
-import PhonelinkSetupIcon from '@material-ui/icons/PhonelinkSetup';
+// import PhonelinkSetupIcon from '@material-ui/icons/PhonelinkSetup';
 import { withRouter } from 'react-router-dom';
 
 const categories = [
     {
         id: 'Dokumentų valdymas',
         children: [
-            { id: 'Autentifikacija', icon: <PeopleIcon />, active: true, link:"/" },
+            { id: 'Pradžia', icon: <SettingsEthernetIcon />, active: true,  link: "/home-user" },
             { id: 'Dokumentai', icon: <DnsRoundedIcon />, link:"/documents" },
-            { id: 'Kurti naują', icon: <PermMediaOutlinedIcon /> },
-            { id: 'Hosting', icon: <PublicIcon /> },
-            { id: 'Functions', icon: <SettingsEthernetIcon /> },
+            { id: 'Naujas dokumentas', icon: <PermMediaOutlinedIcon />, link:"/create-new-document" },
         ],
     },
     {
         id: 'Admin',
         children: [
-            { id: 'Vartotojai', icon: <PeopleIcon /> },
-            { id: 'Prašymų tipai', icon: <TimerIcon /> },
-            { id: 'Grupės', icon: <PhonelinkSetupIcon /> },
+            { id: 'Pradžia', icon: <SettingsEthernetIcon />, link: "/home-admin" },
+            { id: 'Vartotojai', icon: <PeopleIcon />, link:"/users" },
+            { id: 'Naujas vartotojas', icon: <PeopleIcon />, link: "/create-user" },
+            { id: 'Dokumentų tipai', icon: <DnsRoundedIcon />,link:"/types" },
+            { id: 'Grupės', icon: <PublicIcon /> , link:"/groups" },
         ],
     },
 ];
@@ -94,7 +94,7 @@ function Navigator(props) {
         <Drawer variant="permanent" {...other}>
             <List disablePadding>
                 <ListItem className={classNames(classes.firebase, classes.item, classes.itemCategory)}>
-                    BDMS
+                    DocSm
         </ListItem>
                 <ListItem className={classNames(classes.item, classes.itemCategory)}>
                     <ListItemIcon>

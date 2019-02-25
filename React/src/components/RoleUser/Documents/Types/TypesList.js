@@ -26,7 +26,7 @@ class TypesList extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        Dokumento tipas:
+                        Pick the datadocumentType to describe your data file:
                   <select value={documentTypes} onChange={this.handleChange}>
                             {
                                 (documentTypes && documentTypes.length > 0) && documentTypes.map((documentType) => {

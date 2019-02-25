@@ -63,13 +63,13 @@ class NewGroup extends React.Component {
             <h3>
               <b>Sukurti naują grupę</b>
             </h3>
-            <Form>
+            <Form onSubmit={this.addNewGroup}>
               <FormGroup>
                 <Input type="text" name="title" id="title" placeholder="Pavadinimas" onChange ={this.onInputChange}/>
                 <FormText>Nurodykite grupės pavadinimą</FormText>
               </FormGroup>
               <br />
-              <Button onClick={this.addNewGroup} color="success">Pridėti</Button>{" "}
+              <Button type="submit" color="primary">Pridėti</Button>{" "}
             </Form>
           </Jumbotron>
         </Container>

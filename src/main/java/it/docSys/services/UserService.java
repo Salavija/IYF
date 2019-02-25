@@ -47,16 +47,16 @@ public class UserService {
 //        , user.getGroups(), user.getDocuments()
     }
 
-    @Transactional
-    public UserGetDTO findByUserId(Long userId) {
-        DocUser user = userRepository.getOne(userId);//.orElse(null);
-        if (user != null) {
-            return new UserGetDTO(user.getDocUserId(), user.getUserName(), user.getFirstName(), user.getLastName(),
-                    user.getPassword(), user.getRole()//, user.getGroups(), user.getDocuments()
-            );
-        }
-        return null;
-    }
+//    @Transactional
+//    public UserGetDTO findByUserId(Long userId) {
+//        DocUser user = userRepository.getOne(userId);//.orElse(null);
+//        if (user != null) {
+//            return new UserGetDTO(user.getDocUserId(), user.getUserName(), user.getFirstName(), user.getLastName(),
+//                    user.getPassword(), user.getRole()//, user.getGroups(), user.getDocuments()
+//            );
+//        }
+//        return null;
+//    }
 
 
     @Transactional

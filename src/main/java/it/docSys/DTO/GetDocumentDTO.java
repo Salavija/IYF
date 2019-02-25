@@ -5,11 +5,11 @@ import it.docSys.configs.States;
 import java.time.LocalDate;
 import java.util.List;
 
-//TODO Team Example ID's ALL Strings, My version was Long; Trying to get thenm Strings;
+//TODO Team Example ID's ALL Strings (2 nd Edition fixed to be List<Long>), My version was Long; Trying to get them Strings;
 
 public class GetDocumentDTO {
 
-    private Long id;
+    private List<Long> id;
     private String author;
     private String type;
     private String title;
@@ -24,7 +24,7 @@ public class GetDocumentDTO {
 
 
 
-    public GetDocumentDTO(Long id, String author, String type, String title, String description,
+    public GetDocumentDTO(List<Long> id, String author, String type, String title, String description,
                           LocalDate submissionDate, LocalDate approvingDate, LocalDate rejectionDate,
                           String addressee, String rejectionReason, byte attachments, States state) {
         this.id = id;
@@ -43,15 +43,15 @@ public class GetDocumentDTO {
 
     public GetDocumentDTO() {}
 
-    public Long getId() {
-        return id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
 
-    public void setId(Long id) {
+    public void setId(List<Long> id) {
         this.id = id;
     }
 
-    public List<String> getId() {
+    public List<Long> getId() {
         return id;
     }
 

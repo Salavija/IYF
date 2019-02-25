@@ -4,15 +4,19 @@ import it.docSys.configs.States;
 import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "document")
 public class Document {
 
+    //TODO Connect with user author to autoLink it; For now reverting to string;
+    //TODO 2 List<Long> for id to work.
+
     public Document() {}
 
-    public Document(Long id, DocUser author, String type, @Length
+    public Document(List<Long> id, String author, String type, @Length
             (min = 2, message = "*Title must have at least 2 characters")
     @Length(max = 200, message = "*Title must have maximum 200 characters")
             String title, String description, LocalDate submissionDate, LocalDate approvingDate,
@@ -35,10 +39,10 @@ public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "document_id")
-    private Long id;
+    private List<Long> id;
 
     @Column(name = "author", nullable = false)
-    private DocUser author;
+    private String author;
 
     @Column(name ="type", nullable = false)
     private String type; // Or some other type of data???
@@ -69,7 +73,7 @@ public class Document {
     @Column(name = "attachments")
     private byte attachments;
 
-    private Set<DocUser> users;
+    private List<DocUser> users;
 
 
     /*Sarysis su dokumento tipu many to one - daug doku vienam tipe*/
@@ -104,6 +108,10 @@ public class Document {
         this.users.add(docUser);
     }
 
+    public void removeUser(DocUser docUser) {
+        this.users.remove(docUser);
+    }
+
     public States getState() {
         return state;
     }
@@ -115,20 +123,20 @@ public class Document {
     @Column(name = "state")
     private States state;
 
-    public void setAuthor(DocUser author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
 
-    public Long getId() {
+    public List<Long> getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(List<Long> id) {
         this.id = id;
     }
 
-    public DocUser getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
@@ -180,7 +188,7 @@ public class Document {
         return rejectionDate;
     }
 
-    public void setRejectionDate(LocalDate rejectionDateString) {
+    public void setRejectionDate(LocalDate rejectionDate) {
         this.rejectionDate = rejectionDate;
     }
 

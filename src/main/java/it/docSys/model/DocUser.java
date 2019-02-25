@@ -108,7 +108,7 @@ public class DocUser {
 
     public void addDocument(Document document) {
         documents.add(document);
-        document.setAuthor(this);
+        document.setAuthor(this.getUserName());
     }
 
     public void removeDocument(Document document) {

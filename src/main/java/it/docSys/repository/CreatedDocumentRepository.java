@@ -1,6 +1,6 @@
 package it.docSys.repository;
 
-import it.docSys.model.CreatedDocument;
+import it.docSys.entities.CreatedDocument;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 

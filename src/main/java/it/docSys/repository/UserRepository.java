@@ -1,6 +1,6 @@
 package it.docSys.repository;
 
-import it.docSys.model.DocUser;
+import it.docSys.entities.DocUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

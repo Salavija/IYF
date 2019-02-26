@@ -9,7 +9,7 @@ import java.util.List;
 
 public class GetDocumentDTO {
 
-    private List<Long> id;
+    private Long id;
     private String author;
     private String type;
     private String title;
@@ -24,7 +24,7 @@ public class GetDocumentDTO {
 
 
 
-    public GetDocumentDTO(List<Long> id, String author, String type, String title, String description,
+    public GetDocumentDTO(Long id, String author, String type, String title, String description,
                           LocalDate submissionDate, LocalDate approvingDate, LocalDate rejectionDate,
                           String addressee, String rejectionReason, byte attachments, States state) {
         this.id = id;
@@ -47,11 +47,11 @@ public class GetDocumentDTO {
 //        return id;
 //    }
 
-    public void setId(List<Long> id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public List<Long> getId() {
+    public Long getId() {
         return id;
     }
 

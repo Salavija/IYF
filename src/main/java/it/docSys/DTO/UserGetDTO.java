@@ -1,11 +1,6 @@
 package it.docSys.DTO;
 
 
-import it.docSys.model.Document;
-import it.docSys.model.GroupEntity;
-
-import java.util.Set;
-
 public class UserGetDTO {
     private Long userId;
     private String userName;

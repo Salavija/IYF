@@ -1,6 +1,6 @@
 package it.docSys.repository;
 
-import it.docSys.model.GroupEntity;
+import it.docSys.entities.GroupEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GroupRepo extends JpaRepository<GroupEntity, Long> {

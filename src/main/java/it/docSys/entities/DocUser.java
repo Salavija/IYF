@@ -1,19 +1,17 @@
-package it.docSys.model;
+package it.docSys.entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import it.docSys.model.Document;
 
 @Entity
+@Table(name = "docUser")
 public class DocUser {
 
     public DocUser() {}
 
     public DocUser(Long docUserId, String userName, String firstName, String lastName,
-                   String password, String role, Set<GroupEntity> groups, Set<Document> documents
+                   String password, String role, Set<GroupEntity> groups//, Set<Document> documents
     ) {
         this.docUserId = docUserId;
         this.userName = userName;
@@ -38,7 +36,7 @@ public class DocUser {
     @Column(name = "user_name", nullable = false, unique = true)
     private String userName;
 
-    @Column(name = "name")
+    @Column(name = "firstName")
     private String firstName;
 
     @Column(name = "lastName")
@@ -55,11 +53,12 @@ public class DocUser {
 
     /*Sarysis su dokumentu one to many - daug doku vienas autorius*/
 
-//    @OneToMany (mappedBy = "docUser")
-//    private Set<Document> documents = new HashSet<>();
+    @OneToMany (mappedBy = "docUsers")
+    private Set<Document> documents = new HashSet<>();
 
-    @OneToMany(mappedBy = "author")
-    private Set<Document> documents;
+//    @OneToMany(mappedBy = "author")
+//    @ElementCollection
+//    private Set<Document> documents;
 
 //    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 //    @JoinTable(name = "user_of_group",
@@ -101,20 +100,20 @@ public class DocUser {
         groupEntity.addUser(this);
     }
 
-//    public void addDocument(Document document){
-//        this.documents.add(document);
-//        document.addUser(this);
+    public void addDocument(Document document){
+        this.documents.add(document);
+        document.addUser(this);
+    }
+
+//    public void addDocument(Document document) {
+//        documents.add(document);
+//        document.setAuthor(this.getUserName());
 //    }
-
-    public void addDocument(Document document) {
-        documents.add(document);
-        document.setAuthor(this.getUserName());
-    }
-
-    public void removeDocument(Document document) {
-        documents.remove(document);
-        document.setAuthor(null);
-    }
+//
+//    public void removeDocument(Document document) {
+//        documents.remove(document);
+//        document.setAuthor(null);
+//    }
 
     public String getUserName() {
         return userName;

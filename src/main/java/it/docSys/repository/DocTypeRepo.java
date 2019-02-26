@@ -1,6 +1,6 @@
 package it.docSys.repository;
 
-import it.docSys.model.DocType;
+import it.docSys.entities.DocType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DocTypeRepo extends JpaRepository<DocType, Long> {

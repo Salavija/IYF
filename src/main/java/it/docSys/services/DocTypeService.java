@@ -2,10 +2,10 @@ package it.docSys.services;
 
 import it.docSys.DTO.GetDocumentDTO;
 import it.docSys.DTO.GroupGetDTO;
-import it.docSys.model.DocType;
+import it.docSys.entities.DocType;
 import it.docSys.DTO.DocTypeGetDTO;
 import it.docSys.DTO.DocTypePutDTO;
-import it.docSys.model.GroupEntity;
+import it.docSys.entities.GroupEntity;
 import it.docSys.repository.DocTypeRepo;
 import it.docSys.repository.GroupRepo;
 import org.springframework.beans.factory.annotation.Autowired;

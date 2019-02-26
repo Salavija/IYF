@@ -1,9 +1,9 @@
 package it.docSys.services;
 
 import it.docSys.DTO.*;
-import it.docSys.model.DocUser;
-import it.docSys.model.Document;
-import it.docSys.model.GroupEntity;
+import it.docSys.entities.DocUser;
+import it.docSys.entities.Document;
+import it.docSys.entities.GroupEntity;
 import it.docSys.repository.DocumentRepository;
 import it.docSys.repository.GroupRepo;
 import it.docSys.repository.UserRepository;
@@ -129,19 +129,34 @@ public class UserService {
     /* Assign Document to particular User */
 
     @Transactional
-    public void assignDocumentToUser(GetDocumentDTO getDocumentDTO, String userName) {
-//        Document document = documentRepository.getOne(docId);
+    public void assignDocumentToUser(Long docId, String userName ) {
+        Document document = documentRepository.getOne(docId);
         DocUser user = userRepository.findByUserName(userName);
         if (user != null) {
-            List<Document> documents = documentRepository.findAllById(getDocumentDTO.getId());
-            for (Document document : documents) {
-                user.addDocument(document);
-
-
-            }
-            userRepository.save(user);
+            user.getDocuments().add(document);
+        } else {
+            throw new NullPointerException("There is no user with that name");
         }
+        userRepository.save(user);
     }
+
+    // Old problematic JJ method
+//    @Transactional
+//    public void assignDocumentToUser(GetDocumentDTO getDocumentDTO, String userName) {
+////        Document document = documentRepository.getOne(docId);
+//        DocUser user = userRepository.findByUserName(userName);
+//        if (user != null) {
+//            List<Document> documents = documentRepository.findAll();  //findAllById(getDocumentDTO.getId());
+//            for (Document document : documents) {
+//                user.addDocument(document);
+//
+//
+//            } userRepository.save(user);
+//        }  else {
+//            throw new NullPointerException("There is no user with that username");
+//
+//        }
+//    }
 
     //TODO MY ORIGINAL
 

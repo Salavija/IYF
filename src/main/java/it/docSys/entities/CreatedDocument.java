@@ -1,35 +1,31 @@
-package it.docSys.model;
+package it.docSys.entities;
 
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
-@Table(name = "approved_document")
-public class ApprovedDocument {
+@Table(name = "created_document")
+public class CreatedDocument {
 
-    public ApprovedDocument() {}
+    public CreatedDocument() {}
 
-    public ApprovedDocument(Long id, String author, String type,
-                            @Length(min = 2, message = "*Title must have at least 2 characters")
-                            @Length(max = 200, message = "*Title must have maximum 200 characters")
-                                    String name, String description, LocalDate submissionDate,
-                            LocalDate approvingDate, String addressee, byte attachments) {
+    public CreatedDocument(Long id, String author, String type, @Length(min = 2,
+            message = "*Title must have at least 2 characters") @Length(max = 200,
+            message = "*Title must have maximum 200 characters") String name,
+                           String description, String addressee, byte attachments) {
         this.id = id;
         this.author = author;
         this.type = type;
         this.name = name;
         this.description = description;
-        this.submissionDate = submissionDate;
-        this.approvingDate = approvingDate;
         this.addressee = addressee;
         this.attachments = attachments;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "document_id")
+    @Column(name = "createdDocument_id")
     private Long id;
 
     @Column(name = "author", nullable = false)
@@ -46,20 +42,19 @@ public class ApprovedDocument {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "submission_date")
-    private LocalDate submissionDate;
+//    @Column(name = "submission_date")     NOT SUBMITTED ONLY CREATED
+//    private LocalDate submissionDate;
 
+//    @Column(name = "approving_date")      NOT APPROVED ONLY CREATED
+//    private LocalDate approvingDate;
 
-    @Column(name = "approving_date")
-    private LocalDate approvingDate;
-
-//    @Column(name = "rejection_date")      NOT REJECTED
+//    @Column(name = "rejection_date")      NOT REJECTED ONLY CREATED
 //    private LocalDate rejectionDate;
 
     @Column(name = "addressee")
     private String addressee;
 
-//    @Column(name = "rejection_reason")    NOT REJECTED
+//    @Column(name = "rejection_reason")    NOT REJECTED ONLY CREATED
 //    private String rejectionReason;
 
     @Column(name = "attachments")
@@ -122,31 +117,15 @@ public class ApprovedDocument {
         this.attachments = attachments;
     }
 
-    public LocalDate getSubmissionDate() {
-        return submissionDate;
-    }
-
-    public void setSubmissionDate(LocalDate submissionDate) {
-        this.submissionDate = submissionDate;
-    }
-
-    public LocalDate getApprovingDate() {
-        return approvingDate;
-    }
-
-    public void setApprovingDate(LocalDate approvingDate) {
-        this.approvingDate = approvingDate;
-    }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ApprovedDocument approvedDocument = (ApprovedDocument) o;
+        CreatedDocument createdDocument = (CreatedDocument) o;
 
-        return id.equals(approvedDocument.id);
+        return id.equals(createdDocument.id);
     }
 
     @Override

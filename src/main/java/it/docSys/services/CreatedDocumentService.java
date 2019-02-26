@@ -3,7 +3,7 @@ package it.docSys.services;
 
 import it.docSys.DTO.GetCreatedDocumentDTO;
 import it.docSys.DTO.PutCreatedDocumentDTO;
-import it.docSys.model.CreatedDocument;
+import it.docSys.entities.CreatedDocument;
 import it.docSys.repository.CreatedDocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

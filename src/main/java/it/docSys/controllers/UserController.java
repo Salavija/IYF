@@ -89,10 +89,10 @@ public class UserController {
 
     /*--Assign Document to User--*/
 
-    @PutMapping("/user/{getDocumentDTO}/{userName}")
+    @PutMapping("/user/{docId}/{userName}")
     @ApiOperation(value = "Assign document to user")
-    public void assignDocumentToUser(@PathVariable final GetDocumentDTO getDocumentDTO, @PathVariable final String userName) {
-        userService.assignDocumentToUser(getDocumentDTO, userName);
+    public void assignDocumentToUser(@PathVariable final Long docId, @PathVariable final String userName) {
+        userService.assignDocumentToUser(docId, userName);
     }
 
     /*Get Documents of this user*/

@@ -3,7 +3,7 @@ package it.docSys.services;
 
 import it.docSys.DTO.GetApprovedDocumentDTO;
 import it.docSys.DTO.PutApprovedDocumentDTO;
-import it.docSys.model.ApprovedDocument;
+import it.docSys.entities.ApprovedDocument;
 import it.docSys.repository.ApprovedDocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

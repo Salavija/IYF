@@ -1,11 +1,11 @@
-package it.docSys.model;
+package it.docSys.entities;
 
 import it.docSys.configs.States;
 import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "document")
@@ -16,7 +16,7 @@ public class Document {
 
     public Document() {}
 
-    public Document(List<Long> id, String author, String type, @Length
+    public Document(Long id, String author, String type, @Length
             (min = 2, message = "*Title must have at least 2 characters")
     @Length(max = 200, message = "*Title must have maximum 200 characters")
             String title, String description, LocalDate submissionDate, LocalDate approvingDate,
@@ -39,7 +39,8 @@ public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "document_id")
-    private List<Long> id;
+//    @ElementCollection
+    private Long id;
 
     @Column(name = "author", nullable = false)
     private String author;
@@ -73,6 +74,12 @@ public class Document {
     @Column(name = "attachments")
     private byte attachments;
 
+    @OneToMany
+    @JoinColumn(name="user_id")
+    private List<Document> documents;
+
+    @ManyToMany
+    @JoinColumn(name="user_name")
     private List<DocUser> users;
 
 
@@ -128,11 +135,11 @@ public class Document {
     }
 
 
-    public List<Long> getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(List<Long> id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -4,7 +4,7 @@ package it.docSys.services;
 
 import it.docSys.DTO.GetRejectedDocumentDTO;
 import it.docSys.DTO.PutRejectedDocumentDTO;
-import it.docSys.model.RejectedDocument;
+import it.docSys.entities.RejectedDocument;
 import it.docSys.repository.RejectedDocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

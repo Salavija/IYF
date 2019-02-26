@@ -2,7 +2,7 @@ package it.docSys.services;
 
 
 import it.docSys.DTO.DocTypeGetDTO;
-import it.docSys.model.GroupEntity;
+import it.docSys.entities.GroupEntity;
 import it.docSys.DTO.GroupGetDTO;
 import it.docSys.DTO.GroupPutDTO;
 import it.docSys.repository.DocTypeRepo;

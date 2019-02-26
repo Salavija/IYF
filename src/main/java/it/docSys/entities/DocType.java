@@ -1,4 +1,4 @@
-package it.docSys.model;
+package it.docSys.entities;
 
 
 import javax.persistence.*;

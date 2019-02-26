@@ -3,7 +3,7 @@ package it.docSys.services;
 
 import it.docSys.DTO.GetSubmittedDocumentDTO;
 import it.docSys.DTO.PutSubmittedDocumentDTO;
-import it.docSys.model.SubmittedDocument;
+import it.docSys.entities.SubmittedDocument;
 import it.docSys.repository.SubmittedDocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -117,7 +117,7 @@ public class UserService {
     /*Gets all groups  of particular user*/
 
     @Transactional
-    public List<GroupGetDTO> getUserGroups (String username) {
+    public List<GroupGetDTO> getUserGroups(String username) {
         DocUser user = userRepository.findByUserName(username);
         if (user != null) {
             return user.getGroups().stream().map(group ->
@@ -129,16 +129,33 @@ public class UserService {
     /* Assign Document to particular User */
 
     @Transactional
-    public void assignDocumentToUser(Long docId, String userName ) {
-        Document document = documentRepository.getOne(docId);
+    public void assignDocumentToUser(Long docId, String userName) {
         DocUser user = userRepository.findByUserName(userName);
+        Document document = documentRepository.getOne(docId);
         if (user != null) {
             user.getDocuments().add(document);
+            userRepository.save(user);
         } else {
             throw new NullPointerException("There is no user with that name");
         }
-        userRepository.save(user);
+//        userRepository.save(user);
     }
+
+    /*Gets all documents  of particular user*/
+
+    @Transactional
+    public List<TestDocDTO> getUserDocuments(String username) {
+        DocUser user = userRepository.findByUserName(username);
+        if (user != null) {
+            return user.getDocuments().stream().map(document ->
+                    new TestDocDTO(document.getId(), document.getTitle(), document.getType(),
+                            document.getAuthor())).collect(Collectors.toList());
+        } else {
+            throw new NullPointerException("There is no user with that name");
+
+        }
+    }
+}
 
     // Old problematic JJ method
 //    @Transactional
@@ -184,24 +201,28 @@ public class UserService {
 
     /*Gets all groups  of particular user*/
 
-    @Transactional
-    public List<GetDocumentDTO> getUserDocuments (String username) {
-        DocUser user = userRepository.findByUserName(username);
-        if (user != null) {
-            return user.getDocuments().stream().map(document -> {
-                GetDocumentDTO getDocumentDTO = new GetDocumentDTO();
-                BeanUtils.copyProperties(document, getDocumentDTO);
-                return getDocumentDTO;
-            }).collect(Collectors.toList());
-        }  else {
-            throw new NullPointerException("No user found");
+    /* Experimental compiling method */
+
+//    @Transactional
+//    public List<GetDocumentDTO> getUserDocuments (String username) {
+//        DocUser user = userRepository.findByUserName(username);
+//        if (user != null) {
+//            return user.getDocuments().stream().map(document -> {
+//                GetDocumentDTO getDocumentDTO = new GetDocumentDTO();
+//                BeanUtils.copyProperties(document, getDocumentDTO);
+//                return getDocumentDTO;
+//            }).collect(Collectors.toList());
+//        }  else {
+//            throw new NullPointerException("No user found");
+
+
 //                    new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(),
 //                    document.getTitle(), document.getDescription(), document.getSubmissionDate(),
 //                    document.getApprovingDate(), document.getRejectionDate(), document.getAddressee(),
 //                    document.getRejectionReason(), document.getAttachments(), document.getState())).collect(Collectors.toList());
-        }
 
-    }
+
+
 
 //    @Transactional(readOnly = true)
 //    public List<UserGroupGetCommand> getUsersGroups(String username) {
@@ -216,4 +237,4 @@ public class UserService {
 //            throw new NullPointerException("User does not exist");
 //        }
 //    }
-}
+

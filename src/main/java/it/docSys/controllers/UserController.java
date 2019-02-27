@@ -1,10 +1,7 @@
 package it.docSys.controllers;
 
 import io.swagger.annotations.Api;
-import it.docSys.DTO.GetDocumentDTO;
-import it.docSys.DTO.GroupGetDTO;
-import it.docSys.DTO.UserGetDTO;
-import it.docSys.DTO.UserPutDTO;
+import it.docSys.DTO.*;
 import it.docSys.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -99,7 +96,7 @@ public class UserController {
 
     @GetMapping("/user/{username}/documents")
     @ApiOperation(value = "Get all documents assigned to particular user")
-    public List<GetDocumentDTO> userDocuments (@PathVariable final String username) {
+    public List<TestDocDTO> userDocuments (@PathVariable final String username) {
         return userService.getUserDocuments(username);
     }
 

@@ -11,7 +11,7 @@ public class DocUser {
     public DocUser() {}
 
     public DocUser(Long docUserId, String userName, String firstName, String lastName,
-                   String password, String role, Set<GroupEntity> groups//, Set<Document> documents
+                   String password, String role, Set<GroupEntity> groups, Set<Document> documents
     ) {
         this.docUserId = docUserId;
         this.userName = userName;
@@ -53,25 +53,8 @@ public class DocUser {
 
     /*Sarysis su dokumentu one to many - daug doku vienas autorius*/
 
-    @OneToMany (mappedBy = "docUsers")
+    @OneToMany (mappedBy = "docUser")
     private Set<Document> documents = new HashSet<>();
-
-//    @OneToMany(mappedBy = "author")
-//    @ElementCollection
-//    private Set<Document> documents;
-
-//    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-//    @JoinTable(name = "user_of_group",
-//            joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
-//    private Set<GroupEntity> groups = new HashSet<>();
-
-//    @Column(name = "user_groups")
-//    @ElementCollection(targetClass = GroupEntity.class)
-//    private Set<GroupEntity> groups = new HashSet<>();
-//
-//    @Column(name = "user_documents")
-//    @ElementCollection(targetClass = Document.class)
-//    private Set<Document> documents = new HashSet<>();
 
 
     public Set<GroupEntity> getGroups() {
@@ -90,30 +73,17 @@ public class DocUser {
         this.documents = documents;
     }
 
-//    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-//    @JoinTable(name = "user_document",
-//            joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "document_id"))
-//    private Set<Document> documents = new HashSet<>();
 
-    public void addGroup(GroupEntity groupEntity){
-        this.groups.add(groupEntity);
-        groupEntity.addUser(this);
-    }
-
-    public void addDocument(Document document){
-        this.documents.add(document);
-        document.addUser(this);
-    }
-
-//    public void addDocument(Document document) {
-//        documents.add(document);
-//        document.setAuthor(this.getUserName());
+//    public void addGroup(GroupEntity groupEntity){
+//        this.groups.add(groupEntity);
+//        groupEntity.addUser(this);
 //    }
 //
-//    public void removeDocument(Document document) {
-//        documents.remove(document);
-//        document.setAuthor(null);
+//    public void addDocument(Document document){
+//        this.documents.add(document);
+//        document.addUser(this);
 //    }
+
 
     public String getUserName() {
         return userName;
@@ -163,21 +133,7 @@ public class DocUser {
         this.role = role;
     }
 
-//    public Set<GroupEntity> getGroups() {
-//        return groups;
-//    }
-//
-//    public void setGroups(Set<GroupEntity> groups) {
-//        this.groups = groups;
-//    }
-//
-//    public Set<Document> getDocuments() {
-//        return documents;
-//    }
-//
-//    public void setDocuments(Set<Document> documents) {
-//        this.documents = documents;
-//    }
+
 
     @Override
     public boolean equals(Object o) {

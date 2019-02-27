@@ -4,7 +4,9 @@ import it.docSys.configs.States;
 import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -74,16 +76,19 @@ public class Document {
     @Column(name = "attachments")
     private byte attachments;
 
-    @OneToMany
-    @JoinColumn(name="user_id")
-    private List<Document> documents;
+
+    public List<DocUser> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<DocUser> users) {
+        this.users = users;
+    }
 
     @ManyToMany
     @JoinColumn(name="user_name")
     private List<DocUser> users;
 
-
-    /*Sarysis su dokumento tipu many to one - daug doku vienam tipe*/
 
     @ManyToOne
     @JoinColumn(name="docType_id")
@@ -93,15 +98,11 @@ public class Document {
         return docType;
     }
 
-    /*Sarysis su Useriu many to one - daug doku vienas autorius*/
+    /*Sarysis su Useriu many to one - daug doku vienas autorius/Useris*/
 
     @ManyToOne
-    @JoinColumn(name="docUser_user_id")
+    @JoinColumn(name="user_name")
     private DocUser docUser;
-
-    public void setDocType(DocType docType) {
-        this.docType = docType;
-    }
 
     public DocUser getDocUser() {
         return docUser;
@@ -111,13 +112,18 @@ public class Document {
         this.docUser = docUser;
     }
 
-    public void addUser(DocUser docUser) {
-        this.users.add(docUser);
+    public void setDocType(DocType docType) {
+        this.docType = docType;
     }
 
-    public void removeUser(DocUser docUser) {
-        this.users.remove(docUser);
-    }
+
+//    public void addUser(DocUser docUser) {
+//        this.users.add(docUser);
+//    }
+//
+//    public void removeUser(DocUser docUser) {
+//        this.users.remove(docUser);
+//    }
 
     public States getState() {
         return state;

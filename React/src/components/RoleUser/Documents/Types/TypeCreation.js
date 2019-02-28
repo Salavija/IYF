@@ -1,29 +1,63 @@
-import React from 'react';
-import {
-    Form, Input, FormText, Container, Button
-} from 'reactstrap';
-import { Jumbotron } from 'reactstrap';
+import React from "react";
+import { Form, Input, FormGroup, FormText, Container, Button } from "reactstrap";
+import { Jumbotron } from "reactstrap";
+import axios from 'axios';
+
 
 class TypeCreation extends React.Component {
+  constructor(props) {
+      super(props)
+    this.toggle = this.toggle.bind(this);
+      this.state = {
+          title: '',
+      }
+  }
+  toggle() {
+    this.setState(prevState => ({
+      dropdownOpen: !prevState.dropdownOpen
+    }));
+  }
+  addNewType = () => {
+    const newType = {
+      title: this.state.title,
+    }
+    this.props.onTypeAdded(newType);
+    axios.post("http://localhost:8081/api/types", newType)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
-    render() {
-        return (
-            <div>
-                <Container>
-                    <br></br>
-                    <Jumbotron>
-                        <h3>Sukurti naują dokumento tipą</h3>
-                        <Form>  
-                                <Input type="text" name="type" id="type" placeholder="Dokumento tipas" />
-                                <FormText>Įveskite naują tipą</FormText>
-                                <br></br>
-                            <Button color="success">Pridėti</Button>{' '}
-                        </Form>
-                    </Jumbotron>
-                </Container>
-            </div>
-        );
-    };
+  onInputChange = (event) => {
+    console.log(event.target.value);
+    this.setState({ title: event.target.value })
+  }
+
+  render() {
+    return (
+      <div>
+        <Container>
+          <br />
+          <Jumbotron>
+            <h3>
+              <b>Sukurti naują tipą</b>
+            </h3>
+            <Form onSubmit={this.addNewType}>
+              <FormGroup>
+                <Input type="text" name="title" id="titlet" placeholder="Pavadinimas" onChange={this.onInputChange} />
+                <FormText>Nurodykite tipo pavadinimą</FormText>
+              </FormGroup>
+              <br />
+              <Button type="submit" color="primary">Pridėti</Button>{" "}
+            </Form>
+          </Jumbotron>
+        </Container>
+      </div>
+    );
+  }
 }
 
 export default TypeCreation;

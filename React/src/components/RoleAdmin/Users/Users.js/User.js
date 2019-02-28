@@ -2,6 +2,9 @@ import React from "react";
 import { Table, Container, Row } from "reactstrap";
 import PropTypes from "prop-types";
 import axios from "axios";
+import Paper from '@material-ui/core/Paper';
+
+
 
 class UsersList extends React.Component {
   getUsers() {
@@ -11,8 +14,6 @@ class UsersList extends React.Component {
         response.data.results.map(user => ({
           firstName: ``,
           lastName: ``,
-          password: ``,
-          userId: ``
         }))
       )
       // Let's make sure to change the loading state to display the data
@@ -28,7 +29,6 @@ class UsersList extends React.Component {
   render() {
     return (
       <div>
-        <Container>
           <Row>
             <Table>
               <thead>
@@ -57,7 +57,6 @@ class UsersList extends React.Component {
               </tbody>
             </Table>
           </Row>
-        </Container>
       </div>
     );
   }
@@ -68,3 +67,98 @@ UsersList.Prototypes = {
 };
 
 export default UsersList;
+
+
+// import React from 'react';
+// import PropTypes from 'prop-types';
+// import AppBar from '@material-ui/core/AppBar';
+// import Toolbar from '@material-ui/core/Toolbar';
+// import Typography from '@material-ui/core/Typography';
+// import Paper from '@material-ui/core/Paper';
+// import Grid from '@material-ui/core/Grid';
+// import Button from '@material-ui/core/Button';
+// import TextField from '@material-ui/core/TextField';
+// import Tooltip from '@material-ui/core/Tooltip';
+// import IconButton from '@material-ui/core/IconButton';
+// import { withStyles } from '@material-ui/core/styles';
+// import SearchIcon from '@material-ui/icons/Search';
+// import RefreshIcon from '@material-ui/icons/Refresh';
+// import UserPage from '../RoleAdmin/Users/Users.js/UserPage';
+
+// // import EnchancedTable from '../../Table/EnchancedTable';
+
+// const styles = theme => ({
+//   paper: {
+//     maxWidth: 936,
+//     margin: 'auto',
+//     overflow: 'hidden',
+//   },
+//   searchBar: {
+//     borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+//   },
+//   searchInput: {
+//     fontSize: theme.typography.fontSize,
+//   },
+//   block: {
+//     display: 'block',
+//   },
+//   addUser: {
+//     marginRight: theme.spacing.unit,
+//   },
+//   contentWrapper: {
+//     margin: '40px 16px',
+//   },
+// });
+
+// function Content(props) {
+//   const { classes } = props;
+
+//   return (
+//     <div>
+//       <Paper className={classes.paper}>
+//         <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
+//           <Toolbar>
+//             <Grid container spacing={16} alignItems="center">
+//               <Grid item>
+//                 <SearchIcon className={classes.block} color="inherit" />
+//               </Grid>
+//               <Grid item xs>
+//                 <TextField
+//                   fullWidth
+//                   placeholder="Ieškoti pagal vardą arba pavardę"
+//                   InputProps={{
+//                     disableUnderline: true,
+//                     className: classes.searchInput,
+//                   }}
+//                 />
+//               </Grid>
+//               <Grid item>
+//                 <Button variant="contained" color="primary" className={classes.addUser}>
+//                   Kurti naują vartotoją
+//               </Button>
+//                 <Tooltip title="Reload">
+//                   <IconButton>
+//                     <RefreshIcon className={classes.block} color="inherit" />
+//                   </IconButton>
+//                 </Tooltip>
+
+//               </Grid>
+//             </Grid>
+//           </Toolbar>
+
+//         </AppBar>
+//         <div className={classes.contentWrapper}>
+//           <Typography color="textSecondary" align="center">
+//             Dar nėra vartotojų
+//         </Typography>
+//         </div>
+//       </Paper>
+//     </div>
+//   );
+// }
+
+// Content.propTypes = {
+//   classes: PropTypes.object.isRequired,
+// };
+
+// export default withStyles(styles)(Content);

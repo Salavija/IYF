@@ -4,8 +4,9 @@ import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
 import Navigator from './Navigator';
-// import Content from './Content';
-// import Header from './Header';
+import Content from './Content';
+import Header from './Header';
+// import AppBarComponent from './AppBarComponent';
 
 let theme = createMuiTheme({
     typography: {
@@ -164,7 +165,7 @@ class Paperbase extends React.Component {
             <MuiThemeProvider theme={theme}>
                 {/* <div className={classes.root}> */}
                     <CssBaseline />
-                    {/* <nav className={classes.drawer}> */}
+                    <nav className={classes.drawer}>
                         <Hidden smUp implementation="js">
                             <Navigator
                                 PaperProps={{ style: { width: drawerWidth } }}
@@ -173,10 +174,18 @@ class Paperbase extends React.Component {
                                 onClose={this.handleDrawerToggle}
                             />
                         </Hidden>
-                        {/* <Hidden xsDown implementation="css"> */}
+                        <Hidden xsDown implementation="css">
                             <Navigator PaperProps={{ style: { width: drawerWidth } }} />
-                        {/* </Hidden> */}
-                    {/* </nav> */}
+                        </Hidden>
+                    </nav>
+                    {/* <AppBarComponent /> */}
+                <div className={classes.appContent}>
+                    <Header onDrawerToggle={this.handleDrawerToggle} />
+                    {/* <main className={classes.mainContent}> */}
+                        {/* <DocForm /> */}
+                            {/* <Content /> */}
+                    {/* </main> */}
+                </div>
                 {/* </div> */}
             </MuiThemeProvider>
         );

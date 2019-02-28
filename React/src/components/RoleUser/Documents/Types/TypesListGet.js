@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import TypesList from './TypesList';
+import TypesList from './Types';
 import axios from 'axios';
 
 class TypesListGet extends React.Component {

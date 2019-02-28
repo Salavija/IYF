@@ -47,12 +47,12 @@ public class UserController {
         return "registration";
     }
 
-    @PostMapping("/new_registration")
+    @PostMapping("/registration")
     public String registration(@ModelAttribute("userForm") DocUser userForm, BindingResult bindingResult) {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            return "new_registration";
+            return "registration";
         }
 
         userServiceInt.save(userForm);

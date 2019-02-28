@@ -1,12 +1,18 @@
 package it.docSys.controllers;
 
+import it.docSys.entities.DocUser;
+import it.docSys.services.SecurityService;
+import it.docSys.services.UserServiceInt;
+import it.docSys.validator.UserValidator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
 import it.docSys.DTO.*;
 import it.docSys.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import java.util.List;
@@ -20,6 +26,61 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private SecurityService securityService;
+
+    @Autowired
+    private UserValidator userValidator;
+
+    @Autowired
+    private UserServiceInt userServiceInt;
+
+
+    /* Start of Login Section */
+
+
+    @GetMapping("/registration")
+    public String registration(Model model) {
+        model.addAttribute("userForm", new DocUser());
+
+        return "registration";
+    }
+
+    @PostMapping("/new_registration")
+    public String registration(@ModelAttribute("userForm") DocUser userForm, BindingResult bindingResult) {
+        userValidator.validate(userForm, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "new_registration";
+        }
+
+        userServiceInt.save(userForm);
+
+        securityService.autoLogin(userForm.getUserName(), userForm.getPasswordConfirm());
+
+        return "redirect:/welcome";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model, String error, String logout) {
+        if (error != null)
+            model.addAttribute("error", "Your username and password is invalid.");
+
+        if (logout != null)
+            model.addAttribute("message", "You have been logged out successfully.");
+
+        return "login";
+    }
+
+    @GetMapping({"/", "/welcome"})
+    public String welcome(Model model) {
+        return "welcome";
+    }
+
+    /* End of Login Section */
+
+    /* CRUD SECTION  */
 
     /*---Add new user---*/
 
@@ -100,52 +161,5 @@ public class UserController {
         return userService.getUserDocuments(username);
     }
 
-//    @GetMapping(value = "/{userName}")
-//    @ApiOperation(value = "Get user groups", notes = "Returns specific user groups")
-//    public List<GroupGetDTO> getByUserName(
-//            @ApiParam(value = "userName", required = true)
-//            @PathVariable final String userName) {
-//        logger.info("Specific user groups has been found");
-//        return userService.getUserGroups(userName);
-//    }
 
-
-
-//    @GetMapping(value = "/{id}")
-//    @ApiOperation(value = "Get users by id")
-//    public UserGetDTO getById(
-//            @ApiParam(value = "id", required = true)
-//            @PathVariable final Long userId) {
-//        logger.info("search user by id");
-//        return userService.findByUserId(userId);
-//    }
-//
-//    @GetMapping
-//    @ApiOperation(value = "Get all users")
-//    public List<UserGetDTO> findAllUser(){
-//        logger.info("List of all users");
-//        return userService.findAllUser();
-//    }
-//
-//    @PostMapping
-//    @ApiOperation(value = "Create user")
-//    public void save(@RequestBody final UserPutDTO userPutDTO){
-//        logger.info("Created user");
-//        userService.createUser(userPutDTO);
-//    }
-//
-//
-//    @PutMapping("/{id}")
-//    @ApiOperation(value = "Update existing user")
-//    public void updateUser(@PathVariable final Long userId, @RequestBody UserPutDTO DTO){
-//        userService.updateUser(userId, DTO);
-//    }
-//
-//
-//    @DeleteMapping("/{id}")
-//    @ApiOperation(value = "Delete user by id")
-//    public void delete(@ApiParam(value = "id", required = true) @PathVariable final Long id){
-//        logger.info("User deleted");
-//        userService.deleteUser(id);
-//    }
 }

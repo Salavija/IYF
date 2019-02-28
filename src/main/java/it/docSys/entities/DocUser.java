@@ -27,6 +27,27 @@ public class DocUser {
       //TODO depending on Group it is Assigned (exact String to be checked as a Variant) privileges (Might be Other Entity) are assigned;
 
     }
+    @Transient
+    private String passwordConfirm;
+
+    @ManyToMany
+    private Set<Role> roles;
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

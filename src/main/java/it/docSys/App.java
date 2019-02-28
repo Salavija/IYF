@@ -1,10 +1,12 @@
 package it.docSys;
-
-import it.docSys.properties.FileStorageProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+
+
+import it.docSys.properties.FileStorageProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -21,6 +23,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 })
 public class App extends SpringBootServletInitializer {
 
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(App.class);
+    }
 
     @Bean
     public Docket swaggerDocket() {
@@ -38,7 +44,10 @@ public class App extends SpringBootServletInitializer {
                 .build();
     }
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
+//        SpringApplication.run(App.class, args);
+//    }
+    public static void main(String[] args) throws Exception {
         SpringApplication.run(App.class, args);
     }
 

@@ -1,5 +1,7 @@
 package it.docSys.entities;
 
+import it.docSys.configs.Roles;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -10,7 +12,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private Roles name;
 
     @ManyToMany(mappedBy = "roles")
     private Set<DocUser> users;
@@ -23,11 +25,11 @@ public class Role {
         this.id = id;
     }
 
-    public String getName() {
+    public Roles getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Roles name) {
         this.name = name;
     }
 

@@ -1,4 +1,4 @@
-package it.docSys.services;
+package it.docSys.security;
 
 import it.docSys.entities.DocUser;
 import it.docSys.repository.RoleRepository;

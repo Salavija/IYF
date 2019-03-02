@@ -1,4 +1,4 @@
-package it.docSys.services;
+package it.docSys.security;
 
 import it.docSys.entities.DocUser;
 import it.docSys.entities.Role;
@@ -28,8 +28,8 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         for (Role role : user.getRoles()){
-            grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
-        }
+            grantedAuthorities.add(new SimpleGrantedAuthority(role.toString()));    //role.toString helps and compiles
+        }                                                                          //it was (role.getName())
 
         return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), grantedAuthorities);
     }

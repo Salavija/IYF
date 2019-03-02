@@ -1,8 +1,8 @@
 package it.docSys.controllers;
 
 import it.docSys.entities.DocUser;
-import it.docSys.services.SecurityService;
-import it.docSys.services.UserServiceInt;
+import it.docSys.security.SecurityService;
+import it.docSys.security.UserServiceInt;
 import it.docSys.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;

@@ -42,7 +42,7 @@ public class UserService {
     public List<UserGetDTO> findAllUser() {
         return userRepository.findAll().stream().map((user) ->
                 new UserGetDTO(user.getDocUserId(), user.getUserName(), user.getFirstName(), user.getLastName(),
-                        user.getPassword(), user.getRole())).collect(Collectors.toList());
+                        user.getPassword(), user.getRoles())).collect(Collectors.toList());
 //        , user.getGroups(), user.getDocuments()
     }
 
@@ -63,7 +63,7 @@ public class UserService {
         DocUser user = userRepository.getOne(id);//.orElse(null);
         if (user != null) {
             return new UserGetDTO(user.getDocUserId(), user.getUserName(), user.getFirstName(), user.getLastName(),
-                    user.getPassword(), user.getRole()//, user.getGroups(), user.getDocuments()
+                    user.getPassword(), user.getRoles()//, user.getGroups(), user.getDocuments()
             );
         }
         return null;
@@ -76,7 +76,7 @@ public class UserService {
         user.setFirstName(userputDTO.getFirstName());
         user.setLastName(userputDTO.getLastName());
         user.setPassword(userputDTO.getPassword());
-        user.setRole(userputDTO.getRole());
+        user.setRoles(userputDTO.getRoles());
 //        user.setGroups(userputDTO.getGroups());
 //        user.setDocuments(userputDTO.getDocuments());
         userRepository.save(user);
@@ -90,7 +90,7 @@ public class UserService {
             user.setFirstName(userputDTO.getFirstName());
             user.setLastName(userputDTO.getLastName());
             user.setPassword(userputDTO.getPassword());
-            user.setRole(userputDTO.getRole());
+            user.setRoles(userputDTO.getRoles());
 //            user.setGroups(userputDTO.getGroups());
 //            user.setDocuments(userputDTO.getDocuments());
         }

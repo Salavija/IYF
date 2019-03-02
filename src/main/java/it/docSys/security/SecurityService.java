@@ -1,4 +1,4 @@
-package it.docSys.services;
+package it.docSys.security;
 
 public interface SecurityService {
 

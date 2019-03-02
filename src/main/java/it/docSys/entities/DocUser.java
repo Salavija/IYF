@@ -13,7 +13,7 @@ public class DocUser {
     public DocUser() {}
 
     public DocUser(Long docUserId, String userName, String firstName, String lastName,
-                   String password, Roles role, Set<GroupEntity> groups, Set<Document> documents
+                   String password, Set<Role> roles, Set<GroupEntity> groups, Set<Document> documents
     ) {
         this.docUserId = docUserId;
         this.userName = userName;
@@ -22,7 +22,7 @@ public class DocUser {
         this.password = password;
         this.groups = groups;                           //Maybe it should be deleted?
         this.documents = documents;
-        this.role = role;                             //Admin or User
+        this.roles = roles;                             //Admin or User
 
       //TODO Should be min 2 Roles; 1. Admin 2. Employee; Just to redirect after login;
       //TODO It will be just a field;
@@ -33,7 +33,9 @@ public class DocUser {
     private String passwordConfirm;
 
     @ManyToMany
-    private Set<Role> roles;
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     public String getPasswordConfirm() {
         return passwordConfirm;
@@ -68,8 +70,8 @@ public class DocUser {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "role")
-    private Roles role;
+//    @Column(name = "role")
+//    private Roles role;
 
     @ManyToMany(mappedBy = "docUsers")
     private Set<GroupEntity> groups = new HashSet<>();
@@ -148,13 +150,13 @@ public class DocUser {
         this.password = password;
     }
 
-    public Roles getRole() {
-        return role;
-    }
-
-    public void setRole(Roles role) {
-        this.role = role;
-    }
+//    public Role getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(Role role) {
+//        this.roles = role;
+//    }
 
 
 

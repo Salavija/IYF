@@ -1,7 +1,7 @@
 package it.docSys.validator;
 
 import it.docSys.entities.DocUser;
-import it.docSys.services.UserServiceInt;
+import it.docSys.security.UserServiceInt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

@@ -32,7 +32,7 @@ public class UserValidator implements Validator{
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
-        if (user.getPassword().length() < 6 || user.getPassword().length() > 32) {
+        if (user.getPassword().length() < 6 || user.getPassword().length() > 60 ) {
             errors.rejectValue("password", "Size.userForm.password");
         }
 

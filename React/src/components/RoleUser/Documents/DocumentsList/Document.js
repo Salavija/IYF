@@ -2,7 +2,7 @@ import React from 'react';
 import { Table, Container, Row, Input } from 'reactstrap';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import documents from './DocumentsComponent';
+import documents from './Documents';
 
 class Document extends React.Component {
   handleRemove = document => {
@@ -94,6 +94,10 @@ class Document extends React.Component {
         </Container>
       </div>
     );
+  }
+
+  editDocument(e, document) {
+    
   }
 }
 Document.Prototypes = {

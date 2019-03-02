@@ -34,7 +34,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/swagger-ui.html",
             "/webjars/**",
             "/resources/**",
-            "/registration"
+            "/registration",
+            "/React/**",
+            "/api/docUsers/**",
+            "/api/documents/**",             //To Create and modify Users in swagger
+            "/console/**",
+            "/"
+
             // other public endpoints of your API may be appended to this array
     };
 
@@ -42,15 +48,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers(AUTH_WHITELIST).permitAll()
-                .anyRequest().authenticated()
-                .and()
+                    .antMatchers(AUTH_WHITELIST).permitAll()
+                    .anyRequest().authenticated()
+                    .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
+                    .loginPage("/login")
+                    .permitAll()
+                    .and()
                 .logout()
-                .permitAll();
+                    .permitAll();
+                http.csrf().disable();
+                http.headers().frameOptions().disable();
     }
 
     @Bean

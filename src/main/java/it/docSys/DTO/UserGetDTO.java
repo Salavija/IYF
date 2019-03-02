@@ -1,19 +1,21 @@
 package it.docSys.DTO;
 
 
+import it.docSys.configs.Roles;
+
 public class UserGetDTO {
     private Long userId;
     private String userName;
     private String firstName;
     private String lastName;
     private String password;
-    private String role;
+    private Roles role;
 //    private Set<GroupEntity> groups;
 //    private Set<Document> documents;
 
 
     public UserGetDTO(Long userId, String userName, String firstName, String lastName, String password,
-                      String role//, Set<GroupEntity> groups, Set<Document> documents
+                      Roles role//, Set<GroupEntity> groups, Set<Document> documents
     ) {
         this.userId = userId;
         this.userName = userName;
@@ -51,11 +53,11 @@ public class UserGetDTO {
         this.userName = userName;
     }
 
-    public String getRole() {
+    public Roles getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Roles role) {
         this.role = role;
     }
 

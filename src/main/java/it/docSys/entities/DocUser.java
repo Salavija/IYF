@@ -1,5 +1,7 @@
 package it.docSys.entities;
 
+import it.docSys.configs.Roles;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +13,7 @@ public class DocUser {
     public DocUser() {}
 
     public DocUser(Long docUserId, String userName, String firstName, String lastName,
-                   String password, String role, Set<GroupEntity> groups, Set<Document> documents
+                   String password, Roles role, Set<GroupEntity> groups, Set<Document> documents
     ) {
         this.docUserId = docUserId;
         this.userName = userName;
@@ -66,8 +68,8 @@ public class DocUser {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "role", nullable = false)
-    private String role;
+    @Column(name = "role")
+    private Roles role;
 
     @ManyToMany(mappedBy = "docUsers")
     private Set<GroupEntity> groups = new HashSet<>();
@@ -146,11 +148,11 @@ public class DocUser {
         this.password = password;
     }
 
-    public String getRole() {
+    public Roles getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Roles role) {
         this.role = role;
     }
 

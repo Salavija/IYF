@@ -31,12 +31,9 @@ class Navigation extends React.Component {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Doksystema</NavbarBrand>
+        <NavbarBrand href="/">BDMS</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
-          {/* <Nav className="col-md-2 d-none d-md-block bg-light sidebar"> */}
-            {/* <div className="sidebar-sticky"> */}
-              {/* <ul className="nav flex-column"> */}
           <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink href="/">Prisijungti</NavLink>
@@ -65,8 +62,7 @@ class Navigation extends React.Component {
             <NavItem>
               <NavLink href="/types">Dokumentų tipai</NavLink>
             </NavItem>
-{/* </ul> */}
-{/* </div> */}
+
             {/* <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <DropdownToggle nav caret>
                 Dropdown

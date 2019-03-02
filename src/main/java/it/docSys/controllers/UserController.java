@@ -84,7 +84,7 @@ public class UserController {
 
     /*---Add new user---*/
 
-    @PostMapping
+    @PostMapping("/create")
     @ApiOperation(value = "Save new user", notes = "Creates new user and saves to database")
     public void save(@RequestBody final UserPutDTO userPutDTO){
         logger.info("A user has been created");

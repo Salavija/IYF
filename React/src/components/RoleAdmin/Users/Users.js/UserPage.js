@@ -1,16 +1,25 @@
 import React from "react";
 import User from "./User";
 import UsersSearch from "./UsersSearch";
-import { Container } from "reactstrap";
+import { Button, Row, Col } from "reactstrap";
+import { Link } from "react-router-dom";
 
 class UserPage extends React.Component {
     render() {
         return (
           <div>
-              <Container>
+              <br></br>
+              <Row>
+                    <Col xs="auto">
+                <Link to={"/create-user"}>
+                <Button type="submit" color="primary">Kurti naują</Button>{" "}
+                </Link>
+                </Col>
+                    <Col xs="auto">
               <UsersSearch />
+              </Col>
+                </Row>
               <User />
-            </Container>
           </div>
         );
     }

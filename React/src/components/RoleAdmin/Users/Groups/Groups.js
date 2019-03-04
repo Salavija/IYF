@@ -1,38 +1,100 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types'
-import axios from 'axios';
-import Group from './Group';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Group from "./Group";
+import { Table } from "reactstrap";
+// import { withStyles } from '@material-ui/core/styles';
+// import Table from '@material-ui/core/Table';
+// import TableBody from '@material-ui/core/TableBody';
+// import TableCell from '@material-ui/core/TableCell';
+// import TableHead from '@material-ui/core/TableHead';
+// import TableRow from '@material-ui/core/TableRow';
+// import Paper from '@material-ui/core/Paper';
+
+// const CustomTableCell = withStyles(theme => ({
+//   head: {
+//     backgroundColor: theme.palette.common.black,
+//     color: theme.palette.common.white,
+//   },
+//   body: {
+//     fontSize: 14,
+//   },
+// }))(TableCell);
+
+// const styles = theme => ({
+//   root: {
+//     width: '100%',
+//     marginTop: theme.spacing.unit * 3,
+//     overflowX: 'auto',
+//   },
+//   table: {
+//     minWidth: 700,
+//   },
+//   row: {
+//     '&:nth-of-type(odd)': {
+//       backgroundColor: theme.palette.background.default,
+//     },
+//   },
+// });
+
 
 class Groups extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            groups: props.groups
-        }
-    }
-    render() {
-        return (
-            this.state.groups.map(group => (
-                <li key={group.id} >
-                    <Group title={group.title}
-                        key={group.id} /></li>
-            ))
-        )
-    }
+//   render() {
+//     return (
+//       <Paper className={classes.root}>
+//         <Table className={classes.table}>
+//           <TableHead>
+//             <TableRow>
+//               <CustomTableCell>Pavadinimas</CustomTableCell>
+//             </TableRow>
+//           </TableHead>
+//           <TableBody>
+//             <TableRow className={classes.row} key={group.id}>
+//               {this.props.groups.map(group => (
+//                 <CustomTableCell component="th" scope="row">
+//                 <Group 
+//                   onGroupDeleted={this.props.onGroupDeleted}
+//                   group={group}
+//                 //   a={console.log(group.id)} konsologingui
+//                   key={group.id}
+//                 />
+//                 </CustomTableCell>
+//               ))}
+// </TableRow>
+//           ))}
+//         </TableBody>
+//       </Table>
+//     </Paper >
+//   );
+//   }
+// }
+// Groups.propTypes = {
+//   groups: PropTypes.array.isRequired
+// };
+// export default withStyles(styles)(Groups);
 
-    componentDidMount = () => {
-        axios.get("http://localhost:8081/api/groups")
-            .then((answer) => {
-                this.setState({ groups: answer.data })
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-
-    }
-
+render() {
+  return (
+    <Table>
+      <thead>
+        <tr>
+          <th>Pavadinimas</th>
+        </tr>
+      </thead>
+      <tbody>
+        {this.props.groups.map(group => (
+          <Group
+            onGroupDeleted={this.props.onGroupDeleted}
+            group={group}
+            //   a={console.log(group.id)} konsologingui
+            key={group.id}
+          />
+        ))}
+      </tbody>
+    </Table>
+  );
+}
 }
 Groups.propTypes = {
-    groups: PropTypes.array.isRequired
-}
+  groups: PropTypes.array.isRequired
+};
 export default Groups;

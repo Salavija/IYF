@@ -1,79 +1,39 @@
 import React from 'react';
 import { Table, Container, Row, Input } from 'reactstrap';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import axios from 'axios';
-import documents from './Documents';
+// import documents from './Documents';
 
 class Document extends React.Component {
-  handleRemove = document => {
-    const url = "http://localhost:8081//api/documents/{id}";
+  handleRemove = () => {
+    this.props.onDocumentDeleted(this.props.document);
+    const url = "http://localhost:8081/api/documents/" + this.props.document.title;
     axios
       .delete(url)
-      .then(res => {
-        this.setState(previousState => {
-          return {
-            documents: previousState.documents.filter(
-              d => d.id !== documents.id
-            )
-          };
-        });
-      })
       .catch(err => {
         console.log(err);
       });
   };
-  handleRemoveE(event) {
-    alert("Jūsų dokumentas " + this.state.title + " ištrintas");
-    event.preventDefault();
-  }
-
-  removeDocument = (e, document) => {
-    e.preventDefault();
-
-    if (this.props.removeClick) {
-      this.props.removeClick(document);
-    }
-  };
   render() {
     return (
-      <div>
-        <Container>
-          <Row>
-            <Table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Autorius</th>
-                  <th>Pavadinimas</th>
-                  <th>Tipas</th>
-                  <th>Aprašymas</th>
-                  {/* <th>Atmetimo priežastis</th>
-                                <th>Patvirtinimo data</th>
-                                <th>Pateikimo data</th>
-                                <th>Adresatas</th>
-                                <th>Pridėtukai</th> */}
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{this.props.id}</td>
+      // <div>
+                <tr key={this.props.key}>
                   <td>{this.props.author}</td>
                   <td>{this.props.title}</td>
                   <td>{this.props.type}</td>
                   <td>{this.props.description}</td>
-                </tr>
-                <button
-                  type="submit"
-                  onClick={e => this.removeDocument(e, document)}
-                >
-                  Ištrinti
-                </button>
-                <button
-                  type="submit"
+                  <td>{this.props.creationDate}</td>
+                <td>
+            <button type="submit" onClick={this.handleRemove}>
+              Ištrinti
+        </button>
+                {/* <button
                   onClick={e => this.editDocument(e, document)}
                 >
                   Redaguoti
-                </button>
+                </button> */}
+                  </td>
+                {/* </tr>
                 <form>
                   <Input
                     type="textarea"
@@ -82,30 +42,22 @@ class Document extends React.Component {
                     placeholder="Adresatas"
                   />
                   <button
-                    type="submit"
                     onClick={e => this.sendDocument(e, document)}
                   >
-                    Siųsti
+                    Pateikti
                   </button>
                 </form>
-              </tbody>
-            </Table>
-          </Row>
-        </Container>
-      </div>
+                </div> */}
+                </tr>
     );
   }
-
-  editDocument(e, document) {
-    
-  }
 }
-Document.Prototypes = {
-    id: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    describtion: PropTypes.string.isRequired,
-};
+// Document.Prototypes = {
+//     id: PropTypes.string.isRequired,
+//     author: PropTypes.string.isRequired,
+//     title: PropTypes.string.isRequired,
+//     type: PropTypes.string.isRequired,
+//     describtion: PropTypes.string.isRequired,
+// };
 
 export default Document;

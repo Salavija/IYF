@@ -24,8 +24,8 @@ const categories = [
     {
         id: 'Dokumentų valdymas',
         children: [
-            { id: 'Pagrindinis', icon: <SettingsEthernetIcon />, active: true,  link: "/home-user" },
-            { id: 'Naujas dokumentas', icon: <PermMediaOutlinedIcon />, link:"/create-new-document" },
+            { id: 'Pagrindinis', icon: <SettingsEthernetIcon />, active: true, link: "/home-user" },
+            { id: 'Naujas dokumentas', icon: <PermMediaOutlinedIcon />, link: "/create-new-document" },
             { id: 'Dokumentai', icon: <DnsRoundedIcon />, link: "/documents" },
         ],
     },
@@ -33,9 +33,9 @@ const categories = [
         id: 'Admin',
         children: [
             { id: 'Pagrindinis', icon: <SettingsEthernetIcon />, link: "/home-admin" },
-            { id: 'Vartotojai', icon: <PeopleIcon />, link:"/users" },
-            { id: 'Dokumentų tipai', icon: <DnsRoundedIcon />,link:"/types" },
-            { id: 'Grupės', icon: <PublicIcon /> , link:"/groups" },
+            { id: 'Vartotojai', icon: <PeopleIcon />, link: "/users" },
+            { id: 'Dokumentų tipai', icon: <DnsRoundedIcon />, link: "/types" },
+            { id: 'Grupės', icon: <PublicIcon />, link: "/groups" },
         ],
     },
 ];

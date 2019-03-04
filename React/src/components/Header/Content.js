@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import RefreshIcon from '@material-ui/icons/Refresh';
+import UserPage from '../RoleAdmin/Users/Users.js/UserPage';
 
 // import EnchancedTable from '../../Table/EnchancedTable';
 
@@ -53,7 +54,7 @@ function Content(props) {
                         <Grid item xs>
                             <TextField
                                 fullWidth
-                                placeholder="Search by email address, phone number, or user UID"
+                                placeholder="Ieškoti pagal vardą arba pavardę"
                                 InputProps={{
                                     disableUnderline: true,
                                     className: classes.searchInput,
@@ -62,7 +63,7 @@ function Content(props) {
                         </Grid>
                         <Grid item>
                             <Button variant="contained" color="primary" className={classes.addUser}>
-                                Add user
+                                Kurti naują vartotoją
               </Button>
                             <Tooltip title="Reload">
                                 <IconButton>
@@ -73,10 +74,11 @@ function Content(props) {
                         </Grid>
                     </Grid>
                 </Toolbar>
+
             </AppBar>
             <div className={classes.contentWrapper}>
                 <Typography color="textSecondary" align="center">
-                    No users for this project yet
+                    Dar nėra vartotojų
         </Typography>
             </div>
         </Paper>

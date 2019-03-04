@@ -1,67 +1,48 @@
 import React from "react";
-import { Table, Container, Row } from "reactstrap";
 import PropTypes from "prop-types";
 import axios from "axios";
-import Groups from "./Groups";
 
 class Group extends React.Component {
-  handleRemove = Group => {
-      const url = "http://localhost:8081/api/groups/{title}";
+  handleRemove = () => {
+    this.props.onGroupDeleted(this.props.group);
+    const url = "http://localhost:8081/api/groups/" + this.props.group.title;
     axios
       .delete(url)
-      .then(res => {
-        this.setState(previousState => {
-          return {
-            Groups: previousState.Groups.filter(d => d.id !== Groups.id)
-          };
-        });
-      })
+      // .then(res => {
+      //  console.log(res)
+      //     };
       .catch(err => {
         console.log(err);
       });
   };
-  handleRemoveE(event) {
-    alert("Grupė " + this.state.title + " ištrintas");
-    event.preventDefault();
-  }
+  // handleRemoveE(event) {
+  //   alert("Grupė " + this.state.title + " ištrintas");
+  //   event.preventDefault();
+  // }
 
-  removeGroup = (e, Group) => {
-    e.preventDefault();
-    if (this.props.removeClick) {
-      this.props.removeClick(Group);
-    }
-  };
+  // removeGroup = (e, group) => {
+  //   e.preventDefault();
+  //   if (this.props.removeClick) {
+  //     this.props.removeClick(group);
+  //   }
+  // };
   render() {
     return (
-      <div>
-        <Container>
-          <Row>
-            <Table>
-              <thead>
-                <tr>
-                  <th>Pavadinimas</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{this.props.title}</td>
-                </tr>
-                {/* <button type="submit" onClick={e => this.removeGroup(e, Group)}>
-                  Ištrinti
-                </button>
-                <button type="submit" onClick={e => this.editGroup(e, Group)}>
+      <tr key={this.props.key}>
+        <td>{this.props.group.title}</td>
+        <button type="submit" onClick={this.handleRemove}>
+          Ištrinti
+        </button>
+        {/* <button type="submit" onClick={e => this.editGroup(e, Group)}>
                   Redaguoti
                 </button> */}
-              </tbody>
-            </Table>
-          </Row>
-        </Container>
-      </div>
+      </tr>
     );
   }
 }
 Group.Prototypes = {
   title: PropTypes.string.isRequired
+  //kad mestu warningus
 };
 
 export default Group;

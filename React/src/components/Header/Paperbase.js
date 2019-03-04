@@ -179,13 +179,11 @@ class Paperbase extends React.Component {
                         </Hidden>
                     </nav>
                     {/* <AppBarComponent /> */}
-                <div className={classes.appContent}>
-                    <Header onDrawerToggle={this.handleDrawerToggle} />
+                    {/* <Header onDrawerToggle={this.handleDrawerToggle} /> */}
                     {/* <main className={classes.mainContent}> */}
                         {/* <DocForm /> */}
                             {/* <Content /> */}
                     {/* </main> */}
-                </div>
                 {/* </div> */}
             </MuiThemeProvider>
         );

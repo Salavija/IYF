@@ -5,7 +5,7 @@ import axios from "axios";
 class Type extends React.Component {
     handleRemove = () => {
         this.props.onTypeDeleted(this.props.type);
-        const url = "http://localhost:8081/api/types" + this.props.type.title;
+        const url = "http://localhost:8081/api/documents/types" + this.props.type.title;
         axios
             .delete(url)
             .catch(err => {

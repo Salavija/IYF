@@ -10,14 +10,13 @@ import {
 import { Jumbotron } from "reactstrap";
 import axios from "axios";
 
-
 class NewGroup extends React.Component {
   constructor(props) {
     super(props);
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      title: "", // pradinis 
+      title: "", // pradinis
       dropdownOpen: false
     };
   }
@@ -29,30 +28,32 @@ class NewGroup extends React.Component {
     }));
   }
 
-  addNewGroup = () =>  {
+  addNewGroup = e => {
+    e.preventDefault();
     const newGroup = {
-      title: this.state.title,
-    }
+      title: this.state.title
+    };
     this.props.onGroupAdded(newGroup);
-    axios.post("http://localhost:8081/api/groups", newGroup)
-    .then(function(response) {
-      console.log(response);
-    })
-      .catch((error) => {
+    axios
+      .post("http://localhost:8081/api/groups", newGroup)
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(error => {
         console.log(error);
       });
-  }
+  };
 
-  onInputChange = (event) => {
+  onInputChange = event => {
     console.log(event.target.value);
-    this.setState({title:event.target.value})
-//paemimas inputo ir idejimas i state
-  }
+    this.setState({ title: event.target.value });
+    //paemimas inputo ir idejimas i state
+  };
 
-// }
-// Groups.propTypes = {
-//   groups: PropTypes.array.isRequired
-// }
+  // }
+  // Groups.propTypes = {
+  //   groups: PropTypes.array.isRequired
+  // }
 
   render() {
     return (
@@ -65,11 +66,19 @@ class NewGroup extends React.Component {
             </h3>
             <Form onSubmit={this.addNewGroup}>
               <FormGroup>
-                <Input type="text" name="title" id="title" placeholder="Pavadinimas" onChange ={this.onInputChange}/>
+                <Input
+                  type="text"
+                  name="title"
+                  id="title"
+                  placeholder="Pavadinimas"
+                  onChange={this.onInputChange}
+                />
                 <FormText>Nurodykite grupės pavadinimą</FormText>
               </FormGroup>
               <br />
-              <Button type="submit" color="primary">Pridėti</Button>{" "}
+              <Button type="submit" color="primary">
+                Pridėti
+              </Button>{" "}
             </Form>
           </Jumbotron>
         </Container>

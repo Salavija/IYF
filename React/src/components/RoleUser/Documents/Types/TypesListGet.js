@@ -11,7 +11,8 @@ class TypesListGet extends React.Component {
             documentType: []
         }
     }
-    typesComponentDidMount() {
+    typesComponentDidMount = e => {
+        e.preventDefault();
         axios
           .get("http://localhost:8081/api/documents/types")
           .then(response => {

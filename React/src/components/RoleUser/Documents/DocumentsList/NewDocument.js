@@ -1,23 +1,22 @@
 import React from "react";
 // import tableD from './Document';
 import {
-    Form,
-    FormGroup,
-    Input,
-    FormText,
-    Container,
-    Button,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Dropdown
+  Form,
+  FormGroup,
+  Input,
+  FormText,
+  Container,
+  Button,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  Dropdown
 } from "reactstrap";
 import { Jumbotron } from "reactstrap";
 import axios from "axios";
-import FileUpl from "./FileUpl"
-import TypesListGet from "../Types/TypesListGet"
-
-
+import FileUpl from "./FileUpl";
+import TypesListGet from "../Types/TypesListGet";
+import fetchTypes from "../../../../helpers/fetchTypes";
 
 class CreateNew extends React.Component {
   constructor(props) {
@@ -25,10 +24,10 @@ class CreateNew extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      type: "",
+      type:"",
+      types: [],
       title: "",
       describtion: "",
-      creationDate: "",
       dropdownOpen: false
     };
   }
@@ -40,13 +39,17 @@ class CreateNew extends React.Component {
     }));
   }
 
+componentDidMount = () => {
+  fetchTypes().then(answer => {
+    this.setState({ types: answer.data });
+  })
+}
+
   addNewDocument = () => {
     const newDocument = {
       title: this.state.title,
-      author: this.state.author,
       type: this.state.type,
       describtion: this.state.describtion,
-      creationDate: this.state.creationDate
     };
     this.props.onDocumentAdded(newDocument);
     axios
@@ -59,16 +62,22 @@ class CreateNew extends React.Component {
       });
   };
 
-  onInputChange = event => {
-    console.log(event.target.value);
+  onInputTitleChange = event => {
     this.setState({
-      title: event.target.value,
-      author: event.target.value,
-      type: event.target.value,
-      describtion: event.target.value,
-      creationDate: event.target.value
+      title: event.target.value
     });
-    //paemimas inputo ir idejimas i state
+  };
+
+  onInputTypeChange = event => {
+    this.setState({
+      type: event.target.value
+    });
+  };
+
+  onInputDescribtionChange = event => {
+    this.setState({
+      describtion: event.target.value
+    });
   };
 
   // }
@@ -91,13 +100,12 @@ class CreateNew extends React.Component {
 
             <Form onSubmit={this.addNewDocument}>
               <FormGroup>
-                <TypesListGet />
                 <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                   <DropdownToggle caret>Dokumento Tipas</DropdownToggle>
                   <DropdownMenu>
-                    <DropdownItem>Sąskaita</DropdownItem>
-                    <DropdownItem>Atostogų prašymas</DropdownItem>
-                    <DropdownItem>Algos pakelimo prašymas</DropdownItem>
+                    {this.state.types.map(type => (
+                      <DropdownItem >{type.title}</DropdownItem>
+                    ))}
                   </DropdownMenu>
                 </Dropdown>
               </FormGroup>
@@ -107,6 +115,7 @@ class CreateNew extends React.Component {
                   name="title"
                   id="title"
                   placeholder="Dokumento pavadinimas"
+                  onChange={this.onInputTitleChange}
                 />
                 <FormText>Nurodykite tikslų dokumento pavadinimą</FormText>
               </FormGroup>
@@ -116,6 +125,7 @@ class CreateNew extends React.Component {
                   name="describtion"
                   id="describtion"
                   placeholder="Aprašymas"
+                  onChange={this.onInputDescribtionChange}
                 />
                 <FormText>Trumpas dokumento aprašymas</FormText>
               </FormGroup>

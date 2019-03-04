@@ -19,6 +19,7 @@ import CreateUserPage from "./components/RoleAdmin/Users/CreateUser/CreateUserPa
 // import Login from "./components/Login";
 import Admin from "./components/RoleAdmin/AdminHome";
 import User from "./components/RoleUser/UserHome";
+import Header from "./components/Header/Header";
 // import LoginPage from "./Login/LoginPage";
 // import EnsureLoggedInContainer from "./components/Authentication/EnsureLoggedInContainer";
 // import NavBarSide from './components/SideBar/NavBarSide'
@@ -37,14 +38,22 @@ function requireAuth(nextState, replace) {
   }
 }
 
+
 class App extends Component {
+
+  handleDrawerToggle = () => {
+    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+  };
+
   render() {
     return (
       <BrowserRouter>
       <Switch>
         <Route path="/login" component={Home} />
         <Route render = {()=>(
-            <div>
+          <div >
+              <Header onDrawerToggle={this.handleDrawerToggle} />
+            <div style={{display: "flex"}}>
               <Paperbase />
               <Container>
                 {/* <Navigation /> */}
@@ -70,6 +79,7 @@ class App extends Component {
                     : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
                 )} />
               </Container>
+              </div>
             </div>
         )}/>
         </Switch>

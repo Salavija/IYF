@@ -2,6 +2,7 @@ import React from 'react';
 import axios from "axios";
 import TypeCreation from './TypeCreation'
 import Types from './Types'
+import fetchTypes from '../../../../helpers/fetchTypes';
 
 
 class TypePage extends React.Component {
@@ -12,14 +13,10 @@ class TypePage extends React.Component {
         };
     }
     componentDidMount = () => {
-        axios
-            .get("http://localhost:8081/api/types")
+        fetchTypes()
             .then(answer => {
                 this.setState({ types: answer.data });
             })
-            .catch(error => {
-                console.log(error);
-            });
     };
 
     onTypeAdded = type => {

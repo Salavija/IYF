@@ -40,7 +40,7 @@ class Documents extends Component {
                     </tr>
                 </thead>
                 <tbody>
-            {this.state.documents.map(document => (
+            {this.props.documents.map(document => (
                     <Document 
                     onDocumentDeleted={this.props.onDocumentDeleted}
                     document={document}

@@ -17,12 +17,13 @@ class TypeCreation extends React.Component {
       dropdownOpen: !prevState.dropdownOpen
     }));
   }
-  addNewType = () => {
+  addNewType = e => {
+    e.preventDefault();
     const newType = {
       title: this.state.title,
     }
     this.props.onTypeAdded(newType);
-    axios.post("http://localhost:8081/api/types", newType)
+    axios.post("http://localhost:8081/api/documents/types", newType)
       .then(function (response) {
         console.log(response);
       })

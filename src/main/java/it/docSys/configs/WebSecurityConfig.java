@@ -46,6 +46,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/registration",
             "/React/**",
             "/api/docUsers/**",
+            "/api/documents/types",
+            "/file",
+            "/api/groups",            
             "/api/documents/**",             //To Create and modify Users in swagger
             "/console/**",
             "/"

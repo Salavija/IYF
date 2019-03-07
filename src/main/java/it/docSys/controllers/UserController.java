@@ -37,51 +37,51 @@ public class UserController {
     private UserServiceInt userServiceInt;
 
 
-    /* Start of Login Section */
+    /* Start of Login Section not good */
 
 
-    @GetMapping("/registration")
-    public String registration(Model model) {
-        model.addAttribute("userForm", new DocUser());
+//    @GetMapping("/registration")
+//    public String registration(Model model) {
+//        model.addAttribute("userForm", new DocUser());
+//
+//        return "registration";
+//    }
 
-        return "registration";
-    }
+//    @PostMapping("/registration")
+//    public String registration(@ModelAttribute("userForm") DocUser userForm, BindingResult bindingResult) {
+//        userValidator.validate(userForm, bindingResult);
+//
+//        if (bindingResult.hasErrors()) {
+//            return "registration";
+//        }
+//
+//        userServiceInt.save(userForm);
+//
+//        securityService.autoLogin(userForm.getUserName(), userForm.getPasswordConfirm());
+//
+//        return "redirect:/login";
+//    }
 
-    @PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") DocUser userForm, BindingResult bindingResult) {
-        userValidator.validate(userForm, bindingResult);
+//    @GetMapping("/login")
+//    public String login(Model model, String error, String logout) {
+//        if (error != null)
+//            model.addAttribute("error", "Your username and password are invalid.");
+//
+//        if (logout != null)
+//            model.addAttribute("message", "You have been logged out successfully.");
+//
+//        return "login";
+//    }
 
-        if (bindingResult.hasErrors()) {
-            return "registration";
-        }
-
-        userServiceInt.save(userForm);
-
-        securityService.autoLogin(userForm.getUserName(), userForm.getPasswordConfirm());
-
-        return "redirect:/login";
-    }
-
-    @GetMapping("/login")
-    public String login(Model model, String error, String logout) {
-        if (error != null)
-            model.addAttribute("error", "Your username and password are invalid.");
-
-        if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
-
-        return "login";
-    }
-
-    @GetMapping({"/", "/welcomeAdmin"})
-    public String welcomeAdmin(Model model) {
-        return "welcomeAdmin";
-    }
-
-    @GetMapping({"/", "/welcomeUser"})
-    public String welcomeUser(Model model) {
-        return "welcomeUser";
-    }
+//    @GetMapping({"/", "/welcomeAdmin"})
+//    public String welcomeAdmin(Model model) {
+//        return "welcomeAdmin";
+//    }
+//
+//    @GetMapping({"/", "/welcomeUser"})
+//    public String welcomeUser(Model model) {
+//        return "welcomeUser";
+//    }
 
     /* End of Login Section */
 

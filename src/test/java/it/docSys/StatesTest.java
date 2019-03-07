@@ -1,6 +1,6 @@
 package it.docSys;
 
-import it.docSys.configs.States;
+import it.docSys.enums.States;
 
 public class StatesTest {
 

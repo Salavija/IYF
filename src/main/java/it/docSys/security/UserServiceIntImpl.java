@@ -1,5 +1,6 @@
 package it.docSys.security;
 
+
 import it.docSys.entities.DocUser;
 import it.docSys.repository.RoleRepository;
 import it.docSys.repository.UserRepository;
@@ -7,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 
 @Service
 public class UserServiceIntImpl implements UserServiceInt{
@@ -22,7 +22,7 @@ public class UserServiceIntImpl implements UserServiceInt{
     @Override
     public void save(DocUser user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setRoles(new HashSet<>(roleRepository.findAll()));
+        user.setRoles(user.getRoles());
         userRepository.save(user);
     }
 

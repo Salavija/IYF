@@ -1,7 +1,5 @@
 package it.docSys.entities;
 
-import it.docSys.configs.Roles;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,8 +10,9 @@ public class DocUser {
 
     public DocUser() {}
 
+    //TESTING changing roles data type from Set<Role> to Set<String>
     public DocUser(Long docUserId, String userName, String firstName, String lastName,
-                   String password, Set<Role> roles, Set<GroupEntity> groups, Set<Document> documents
+                   String password, String roles, Set<GroupEntity> groups, Set<Document> documents
     ) {
         this.docUserId = docUserId;
         this.userName = userName;
@@ -32,10 +31,14 @@ public class DocUser {
     @Transient
     private String passwordConfirm;
 
-    @ManyToMany
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+//    @ManyToOne
+    private String roles;
+
+//JJ version
+//    @ManyToMany
+//    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    private Set<String> roles = new HashSet<>();
 
     public String getPasswordConfirm() {
         return passwordConfirm;
@@ -45,11 +48,11 @@ public class DocUser {
         this.passwordConfirm = passwordConfirm;
     }
 
-    public Set<Role> getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(String roles) {
         this.roles = roles;
     }
 

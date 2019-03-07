@@ -46,8 +46,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/registration",
             "/React/**",
             "/api/docUsers/**",
+            "/api/documents/types",
+            "/file",
+            "/api/groups",            
             "/api/documents/**",             //To Create and modify Users in swagger
             "/console/**",
+            "/api/documents/types/**",
+            "/file/**",
+            "/api/groups/**",
             "/"
 
             // other public endpoints of your API may be appended to this array
@@ -58,8 +64,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers(AUTH_WHITELIST).permitAll()
-                    .antMatchers("/adminHome").hasRole("ADMIN")
-                    .antMatchers("/userHome").hasRole("USER")
+                    .antMatchers("/welcomeAdmin").hasRole("ADMIN")
+                    .antMatchers("/welcomeUser").hasRole("USER")
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()

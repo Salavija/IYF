@@ -1,36 +1,86 @@
 package it.docSys.security;
 
 import it.docSys.entities.DocUser;
-import it.docSys.entities.Role;
 import it.docSys.repository.UserRepository;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collection;
+import java.util.List;
+
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService{
+public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
+//    @Autowired
+//    BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    protected final Log logger = LogFactory.getLog(getClass());
+
     @Override
-    @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(String username) {
-        DocUser user = userRepository.findByUserName(username);
-        if (user == null) throw new UsernameNotFoundException(username);
+    public UserDetails loadUserByUsername(final String username)
+            throws UsernameNotFoundException {
 
-        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        for (Role role : user.getRoles()){
-            grantedAuthorities.add(new SimpleGrantedAuthority(role.toString()));    //role.toString helps and compiles
-        }                                                                          //it was (role.getName())
+        logger.info("loadUserByUsername username="+username);
 
-        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), grantedAuthorities);
+        if(!username.equals("admin") || !username.equals("user") ) {
+            throw new UsernameNotFoundException(username + " not found");
+        }
+
+        //creating dummy user details, should do JDBC operations
+        return new UserDetails() {
+
+            private static final long serialVersionUID = 2059202961588104658L;
+
+            @Override
+            public boolean isEnabled() {
+                return true;
+            }
+
+            @Override
+            public boolean isCredentialsNonExpired() {
+                return true;
+            }
+
+            @Override
+            public boolean isAccountNonLocked() {
+                return true;
+            }
+
+            @Override
+            public boolean isAccountNonExpired() {
+                return true;
+            }
+
+            @Override
+            public String getUsername() {
+                return username;
+            }
+
+            @Override
+            public String getPassword() {
+                return "password";
+            }
+
+            @Override
+            public Collection<? extends GrantedAuthority> getAuthorities() {
+                List<SimpleGrantedAuthority> auths = new java.util.ArrayList<SimpleGrantedAuthority>();
+                auths.add(new SimpleGrantedAuthority("Admin"));
+                return auths;
+            }
+        };
     }
+
+
 }

@@ -6,8 +6,11 @@ import it.docSys.entities.Document;
 import it.docSys.entities.GroupEntity;
 import it.docSys.repository.DocumentRepository;
 import it.docSys.repository.GroupRepo;
+import it.docSys.repository.RoleRepository;
 import it.docSys.repository.UserRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +31,12 @@ public class UserService {
     @Autowired
     private DocumentRepository documentRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     public UserService() {
     }
 
@@ -37,6 +46,34 @@ public class UserService {
         this.groupRepository = groupRepository;
 //        this.documentRepository = documentRepository;
     }
+//Experimental might cause Crashes or incompatible types
+
+    @Transactional
+    public void addTwoUsersForLogin(LoginDTO loginDTO) {
+//        if (userRepository.existsByDocUsername(loginDTO.getUsername())) {
+//            throw new IllegalArgumentException("Username is taken");
+//        }
+
+        DocUser user = new DocUser();
+        user.setUserName(loginDTO.getUsername());
+        user.setFirstName(loginDTO.getFirstname());
+        user.setLastName(loginDTO.getLastname());
+        user.setPassword((bCryptPasswordEncoder.encode(loginDTO.getPassword())));
+        user.setRoles(loginDTO.getRole());
+        BeanUtils.copyProperties(loginDTO, user);
+//        Role userRole = null;
+
+//        if (loginDTO.getRole().equals(Roles.ROLE_ADMIN)) {
+//            userRole = "ROLE_ADMIN";
+//        } else {
+//            userRole = "ROLE_USER";
+
+
+
+//            roleRepository.save(userRole);
+            userRepository.save(user);
+        }
+
 
     @Transactional(readOnly = true)
     public List<UserGetDTO> findAllUser() {
@@ -75,7 +112,7 @@ public class UserService {
         user.setUserName(userputDTO.getUserName());
         user.setFirstName(userputDTO.getFirstName());
         user.setLastName(userputDTO.getLastName());
-        user.setPassword(userputDTO.getPassword());
+        user.setPassword((bCryptPasswordEncoder.encode(userputDTO.getPassword())));
         user.setRoles(userputDTO.getRoles());
 //        user.setGroups(userputDTO.getGroups());
 //        user.setDocuments(userputDTO.getDocuments());
@@ -89,7 +126,7 @@ public class UserService {
             user.setUserName(userputDTO.getUserName());
             user.setFirstName(userputDTO.getFirstName());
             user.setLastName(userputDTO.getLastName());
-            user.setPassword(userputDTO.getPassword());
+            user.setPassword((bCryptPasswordEncoder.encode(userputDTO.getPassword())));
             user.setRoles(userputDTO.getRoles());
 //            user.setGroups(userputDTO.getGroups());
 //            user.setDocuments(userputDTO.getDocuments());
@@ -221,19 +258,4 @@ public class UserService {
 //                    document.getRejectionReason(), document.getAttachments(), document.getState())).collect(Collectors.toList());
 
 
-
-
-//    @Transactional(readOnly = true)
-//    public List<UserGroupGetCommand> getUsersGroups(String username) {
-//        User user = userRepository.findByUsername(username);
-//        if (user != null) {
-//            return user.getUserGroups().stream().map(userGroup -> {
-//                UserGroupGetCommand userGroupGetCommand = new UserGroupGetCommand();
-//                BeanUtils.copyProperties(userGroup, userGroupGetCommand);
-//                return userGroupGetCommand;
-//            }).collect(Collectors.toList());
-//        } else {
-//            throw new NullPointerException("User does not exist");
-//        }
-//    }
 

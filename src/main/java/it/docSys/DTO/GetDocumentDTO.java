@@ -1,9 +1,8 @@
 package it.docSys.DTO;
 
-import it.docSys.configs.States;
+import it.docSys.enums.States;
 
 import java.time.LocalDate;
-import java.util.List;
 
 //TODO Team Example ID's ALL Strings (2 nd Edition fixed to be List<Long>), My version was Long; Trying to get them Strings;
 

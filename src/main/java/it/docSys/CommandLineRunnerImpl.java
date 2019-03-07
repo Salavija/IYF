@@ -96,23 +96,25 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
             userDBLoader.load2UsersToDB(docUsers, roles);
         }
 
+//
+//        if (!roleRepository.existsByName(Roles.ROLE_USER.name())) {
+//            roleRepository.save(new Role(Roles.ROLE_USER.name()));
+//            //It was toString
+//            if (!roleRepository.existsByName(Roles.ROLE_ADMIN.name()))
+//                roleRepository.save(new Role(Roles.ROLE_ADMIN.name()));
 
-        if (!roleRepository.existsByName(Roles.ROLE_USER.name())) {
-            roleRepository.save(new Role(Roles.ROLE_USER.name()));
-            //It was toString
-            if (!roleRepository.existsByName(Roles.ROLE_ADMIN.name()))
-                roleRepository.save(new Role(Roles.ROLE_ADMIN.name()));
 
-
-            if (!userRepository.findByUserName("admin").equals("admin")) {
-                userService.addTwoUsersForLogin(new LoginDTO("admin", "apassword", "addmin", "adminito", "ROLE_ADMIN"));
-                if (!userRepository.findByUserName("user").equals("user"))
-                    userService.addTwoUsersForLogin(new LoginDTO("user", "password", "useris", "userinho", "ROLE_USER"));
+//            if (!userRepository.findByUserName("admin").equals("admin") ||
+//                    !userRepository.findByUserName("simpleadmin").equals("simpleadmin")) {
+//                userService.addTwoUsersForLogin(new LoginDTO("simpleadmin", "apassword", "addmin", "adminito", "ROLE_ADMIN"));
+//                if (!userRepository.findByUserName("user").equals("user") ||
+//                !userRepository.findByUserName("simpleuser").equals("simpleuser"))
+//                    userService.addTwoUsersForLogin(new LoginDTO("simpleuser", "password", "useris", "userinho", "ROLE_USER"));
 
 
             }
 
         }
-    }
-}
-
+//    }
+//
+//            }

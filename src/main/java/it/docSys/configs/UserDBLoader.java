@@ -61,29 +61,30 @@ public class UserDBLoader {
 
         // Add simpleUser
 
-        for (int i = 1; i <= numOfUsers; i++ ) {
-            DocUser user = new DocUser();
-            user.setUserName("user");
-            user.setPassword(bCryptPasswordEncoder.encode("password"));
-            user.setFirstName("ufirstname");
-            user.setLastName("ulastname");
-            user.setRoles(Roles.ROLE_USER.name());
-            users.add(user);
-            userRepository.save(user);
-//        userRepository.saveAll(users);
-        }
+//        for (int i = 1; i <= numOfUsers; i++ ) {
+            DocUser user1 = new DocUser();
+            user1.setUserName("simpleuser");
+            user1.setPassword(bCryptPasswordEncoder.encode("password"));
+            user1.setFirstName("ufirstname");
+            user1.setLastName("ulastname");
+            user1.setRoles(Roles.ROLE_USER.name());
+            users.add(user1);
+            userRepository.save(user1);
+        userRepository.saveAll(users);
+//        }
 
         // Add admin
 
 
         DocUser user = new DocUser();
-        user.setUserName("admin");
+        user.setUserName("simpleadmin");
         user.setPassword(bCryptPasswordEncoder.encode("apassword"));
         user.setFirstName("afirstname");
         user.setLastName("alastname");
         user.setRoles(Roles.ROLE_ADMIN.name());
         users.add(user);
         userRepository.save(user);
+        userRepository.saveAll(users);
     }
     }
 

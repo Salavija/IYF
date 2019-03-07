@@ -1,9 +1,5 @@
 package it.docSys.DTO;
 
-import it.docSys.configs.States;
-
-import java.time.LocalDate;
-
 public class TestDocDTO {
 
 

@@ -59,13 +59,13 @@ public class UserController {
 
         securityService.autoLogin(userForm.getUserName(), userForm.getPasswordConfirm());
 
-        return "redirect:/welcome";
+        return "redirect:/login";
     }
 
     @GetMapping("/login")
     public String login(Model model, String error, String logout) {
         if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
+            model.addAttribute("error", "Your username and password are invalid.");
 
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
@@ -73,9 +73,14 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping({"/", "/welcome"})
-    public String welcome(Model model) {
-        return "welcome";
+    @GetMapping({"/", "/welcomeAdmin"})
+    public String welcomeAdmin(Model model) {
+        return "welcomeAdmin";
+    }
+
+    @GetMapping({"/", "/welcomeUser"})
+    public String welcomeUser(Model model) {
+        return "welcomeUser";
     }
 
     /* End of Login Section */

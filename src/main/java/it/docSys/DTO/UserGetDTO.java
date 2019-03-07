@@ -1,7 +1,6 @@
 package it.docSys.DTO;
 
 
-import it.docSys.configs.Roles;
 import it.docSys.entities.Role;
 
 import java.util.Set;
@@ -12,13 +11,13 @@ public class UserGetDTO {
     private String firstName;
     private String lastName;
     private String password;
-    private Set<Role> roles;
+    private String roles;
 //    private Set<GroupEntity> groups;
 //    private Set<Document> documents;
 
 
     public UserGetDTO(Long userId, String userName, String firstName, String lastName, String password,
-                      Set<Role> roles//, Set<GroupEntity> groups, Set<Document> documents
+                      String roles//, Set<GroupEntity> groups, Set<Document> documents
     ) {
         this.userId = userId;
         this.userName = userName;
@@ -56,11 +55,11 @@ public class UserGetDTO {
         this.userName = userName;
     }
 
-    public Set<Role> getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRole(Set<Role> roles) {
+    public void setRole(String roles) {
         this.roles = roles;
     }
 

@@ -1,6 +1,6 @@
 package it.docSys.DTO;
 
-import it.docSys.configs.States;
+import it.docSys.enums.States;
 
 import java.io.Serializable;
 import java.time.LocalDate;

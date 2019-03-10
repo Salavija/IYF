@@ -17,6 +17,12 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 const styles = theme => ({
 
+// docImg:{
+//    height: 800,
+//     background: url('/images/Documents.jpg') no-repeat,
+//       background-position-x: center ,
+// }
+
   main: {
     width: 'auto',
     display: 'block', // Fix IE 11 issue.

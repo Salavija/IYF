@@ -38,7 +38,7 @@ class DocumentPage extends React.Component {
     render() {
         return (
             <div>
-                <CreateNew onDocumentAdded={this.onDocumentAdded}/>
+                {/* <CreateNew onDocumentAdded={this.onDocumentAdded}/> */}
                 {/* <DetailedList /> */}
                 <Documents documents={this.state.documents} onDocumentDeleted={this.onDocumentDeleted}/>
                 <EnchancedTable />

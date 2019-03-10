@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
+import {
+  Button
+} from "reactstrap";
 
 class Group extends React.Component {
   handleRemove = () => {
@@ -30,9 +33,9 @@ class Group extends React.Component {
     return (
       <tr key={this.props.key}>
         <td>{this.props.group.title}</td>
-        <button type="submit" onClick={this.handleRemove}>
+        <Button type="submit" color="primary" onClick={this.handleRemove}>
           Ištrinti
-        </button>
+        </Button>
         {/* <button type="submit" onClick={e => this.editGroup(e, Group)}>
                   Redaguoti
                 </button> */}

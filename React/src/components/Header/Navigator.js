@@ -24,7 +24,7 @@ const categories = [
     {
         id: 'Dokumentų valdymas',
         children: [
-            { id: 'Pagrindinis', icon: <SettingsEthernetIcon />, active: true,  link: "/home-user" },
+            { id: 'Pagrindinis', icon: <SettingsEthernetIcon />,   link: "/home-user" },
             { id: 'Naujas dokumentas', icon: <PermMediaOutlinedIcon />, link:"/create-new-document" },
             { id: 'Dokumentai', icon: <DnsRoundedIcon />, link: "/documents" },
         ],

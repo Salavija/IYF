@@ -33,14 +33,18 @@ class UsersList extends React.Component {
             <Table>
               <thead>
                 <tr>
+                <th>Prisijungimo vardas</th>
                   <th>Vardas</th>
                   <th>Pavardė</th>
+                  <th>El. paštas</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
+                <td>{this.props.userName}</td>
                   <td>{this.props.firstName}</td>
                   <td>{this.props.lastName}</td>
+                  <td>{this.props.email}</td>
                 </tr>
                 {/* <button
                   type="submit"

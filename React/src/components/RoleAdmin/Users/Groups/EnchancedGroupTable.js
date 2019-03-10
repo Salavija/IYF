@@ -20,12 +20,16 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
-import axios from 'axios';
 
-let counter = 0;
-function createData(document_id, title, author, type, describtion, action) {
-  counter += 1;
-  return { id: counter, document_id, title, author, type, describtion, action };
+createData = () => {
+  axios
+    .get("http://localhost:8081/api/groups")
+    .then(answer => {
+      this.setState({ groups: answer.data });
+    })
+    .catch(error => {
+      console.log(error);
+    });
 }
 
 function desc(a, b, orderBy) {
@@ -55,18 +59,7 @@ function getSorting(order, orderBy) {
 }
 
 const rows = [
-  { id: 'document_id', numeric: true, disablePadding: false, label: 'ID' },
   { id: 'title', numeric: false, disablePadding: true, label: 'Pavadinimas' },
-  { id: 'author', numeric: false, disablePadding: true, label: 'Autorius' },
-  { id: 'type', numeric: false, disablePadding: true, label: 'Tipas' },
-  {
-    id: 'describtion',
-    numeric: false,
-    disablePadding: true,
-    label: 'Aprašymas',
-  },
-  { id: 'action', numeric: false, disablePadding: true, label: 'Veiksmas' },
-
 ];
 
 class EnhancedTableHead extends React.Component {
@@ -107,7 +100,7 @@ class EnhancedTableHead extends React.Component {
   //         this.state({ documents: answer.data })
   //     })
   //     .catch((error) => {
-  //         console.log(error)
+  //         console.log(eror)
   //     })
   // }
   render() {
@@ -267,17 +260,15 @@ class EnhancedTable extends React.Component {
         '15',
         'Algos pakelimo prašymas',
         'Prašymas',
-        'Jurgis',
         'Prašau pakelti algą',
-        <Button></Button>
+        'Jurgis',
       ),
       createData(
         '4',
         'Atostogų prašymas',
         'Prašymas',
-        'Almutis',
         'Noriu atostogų',
-        <Button></Button>
+        'Almutis',
       ),
     ],
     page: 0,
@@ -375,13 +366,8 @@ class EnhancedTable extends React.Component {
                       <TableCell padding="checkbox">
                         <Checkbox checked={isSelected} />
                       </TableCell>
-
-                      <TableCell align="right">{n.document_id}</TableCell>
+                      
                       <TableCell>{n.title}</TableCell>
-                      <TableCell>{n.type}</TableCell>
-                      <TableCell>{n.author}</TableCell>
-                      <TableCell>{n.describtion}</TableCell>
-                      <TableCell>{n.action}</TableCell>
                     </TableRow>
                   );
                 })}

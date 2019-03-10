@@ -68,6 +68,11 @@ class CreateUser extends React.Component {
 
                         <Form>
                             <FormGroup>
+                                <Input type="text" name="user_name" id="user_name" placeholder="Prisijungimo vardas"
+                                    onChange={(event, newValue) => this.setState({ user_name: newValue })} />
+                                <FormText>Nurodykite asmens prisijungimo vardą</FormText>
+                            </FormGroup>
+                            <FormGroup>
                                 <Input type="text" name="first_name" id="first_name" placeholder="Vardas"
                                     onChange={(event, newValue) => this.setState({ first_name: newValue })} />
                                 <FormText>Nurodykite asmens vardą</FormText>

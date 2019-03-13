@@ -16,7 +16,7 @@ class NewGroup extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      title: "", // pradinis
+      title: '', // pradinis
       dropdownOpen: false
     };
   }

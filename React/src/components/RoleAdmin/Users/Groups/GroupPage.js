@@ -9,7 +9,6 @@ class GroupPage extends React.Component {
     super(props);
     this.state = {
       groups: []
-      // groups: props.groups
     };
   }
   componentDidMount = () => {

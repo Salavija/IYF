@@ -32,9 +32,9 @@ class TypeCreation extends React.Component {
       });
   }
 
-  onInputChange = (event) => {
+  onInputChange = event => {
     console.log(event.target.value);
-    this.setState({ title: event.target.title })
+    this.setState({ title: event.target.value })
   }
 
   render() {

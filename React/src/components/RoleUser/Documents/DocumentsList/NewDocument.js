@@ -15,7 +15,7 @@ import {
 import { Jumbotron } from "reactstrap";
 import axios from "axios";
 import FileUpl from "./FileUpl";
-import TypesListGet from "../Types/TypesListGet";
+// import TypesListGet from "../Types/TypesListGet";
 import fetchTypes from "../../../../helpers/fetchTypes";
 
 class CreateNew extends React.Component {
@@ -103,8 +103,8 @@ componentDidMount = () => {
                 <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                   <DropdownToggle caret>Dokumento Tipas</DropdownToggle>
                   <DropdownMenu>
-                    {this.state.types.map(type => (
-                      <DropdownItem >{type.title}</DropdownItem>
+                    {this.state.types.map(types => (
+                      <DropdownItem >{types.title}</DropdownItem>
                     ))}
                   </DropdownMenu>
                 </Dropdown>

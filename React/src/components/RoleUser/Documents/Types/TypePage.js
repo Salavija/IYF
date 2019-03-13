@@ -13,10 +13,14 @@ class TypePage extends React.Component {
         };
     }
     componentDidMount = () => {
-        fetchTypes()
+        axios
+            .get("http://localhost:8081/api/documents/types")
             .then(answer => {
                 this.setState({ types: answer.data });
             })
+            .catch(error => {
+                console.log(error);
+            });
     };
 
     onTypeAdded = type => {

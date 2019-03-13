@@ -19,8 +19,10 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import axios from 'axios';
+import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';
+
 
 let counter = 0;
 function createData(document_id, title, author, type, describtion, action) {
@@ -342,9 +344,9 @@ class EnhancedTable extends React.Component {
 
     return (
       <div>
-        <Button variant="contained" color="primary" component={Link} to="/create-new-document" className={classes.button}>
+        {/* <Button variant="contained" color="primary" component={Link} to="/create-new-document" className={classes.button}>
           Kurti naują
-      </Button>
+      </Button> */}
       <Paper className={classes.root}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <div className={classes.tableWrapper}>
@@ -381,7 +383,14 @@ class EnhancedTable extends React.Component {
                       <TableCell>{n.type}</TableCell>
                       <TableCell>{n.author}</TableCell>
                       <TableCell>{n.describtion}</TableCell>
-                      <TableCell>{n.action}</TableCell>
+                      <TableCell>
+                        <IconButton className={classes.button} aria-label="Ištrinti">
+                          <DeleteIcon />
+                        </IconButton>
+                        <IconButton className={classes.button} aria-label="Daugiau">
+                          <SettingsEthernetIcon />
+                        </IconButton>
+                        </TableCell>
                     </TableRow>
                   );
                 })}

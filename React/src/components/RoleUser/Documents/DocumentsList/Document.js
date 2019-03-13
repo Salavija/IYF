@@ -14,6 +14,15 @@ class Document extends React.Component {
         console.log(err);
       });
   };
+  handleSubmit = () => {
+    this.props.onDocumentDeleted(this.props.document);
+    const url = "http://localhost:8081/api/documents/" + this.props.document.title;
+    axios
+      .delete(url)
+      .catch(err => {
+        console.log(err);
+      });
+  };
   render() {
     return (
       // <div>
@@ -26,6 +35,9 @@ class Document extends React.Component {
                 <td>
             <button type="submit" onClick={this.handleRemove}>
               Ištrinti
+        </button>
+          <button type="submit" onClick={this.handleSubmit}>
+            Pateikti
         </button>
                 {/* <button
                   onClick={e => this.editDocument(e, document)}

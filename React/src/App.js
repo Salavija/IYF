@@ -59,25 +59,43 @@ class App extends Component {
                 {/* <Navigation /> */}
                 {/* <NavBarSide /> */}
                 {/* <Navi /> */}
-                <Route render={props => (
+                  <Switch>
+                    <Route path="/" component={Admin} exact />
+                    {/* <Route component={EnsureLoggedInContainer}> */}
+                    <Route path="/home-admin" component={Admin} />
+                    <Route path="/home-user" component={User} />
+                    <Route path="/users" component={UserPage} />
+                    <Route path="/create-user" component={CreateUserPage} />
+                    <Route path="/documents" component={Docs} />
+                    <Route path="/create-new-document" component={NewDocument} />
+                    <Route path="/types" component={Types} />
+                    <Route path="/groups" component={GroupPage} />
+                    <Route component={Error} />
+                    {/* </Route> */}
+                    {/* </Route> */}
+                  </Switch>
+                
+                {/* <Route render={props => (
                   localStorage.getItem('user')
                     ? (<Switch>
-                      <Route path="/" component={User} exact />
+                      <Route path="/" component={User} exact /> */}
                       {/* <Route component={EnsureLoggedInContainer}> */}
-                      <Route path="/home-admin" component={Admin} />
+                      {/* <Route path="/home-admin" component={Admin} />
                       <Route path="/home-user" component={User} />
                       <Route path="/users" component={UserPage} />
                       <Route path="/create-user" component={CreateUserPage} />
                       <Route path="/documents" component={Docs} />
                       <Route path="/create-new-document" component={NewDocument} />
-                      <Route path="/types" component={Types} />
-                      <Route path="/groups" component={GroupPage} />
-                      <Route component={Error} />
+                      <Route path="/types" component={Types} /> */}
+                      {/* <Route path="/groups" component={GroupPage} /> */}
+                      {/* <Route component={Error} /> */}
                       {/* </Route> */}
                       {/* </Route> */}
-                    </Switch>)
-                    : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
-                )} />
+                    {/* </Switch>) */}
+                     {/* : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+               )} /> */}
+
+
               </Container>
               </div>
             </div>

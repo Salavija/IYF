@@ -6,7 +6,7 @@ import { Table } from "reactstrap";
 class Types extends Component {
     render() {
         return (
-            <Table>
+            <Table bordered>
                 <thead>
                     <tr>
                         <th>Pavadinimas</th>

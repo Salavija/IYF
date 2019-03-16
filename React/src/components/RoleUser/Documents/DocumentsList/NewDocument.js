@@ -10,7 +10,8 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
-  Dropdown
+  Dropdown,
+  Label
 } from "reactstrap";
 import { Jumbotron } from "reactstrap";
 import axios from "axios";
@@ -28,7 +29,14 @@ class CreateNew extends React.Component {
       types: [],
       title: "",
       describtion: "",
-      dropdownOpen: false
+      author:"",
+      state: "SUKURTAS",
+      approvingDate: null,
+      dropdownOpen: false,
+      rejectionDate: null,
+      rejectionReason: "",
+      submissionDate: null,
+      addressee:"",
     };
   }
 
@@ -50,6 +58,7 @@ componentDidMount = () => {
       title: this.state.title,
       type: this.state.type,
       describtion: this.state.describtion,
+      author: this.state.author,
     };
     this.props.onDocumentAdded(newDocument);
     axios
@@ -80,10 +89,20 @@ componentDidMount = () => {
     });
   };
 
-  // }
-  // Groups.propTypes = {
-  //   groups: PropTypes.array.isRequired
-  // }
+
+  onInputAuthorChange = event => {
+    this.setState({
+      author: event.target.value
+    });
+  };
+
+  changeBackdrop(e) {
+    let value = e.target.value;
+    if (value !== 'static') {
+      value = JSON.parse(value);
+    }
+    this.setState({ backdrop: value });
+  }
 
   render() {
     return (
@@ -100,8 +119,23 @@ componentDidMount = () => {
 
             <Form onSubmit={this.addNewDocument}>
               <FormGroup>
+                <FormGroup>
+                  <Input 
+                  type="select" 
+                  name="backdrop" 
+                  id="backdrop" 
+                  placeholder="Dokumento tipas"
+                  onChange={this.changeBackdrop}>
+                    {this.state.types.map(types => (
+                      <option value="true">{types.title}</option>
+                    ))}
+
+                  </Input>
+                  <FormText>Nurodykite dokumento tipą</FormText>
+                </FormGroup>
+
                 <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                  <DropdownToggle caret>Dokumento Tipas</DropdownToggle>
+                  <DropdownToggle caret onChange={this.onInputTypeChange}>Dokumento Tipas</DropdownToggle>
                   <DropdownMenu>
                     {this.state.types.map(types => (
                       <DropdownItem >{types.title}</DropdownItem>
@@ -128,6 +162,16 @@ componentDidMount = () => {
                   onChange={this.onInputDescribtionChange}
                 />
                 <FormText>Trumpas dokumento aprašymas</FormText>
+              </FormGroup>
+              <FormGroup>
+                <Input
+                  type="text"
+                  name="author"
+                  id="author"
+                  placeholder="Autoriaus vardas"
+                  onChange={this.onInputAuthorChange}
+                />
+                <FormText>Nurodykite autorių</FormText>
               </FormGroup>
               <br />
               <FileUpl />

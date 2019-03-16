@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 // import axios from 'axios';
-import Document from './Document';
+import Document from './DocumentSubmittedContainer';
 import { Table } from "reactstrap";
 
 class Documents extends Component {
@@ -22,14 +22,15 @@ class Documents extends Component {
     // }
     render() {
         return (
-            <Table bordered>
+            <Table>
                 <thead>
                     <tr>
-                        {/* <th>ID</th> */}
+                        <th>ID</th>
                         <th>Autorius</th>
                         <th>Pavadinimas</th>
                         <th>Tipas</th>
                         <th>Aprašymas</th>
+                        <th>Sukūrimo data</th>
                         <th>Veiksmai</th>
                         {/* <th>Atmetimo priežastis</th>
                                 <th>Patvirtinimo data</th>
@@ -42,7 +43,6 @@ class Documents extends Component {
             {this.props.documents.map(document => (
                     <Document 
                     onDocumentDeleted={this.props.onDocumentDeleted}
-                    onDocumentSubmitted={this.props.onDocumentSubmitted}
                     document={document}
                     // id={document.id}
                     //     author={document.author}

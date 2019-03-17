@@ -11,8 +11,6 @@ import java.util.List;
 @Table(name = "document")
 public class Document {
 
-    //TODO Connect with user author to autoLink it; For now reverting to string;
-    //TODO 2 List<Long> for id to work.
 
     public Document() {}
 
@@ -20,7 +18,7 @@ public class Document {
             (min = 2, message = "*Title must have at least 2 characters")
     @Length(max = 200, message = "*Title must have maximum 200 characters")
             String title, String description, LocalDate submissionDate, LocalDate approvingDate,
-                    LocalDate rejectionDate, String addressee, String rejectionReason,
+                    LocalDate rejectionDate, String rejectionReason,
                     byte attachments, States state) {
         this.id = id;
         this.author = author;
@@ -30,7 +28,6 @@ public class Document {
         this.submissionDate = submissionDate;
         this.approvingDate = approvingDate;
         this.rejectionDate = rejectionDate;
-        this.addressee = addressee;
         this.rejectionReason = rejectionReason;
         this.attachments = attachments;
         this.state = state;
@@ -64,9 +61,6 @@ public class Document {
 
     @Column(name = "rejection_date")
     private LocalDate rejectionDate;
-
-    @Column(name = "addressee")
-    private String addressee;
 
     @Column(name = "rejection_reason")
     private String rejectionReason;
@@ -203,13 +197,6 @@ public class Document {
         this.rejectionDate = rejectionDate;
     }
 
-    public String getAddressee() {
-        return addressee;
-    }
-
-    public void setAddressee(String addressee) {
-        this.addressee = addressee;
-    }
 
     public String getRejectionReason() {
         return rejectionReason;

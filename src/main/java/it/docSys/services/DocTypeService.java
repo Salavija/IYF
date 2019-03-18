@@ -81,9 +81,14 @@ public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DO
         DocType docType = docTypeRepo.getByTitle(dt_title);
         if (docType != null) {
             return docType.getDocuments().stream().map(document ->
-                    new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(), document.getTitle(),
-                            document.getDescription(), document.getSubmissionDate(), document.getApprovingDate(), document.getRejectionDate(),
-                    document.getAddressee(), document.getRejectionReason(), document.getAttachments(), document.getState())).collect(Collectors.toList());
+                    new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(),
+                            document.getTitle(),
+                            document.getDescription(),
+//                            document.getSubmissionDate(), document.getApprovingDate(),
+//                            document.getRejectionDate(), document.getRejectionReason(),
+                            document.getAttachments()
+//                            , document.getState()
+                    )).collect(Collectors.toList());
         }
         return null;
     }

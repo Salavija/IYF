@@ -1,6 +1,7 @@
 package it.docSys.services;
 
 
+import it.docSys.DTO.DocStatusDTO;
 import it.docSys.DTO.GetDocumentDTO;
 import it.docSys.DTO.PutDocumentDTO;
 import it.docSys.enums.States;
@@ -22,7 +23,7 @@ public class DocumentService {
     @Autowired
     private DocumentRepository documentRepository;
 
-    /*Dokuemnto tipo priskyrimui*/
+    /*Dokumento tipo priskyrimui*/
     @Autowired
     private DocTypeRepo docTypeRepo;
 
@@ -34,40 +35,59 @@ public class DocumentService {
     @Transactional
     public void create(PutDocumentDTO putDocumentDTO) {
         Document document = new Document();
-        document.setAddressee(putDocumentDTO.getAddressee());
-        document.setApprovingDate(putDocumentDTO.getApprovingDate());
+//        document.setApprovingDate(putDocumentDTO.getApprovingDate());
         document.setAttachments(putDocumentDTO.getAttachments());
         document.setAuthor(putDocumentDTO.getAuthor());
         document.setDescription(putDocumentDTO.getDescription());
         document.setTitle(putDocumentDTO.getTitle());
-        document.setRejectionDate(putDocumentDTO.getRejectionDate());
-        document.setRejectionReason(putDocumentDTO.getRejectionReason());
-        document.setSubmissionDate(putDocumentDTO.getSubmissionDate());
+//        document.setRejectionDate(putDocumentDTO.getRejectionDate());
+//        document.setRejectionReason(putDocumentDTO.getRejectionReason());
+//        document.setSubmissionDate(putDocumentDTO.getSubmissionDate());
         document.setType(putDocumentDTO.getType());
+        document.setState(putDocumentDTO.getState());// States.SUKURTAS);
 
-        if (putDocumentDTO.getSubmissionDate() != null && putDocumentDTO.getApprovingDate() == null &&
-                putDocumentDTO.getRejectionDate() == null && (putDocumentDTO.getRejectionReason() == null ||
-                putDocumentDTO.getRejectionReason().equals(""))) {
-            putDocumentDTO.setState(States.PATEIKTAS);
-
-        } else if (putDocumentDTO.getApprovingDate() != null && putDocumentDTO.getSubmissionDate() == null &&
-                putDocumentDTO.getRejectionDate() == null && (putDocumentDTO.getRejectionReason() == null ||
-                putDocumentDTO.getRejectionReason().equals(""))) {
-            putDocumentDTO.setState(States.PRIIMTAS);
-
-        } else if (putDocumentDTO.getRejectionDate() != null || putDocumentDTO.getRejectionReason() != null &&
-                (putDocumentDTO.getSubmissionDate() == null && putDocumentDTO.getApprovingDate() == null) ||
-                putDocumentDTO.getRejectionReason() !="") {
-            putDocumentDTO.setState(States.ATMESTAS);
-
-        } else if ((putDocumentDTO.getSubmissionDate() == null &&
-                (putDocumentDTO.getApprovingDate() == null) && (putDocumentDTO.getRejectionDate() == null)
-                && (putDocumentDTO.getRejectionReason() == null || putDocumentDTO.getRejectionReason().equals("")))) {
-
-            putDocumentDTO.setState(States.SUKURTAS);
-        }
-
-        document.setState(putDocumentDTO.getState());
+//        if (putDocumentDTO.getSubmissionDate() != null && putDocumentDTO.getApprovingDate() == null &&
+//                putDocumentDTO.getRejectionDate() == null && (putDocumentDTO.getRejectionReason() == null ||
+//                putDocumentDTO.getRejectionReason().equals(""))) {
+//            putDocumentDTO.setState(States.PATEIKTAS);
+//
+//        } else if (putDocumentDTO.getApprovingDate() != null && putDocumentDTO.getSubmissionDate() == null &&
+//                putDocumentDTO.getRejectionDate() == null && (putDocumentDTO.getRejectionReason() == null ||
+//                putDocumentDTO.getRejectionReason().equals(""))) {
+//            putDocumentDTO.setState(States.PRIIMTAS);
+//
+//        } else if (putDocumentDTO.getRejectionDate() != null || putDocumentDTO.getRejectionReason() != null &&
+//                (putDocumentDTO.getSubmissionDate() == null && putDocumentDTO.getApprovingDate() == null) ||
+//                putDocumentDTO.getRejectionReason() !="") {
+//            putDocumentDTO.setState(States.ATMESTAS);
+//
+//        } else if ((putDocumentDTO.getSubmissionDate() == null &&
+//                (putDocumentDTO.getApprovingDate() == null) && (putDocumentDTO.getRejectionDate() == null)
+//                && (putDocumentDTO.getRejectionReason() == null || putDocumentDTO.getRejectionReason().equals("")))) {
+//
+//            putDocumentDTO.setState(States.SUKURTAS);
+//        }
+//        if( docStatusDTO.getSubmissionDate().equals("")) {
+//            docStatusDTO.setSubmissionDate(null);
+//        }
+//        if( docStatusDTO.getApprovingDate().equals("")) {
+//            docStatusDTO.setApprovingDate(null);
+//        }
+//        if( docStatusDTO.getApprovingDate().equals("")) {
+//            docStatusDTO.setApprovingDate(null);
+//        }
+//        if( docStatusDTO.getRejectionDate().equals("")) {
+//            docStatusDTO.setRejectionDate(null);
+//        }
+//        if ((docStatusDTO.getSubmissionDate() == null &&
+//                (docStatusDTO.getApprovingDate() == null) && (docStatusDTO.getRejectionDate() == null)
+//                && (docStatusDTO.getRejectionReason() == null || docStatusDTO.getRejectionReason().equals("")))) {
+//
+//            docStatusDTO.setState(States.SUKURTAS);
+//        }
+//
+//
+//        document.setState(docStatusDTO.getState());
 
 
         documentRepository.save(document);
@@ -78,10 +98,14 @@ public class DocumentService {
     public GetDocumentDTO get(Long id) {
         Document document = documentRepository.getOne(id);//.orElse(null);
         if (document != null) {
-            return new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(),
-                    document.getTitle(), document.getDescription(), document.getSubmissionDate(),
-                    document.getApprovingDate(), document.getRejectionDate(), document.getAddressee(),
-                    document.getRejectionReason(), document.getAttachments(), document.getState());
+            return new GetDocumentDTO(document.getId(),
+                    document.getAuthor(), document.getType(),
+                    document.getTitle(), document.getDescription(),
+//                    document.getSubmissionDate(),
+//                    document.getApprovingDate(), document.getRejectionDate(), document.getRejectionReason(),
+                    document.getAttachments()
+//                    , document.getState()
+            );
         }
         return null;
     }
@@ -90,9 +114,12 @@ public class DocumentService {
     public List<GetDocumentDTO> listAll() {
         return documentRepository.findAll().stream().map(document ->
                 new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(),
-                        document.getTitle(), document.getDescription(), document.getSubmissionDate(),
-                        document.getApprovingDate(), document.getRejectionDate(), document.getAddressee(),
-                        document.getRejectionReason(), document.getAttachments(), document.getState())).collect(Collectors.toList());
+                        document.getTitle(), document.getDescription(),
+//                        document.getSubmissionDate(),
+//                        document.getApprovingDate(), document.getRejectionDate(), document.getRejectionReason(),
+                        document.getAttachments()
+//                        , document.getState()
+                )).collect(Collectors.toList());
     }
 
 
@@ -101,87 +128,47 @@ public class DocumentService {
         Document document = documentRepository.getOne(id);//.orElse(null);
         if (document != null) {
 //            document.setId(putDocumentDTO.getId());
-            document.setAddressee(putDocumentDTO.getAddressee());
-            document.setApprovingDate(putDocumentDTO.getApprovingDate());
+//            document.setApprovingDate(putDocumentDTO.getApprovingDate());
             document.setAttachments(putDocumentDTO.getAttachments());
             document.setAuthor(putDocumentDTO.getAuthor());
             document.setDescription(putDocumentDTO.getDescription());
             document.setTitle(putDocumentDTO.getTitle());
-            document.setRejectionDate(putDocumentDTO.getRejectionDate());
-            document.setRejectionReason(putDocumentDTO.getRejectionReason());
-            document.setSubmissionDate(putDocumentDTO.getSubmissionDate());
+//            document.setRejectionDate(putDocumentDTO.getRejectionDate());
+//            document.setRejectionReason(putDocumentDTO.getRejectionReason());
+//            document.setSubmissionDate(putDocumentDTO.getSubmissionDate());
             document.setType(putDocumentDTO.getType());
+            documentRepository.save(document);
 
-            if (putDocumentDTO.getSubmissionDate() != null && putDocumentDTO.getApprovingDate() == null &&
-                    putDocumentDTO.getRejectionDate() == null && (putDocumentDTO.getRejectionReason() == null ||
-                    putDocumentDTO.getRejectionReason().equals(""))) {
-                putDocumentDTO.setState(States.PATEIKTAS);
 
-            } else if (putDocumentDTO.getApprovingDate() != null && putDocumentDTO.getSubmissionDate() == null &&
-                    putDocumentDTO.getRejectionDate() == null && (putDocumentDTO.getRejectionReason() == null ||
-                    putDocumentDTO.getRejectionReason().equals(""))) {
-                putDocumentDTO.setState(States.PRIIMTAS);
 
-            } else if (putDocumentDTO.getRejectionDate() != null || putDocumentDTO.getRejectionReason() != null)
-//             !putDocumentDTO.getRejectionReason().isEmpty()) {
-            {
-                putDocumentDTO.setState(States.ATMESTAS);
 
-            } else if ((putDocumentDTO.getSubmissionDate() == null &&
-                    (putDocumentDTO.getApprovingDate() == null) && (putDocumentDTO.getRejectionDate() == null)
-                    && (putDocumentDTO.getRejectionReason() == null || putDocumentDTO.getRejectionReason().equals("")))) {
-
-                putDocumentDTO.setState(States.SUKURTAS);
-            }
-
-            document.setState(putDocumentDTO.getState());
+            //TODO SECTION TO BE used for accepting, refusing... and so on
+//            if (putDocumentDTO.getSubmissionDate() != null && putDocumentDTO.getApprovingDate() == null &&
+//                    putDocumentDTO.getRejectionDate() == null && (putDocumentDTO.getRejectionReason() == null ||
+//                    putDocumentDTO.getRejectionReason().equals(""))) {
+//                putDocumentDTO.setState(States.PATEIKTAS);
+//
+//            } else if (putDocumentDTO.getApprovingDate() != null && putDocumentDTO.getSubmissionDate() == null &&
+//                    putDocumentDTO.getRejectionDate() == null && (putDocumentDTO.getRejectionReason() == null ||
+//                    putDocumentDTO.getRejectionReason().equals(""))) {
+//                putDocumentDTO.setState(States.PRIIMTAS);
+//
+//            } else if (putDocumentDTO.getRejectionDate() != null || putDocumentDTO.getRejectionReason() != null)
+////             !putDocumentDTO.getRejectionReason().isEmpty()) {
+//            {
+//                putDocumentDTO.setState(States.ATMESTAS);
+//
+//            } else if ((putDocumentDTO.getSubmissionDate() == null &&
+//                    (putDocumentDTO.getApprovingDate() == null) && (putDocumentDTO.getRejectionDate() == null)
+//                    && (putDocumentDTO.getRejectionReason() == null || putDocumentDTO.getRejectionReason().equals("")))) {
+//
+//                putDocumentDTO.setState(States.SUKURTAS);
+//            }
+//
+//            document.setState(putDocumentDTO.getState());
+//        }
         }
     }
-
-
-//TODO CHECK for empty string is always failing and gives always true condition or NullPointer even on String WTF??
-//TODO Switch just in case we need it
-    //            switch (states) {
-////
-////                case PATEIKTAS: {
-////                    if (document1.getSubmissionDate() != null && document1.getApprovingDate() == null && (document1.getRejectionDate() == null)) {
-////
-////                        document1.setState(States.PATEIKTAS);
-//////                       return document.getState();
-////                        documentRepository.save(document1);
-////                        break;
-////                    }
-////                }
-////                case PRIIMTAS: {
-////                    if (document1.getSubmissionDate() == null && document1.getApprovingDate() != null && (document1.getRejectionDate() == null)) {
-////
-////                        document1.setState(States.PRIIMTAS);
-//////                        return document.getState();
-////                        documentRepository.save(document1);
-////                        break;
-////                    }
-////                }
-////                case ATMESTAS: {
-////                    if (document1.getSubmissionDate() == null && document1.getApprovingDate() == null && (document1.getRejectionDate() != null)) {
-////
-////                        document1.setState(States.ATMESTAS);
-//////                            return document.getState();
-////                        documentRepository.save(document1);
-////                        break;
-////                    }
-////
-////
-////                }
-////                default:
-////                    document1.setState(States.SUKURTAS);
-////                    break;
-////
-////            }
-////
-////
-////        }
-////
-////        return document;
 
 
 

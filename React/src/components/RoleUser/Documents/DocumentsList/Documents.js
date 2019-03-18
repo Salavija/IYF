@@ -30,7 +30,9 @@ class Documents extends Component {
                         <th>Pavadinimas</th>
                         <th>Tipas</th>
                         <th>Aprašymas</th>
+                        <th>Būsena</th>
                         <th>Veiksmai</th>
+
                         {/* <th>Atmetimo priežastis</th>
                                 <th>Patvirtinimo data</th>
                                 <th>Pateikimo data</th>
@@ -44,11 +46,11 @@ class Documents extends Component {
                     onDocumentDeleted={this.props.onDocumentDeleted}
                     onDocumentSubmitted={this.props.onDocumentSubmitted}
                     document={document}
-                    // id={document.id}
-                    //     author={document.author}
-                    //     type={document.type}
-                    //     title={document.title}
-                    //     describtion={document.description}
+                        author={document.author}
+                        type={document.type}
+                        title={document.title}
+                        description={document.description}
+                        status={document.status}
                     // creationDate={document.creationDate}
                         key={document.id} />
             ))}

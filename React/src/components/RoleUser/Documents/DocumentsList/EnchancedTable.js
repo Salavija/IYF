@@ -25,10 +25,6 @@ import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';
 
 
 let counter = 0;
-function createData(document_id, title, author, type, describtion, action) {
-  counter += 1;
-  return { id: counter, document_id, title, author, type, describtion, action };
-}
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {

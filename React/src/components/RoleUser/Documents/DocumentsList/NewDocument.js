@@ -18,6 +18,9 @@ import axios from "axios";
 import FileUpl from "./FileUpl";
 // import TypesListGet from "../Types/TypesListGet";
 import fetchTypes from "../../../../helpers/fetchTypes";
+import {
+  withRouter
+} from 'react-router-dom'
 
 class CreateNew extends React.Component {
   constructor(props) {
@@ -25,18 +28,19 @@ class CreateNew extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      type:"",
+      type: "",
       types: [],
       title: "",
-      describtion: "",
-      author:"",
-      state: "SUKURTAS",
+      description: "",
+      author: "",
+      status: "SUKURTAS",
       approvingDate: null,
       dropdownOpen: false,
       rejectionDate: null,
-      rejectionReason: "",
+      rejectionReason: "Labai reikejo",
       submissionDate: null,
-      addressee:"",
+      attachments: 1,
+      userName:"Belekas"
     };
   }
 
@@ -47,24 +51,34 @@ class CreateNew extends React.Component {
     }));
   }
 
-componentDidMount = () => {
-  fetchTypes().then(answer => {
-    this.setState({ types: answer.data });
-  })
-}
+  componentDidMount = () => {
+    fetchTypes().then(answer => {
+      this.setState({ types: answer });
+    });
+  };
 
-  addNewDocument = () => {
+  addNewDocument = (e) => {
+    e.preventDefault();
     const newDocument = {
       title: this.state.title,
       type: this.state.type,
-      describtion: this.state.describtion,
+      description: this.state.description,
       author: this.state.author,
+      user_name:this.state.userName,
+      state: this.state.status,
+      approvingDate: this.state.approvingDate,
+      dropdownOpen: this.state.dropdownOpen,
+      rejection_date: this.state.rejectionDate,
+      rejection_reason: this.state.rejectionReason,
+      submission_date: this.state.submissionDate,
+      attachments: this.state.attachments
     };
-    this.props.onDocumentAdded(newDocument);
+    
     axios
       .post("http://localhost:8081/api/documents", newDocument)
-      .then(function(response) {
+      .then(response => {
         console.log(response);
+        this.props.history.push('/documents')
       })
       .catch(error => {
         console.log(error);
@@ -83,12 +97,11 @@ componentDidMount = () => {
     });
   };
 
-  onInputDescribtionChange = event => {
+  onInputDescriptionChange = event => {
     this.setState({
-      describtion: event.target.value
+      description: event.target.value
     });
   };
-
 
   onInputAuthorChange = event => {
     this.setState({
@@ -96,13 +109,10 @@ componentDidMount = () => {
     });
   };
 
-  changeBackdrop(e) {
+  changeType = e => {
     let value = e.target.value;
-    if (value !== 'static') {
-      value = JSON.parse(value);
-    }
-    this.setState({ backdrop: value });
-  }
+    this.setState({ type: value });
+  };
 
   render() {
     return (
@@ -120,25 +130,27 @@ componentDidMount = () => {
             <Form onSubmit={this.addNewDocument}>
               <FormGroup>
                 <FormGroup>
-                  <Input 
-                  type="select" 
-                  name="backdrop" 
-                  id="backdrop" 
-                  placeholder="Dokumento tipas"
-                  onChange={this.changeBackdrop}>
-                    {this.state.types.map(types => (
-                      <option value="true">{types.title}</option>
+                  <Input
+                    type="select"
+                    name="backdrop"
+                    id="backdrop"
+                    placeholder="Dokumento tipas"
+                    onChange={this.changeType}
+                  >
+                    {this.state.types.map(type => (
+                      <option value={type.title}>{type.title}</option>
                     ))}
-
                   </Input>
                   <FormText>Nurodykite dokumento tipą</FormText>
                 </FormGroup>
 
                 <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                  <DropdownToggle caret onChange={this.onInputTypeChange}>Dokumento Tipas</DropdownToggle>
+                  <DropdownToggle caret onChange={this.onInputTypeChange}>
+                    Dokumento Tipas
+                  </DropdownToggle>
                   <DropdownMenu>
                     {this.state.types.map(types => (
-                      <DropdownItem >{types.title}</DropdownItem>
+                      <DropdownItem>{types.title}</DropdownItem>
                     ))}
                   </DropdownMenu>
                 </Dropdown>
@@ -156,10 +168,10 @@ componentDidMount = () => {
               <FormGroup>
                 <Input
                   type="textarea"
-                  name="describtion"
-                  id="describtion"
+                  name="p"
+                  id="p"
                   placeholder="Aprašymas"
-                  onChange={this.onInputDescribtionChange}
+                  onChange={this.onInputDescriptionChange}
                 />
                 <FormText>Trumpas dokumento aprašymas</FormText>
               </FormGroup>
@@ -186,4 +198,4 @@ componentDidMount = () => {
   }
 }
 
-export default CreateNew;
+export default withRouter(CreateNew);

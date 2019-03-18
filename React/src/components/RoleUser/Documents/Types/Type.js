@@ -5,6 +5,9 @@ import {
     Button
 } from "reactstrap";
 
+// import TableCell from '@material-ui/core/TableCell';
+// import TableRow from '@material-ui/core/TableRow';
+
 class Type extends React.Component {
     handleRemove = () => {
         this.props.onTypeDeleted(this.props.type);

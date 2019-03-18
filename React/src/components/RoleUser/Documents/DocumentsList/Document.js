@@ -22,6 +22,12 @@ class Document extends React.Component {
       console.log(err);
     });
   };
+
+  checkState = () => {
+if(this.props.status === "SUKURTAS"){
+  
+}
+  }
   
   render() {
     return (
@@ -32,6 +38,9 @@ class Document extends React.Component {
         <td>{this.props.title}</td>
         <td>{this.props.type}</td>
         <td>{this.props.description}</td>
+        <td> 
+{this.props.status}
+        </td>
         <td>
           <Button type="submit" color="default" variant="contained" onClick={this.handleSubmit}>
             Pateikti

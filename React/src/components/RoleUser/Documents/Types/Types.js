@@ -1,12 +1,36 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Type from "./Type";
-import { Table } from "reactstrap";
+// import { Table } from "reactstrap";
+
+import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+
+import TableHead from '@material-ui/core/TableHead';
+
+import Paper from '@material-ui/core/Paper';
+
+const styles = theme => ({
+    root: {
+        width: '100%',
+        marginTop: theme.spacing.unit * 3,
+        overflowX: 'auto',
+    },
+    table: {
+        minWidth: 700,
+    },
+});
+
+
 
 class Types extends Component {
+    
     render() {
+        const { classes } = this.props;
         return (
-            <Table bordered>
+            <Paper className={classes.root}>
+                <Table className={classes.table}>
                 <thead>
                     <tr>
                         <th>Pavadinimas</th>
@@ -23,6 +47,7 @@ class Types extends Component {
                     ))}
                 </tbody>
             </Table>
+            </Paper>
         );
     }
 }
@@ -30,7 +55,7 @@ Types.propTypes = {
     types: PropTypes.array.isRequired
 };
 
-export default Types;
+export default withStyles(styles) (Types);
 
 //     constructor() {
 //         super();

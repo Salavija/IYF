@@ -6,6 +6,6 @@ export default () => {
     .catch(error => {
       console.log(error);
     })
-    .then(() => ({ data: [] }));
-    //then -fake kodas
+    .then((res) => res.data );
+
 };

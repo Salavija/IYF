@@ -1,8 +1,9 @@
 import React from "react";
-import { Form, Input, FormGroup, FormText, Container, Button } from "reactstrap";
+import { Form, Input, FormGroup, FormText, Container} from "reactstrap";
 import { Jumbotron } from "reactstrap";
 import axios from 'axios';
-
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
 
 class TypeCreation extends React.Component {
   constructor(props) {
@@ -49,9 +50,9 @@ class TypeCreation extends React.Component {
   render() {
     return (
       <div>
+        <Paper>
         <Container>
           <br />
-          <Jumbotron>
             <h3>
               <b>Sukurti naują tipą</b>
             </h3>
@@ -61,10 +62,12 @@ class TypeCreation extends React.Component {
                 <FormText>Nurodykite tipo pavadinimą</FormText>
               </FormGroup>
               <br />
-              <Button type="submit" color="primary">Pridėti</Button>{" "}
+              
+              <Button type="submit" color="primary">Pridėti</Button>
+           
             </Form>
-          </Jumbotron>
         </Container>
+         </Paper>
       </div>
     );
   }

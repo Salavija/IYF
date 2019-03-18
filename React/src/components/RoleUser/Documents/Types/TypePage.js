@@ -9,9 +9,19 @@ class TypePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            types: []
+            types: [],
+            page:0,
+            rowsPerPage:5,
         };
     }
+    handleChangePage = (event, page) => {
+        this.setState({ page });
+    };
+
+    handleChangeRowsPerPage = event => {
+        this.setState({ page: 0, rowsPerPage: event.target.value });
+    };
+
     componentDidMount = () => {
         axios
             .get("http://localhost:8081/api/documents/types")
@@ -35,11 +45,17 @@ class TypePage extends React.Component {
         })
     }
     render() {
-        console.log(this.state.types)
+
         return (
             <div>
                 <TypeCreation onTypeAdded={this.onTypeAdded} />
-                <Types types={this.state.types} onTypeDeleted={this.onTypeDeleted} />
+                <Types 
+                handleChangePage={this.handleChangePage}
+                handleChangeRowsPerPage={this.handleChangeRowsPerPage}
+                types={this.state.types} 
+                page={this.state.page}
+                rowsPerPage={this.state.rowsPerPage}
+                onTypeDeleted={this.onTypeDeleted} />
             </div>
         );
     }

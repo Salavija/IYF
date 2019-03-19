@@ -47,7 +47,6 @@ class CreateNew extends React.Component {
   toggle() {
     this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen
-      //gavimas praeito state
     }));
   }
 

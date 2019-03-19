@@ -26,11 +26,11 @@ class DocumentPage extends React.Component {
             });
     };
 
-    onGroupAdded = document => {
-        this.setState({ documents: [...this.state.documents, document] });
-    };
+    // onDocumentAdded = document => {
+    //     this.setState({ documents: [...this.state.documents, document] });
+    // };
 
-    onGroupDeleted = document => {
+    onDocumentDeleted = document => {
         this.setState(previousState => {
             return {
                 documents: previousState.documents.filter(d => d.title !== document.title)

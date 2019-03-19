@@ -1,15 +1,16 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Group from "./Group";
-import { withStyles } from "@material-ui/core/styles";
+import React from "react";
+import axios from "axios";
+import Paper from '@material-ui/core/Paper';
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
-import Paper from "@material-ui/core/Paper";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import TablePaginationActionsWrapped from "../../../../helpers/TablePaginationActions";
 import TableFooter from "@material-ui/core/TableFooter";
 import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import User from './User';
+import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
   root: {
@@ -22,24 +23,42 @@ const styles = theme => ({
   }
 });
 
-class Groups extends Component {
+
+class Users extends React.Component {
+  handleRemove = () => {
+    this.props.onTypeDeleted(this.props.type);
+    const url = "http://localhost:8081/api/documents/types" + this.props.type.title;
+    axios
+      .delete(url)
+      .catch(err => {
+        console.log(err);
+      });
+  };
   render() {
     const { classes } = this.props;
-    const { groups, rowsPerPage, page } = this.props;
+    const { users, rowsPerPage, page } = this.props;
     const emptyRows =
-      rowsPerPage - Math.min(rowsPerPage, groups.length - page * rowsPerPage);
+      rowsPerPage - Math.min(rowsPerPage, users.length - page * rowsPerPage);
     return (
-      <Paper className={classes.root}>
-        <div className={classes.tableWrapper}>
+      <div>
+        <Paper className={classes.root}>
           <Table className={classes.table}>
+            <TableHead>
+              <TableRow>
+                <TableCell>Prisijungimo vardas</TableCell>
+                  <TableCell>Vardas</TableCell>
+                  <TableCell>Pavardė</TableCell>
+                  <TableCell>El. paštas</TableCell>
+              </TableRow>
+            </TableHead>
             <TableBody>
-              {this.props.groups
+              {this.props.users
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(group => (
-                  <Group
-                    onGroupDeleted={this.props.onGroupDeleted}
-                    group={group}
-                    key={group.id}
+                .map(user => (
+                  <User
+                    onUserDeleted={this.props.onUserDeleted}
+                    user={user}
+                    key={user.id}
                   />
                 ))}
               {emptyRows > 0 && (
@@ -53,7 +72,7 @@ class Groups extends Component {
                 <TablePagination
                   rowsPerPageOptions={[5, 10, 25]}
                   colSpan={3}
-                  count={groups.length}
+                  count={users.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   SelectProps={{
@@ -66,12 +85,11 @@ class Groups extends Component {
               </TableRow>
             </TableFooter>
           </Table>
-        </div>
       </Paper>
+      </div>
     );
   }
 }
-Groups.propTypes = {
-  groups: PropTypes.array.isRequired
-};
-export default withStyles(styles)(Groups);
+
+export default withStyles(styles)(Users);
+

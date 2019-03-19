@@ -21,9 +21,7 @@ class Paginator extends React.PureComponent {
     }
 
     handleClick(e, index) {
-
         e.preventDefault();
-
         this.setState({
             currentPage: index
         });

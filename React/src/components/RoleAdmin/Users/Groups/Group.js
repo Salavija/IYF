@@ -1,51 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import {
-  Button
-} from "reactstrap";
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
 
 class Group extends React.Component {
   handleRemove = () => {
     this.props.onGroupDeleted(this.props.group);
     const url = "http://localhost:8081/api/groups/" + this.props.group.title;
-    axios
-      .delete(url)
-      // .then(res => {
-      //  console.log(res)
-      //     };
-      .catch(err => {
-        console.log(err);
-      });
+    axios.delete(url).catch(err => {
+      console.log(err);
+    });
   };
-  // handleRemoveE(event) {
-  //   alert("Grupė " + this.state.title + " ištrintas");
-  //   event.preventDefault();
-  // }
-
-  // removeGroup = (e, group) => {
-  //   e.preventDefault();
-  //   if (this.props.removeClick) {
-  //     this.props.removeClick(group);
-  //   }
-  // };
   render() {
     return (
-      <tr key={this.props.key}>
-        <td>{this.props.group.title}</td>
-        <Button type="submit" color="primary" onClick={this.handleRemove}>
+      <TableRow key={this.props.key}>
+      <TableCell component="th" scope="row">{this.props.group.title}</TableCell>
+        <TableCell align="right">
+        <Button type="submit" color="secondary" onClick={this.handleRemove}>
           Ištrinti
         </Button>
         {/* <button type="submit" onClick={e => this.editGroup(e, Group)}>
                   Redaguoti
                 </button> */}
-      </tr>
+        </TableCell>
+      </TableRow>
     );
   }
 }
 Group.Prototypes = {
   title: PropTypes.string.isRequired
-  //kad mestu warningus
 };
 
 export default Group;

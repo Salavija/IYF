@@ -18,13 +18,15 @@ import UserPage from "./components/RoleAdmin/Users/Users.js/UserPage";
 import CreateUserPage from "./components/RoleAdmin/Users/CreateUser/CreateUserPage";
 // import Login from "./components/Login";
 import Admin from "./components/RoleAdmin/AdminHome";
-import User from "./components/RoleUser/UserHome";
+import User from "./components/RoleUser/UserHomePage/UserHome";
 import Header from "./components/Header/Header";
 // import LoginPage from "./Login/LoginPage";
 // import EnsureLoggedInContainer from "./components/Authentication/EnsureLoggedInContainer";
 // import NavBarSide from './components/SideBar/NavBarSide'
 // import Root from "./Root";
 // import history from "./history";
+// import Footer from "./components/Footer/Footer"
+import DetailedDocument from "./components/RoleUser/Documents/DocumentsList/DetailedDocument"
 
 function loggedIn() {
   // ...
@@ -51,6 +53,7 @@ class App extends Component {
       <Switch>
         <Route path="/login" component={Home} />
         <Route render = {()=>(
+          <div>
           <div >
               <Header onDrawerToggle={this.handleDrawerToggle} />
             <div style={{display: "flex"}}>
@@ -70,6 +73,7 @@ class App extends Component {
                     <Route path="/create-new-document" component={NewDocument} />
                     <Route path="/types" component={Types} />
                     <Route path="/groups" component={GroupPage} />
+                      <Route path="/detailed-document" component={DetailedDocument} />
                     <Route component={Error} />
                     {/* </Route> */}
                     {/* </Route> */}
@@ -97,7 +101,10 @@ class App extends Component {
 
 
               </Container>
+          
               </div>
+            </div>
+              {/* <Footer /> */}
             </div>
         )}/>
         </Switch>

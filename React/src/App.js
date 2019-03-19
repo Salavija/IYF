@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch} from "react-router-dom";
 import "./App.css";
-
+// , Redirect in router dom
 import Home from "./components/Home";
 // import About from "./components/About";
 import Error from "./components/Error";
@@ -11,7 +11,6 @@ import NewDocument from "./components/RoleUser/Documents/DocumentsList/NewDocume
 import Types from "./components/RoleUser/Documents/Types/TypePage";
 import Paperbase from "./components/Header/Paperbase";
 // import Navi from './components/Navi';
-
 import { Container } from "reactstrap";
 import GroupPage from "./components/RoleAdmin/Users/Groups/GroupPage";
 import UserPage from "./components/RoleAdmin/Users/Users.js/UserPage";
@@ -28,18 +27,16 @@ import Header from "./components/Header/Header";
 // import Footer from "./components/Footer/Footer"
 import DetailedDocument from "./components/RoleUser/Documents/DocumentsList/DetailedDocument"
 
-function loggedIn() {
-  // ...
-}
-
-function requireAuth(nextState, replace) {
-  if (!loggedIn()) {
-    replace({
-      pathname: "/login"
-    });
-  }
-}
-
+// function loggedIn() {
+//   // ...
+// }
+// function requireAuth(nextState, replace) {
+//   if (!loggedIn()) {
+//     replace({
+//       pathname: "/login"
+//     });
+//   }
+// }
 
 class App extends Component {
 

@@ -33,20 +33,6 @@ class Type extends React.Component {
     }
 }
 
-{/* (types => (
-                  <TableRow key={type.id}>
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                  </TableRow>
-                ))}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 48 * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )} */}
-
 Type.Prototypes = {
     title: PropTypes.string.isRequired
 };

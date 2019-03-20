@@ -1,8 +1,6 @@
 package it.docSys.services;
 
-import it.docSys.DTO.DocStatusDTO;
-import it.docSys.DTO.GetDocumentDTO;
-import it.docSys.DTO.OnlyStatusDTO;
+import it.docSys.DTO.statusDTO.*;
 import it.docSys.entities.Document;
 import it.docSys.enums.States;
 import it.docSys.repository.DocumentRepository;
@@ -94,35 +92,63 @@ public class StatusService {
     }
 
     @Transactional
-    public void submitDocument(long id, DocStatusDTO docStatusDTO) {
+    public void submitDocument(long id, SubmitDTO submitDTO) {
         Document document = documentRepository.getOne(id);
         if (document != null) {
-            docStatusDTO.setSubmissionDate(LocalDate.now());
-            docStatusDTO.setState(States.PATEIKTAS);
-            document.setState(docStatusDTO.getState());
+            submitDTO.setSubmissionDate(LocalDate.now());
+            submitDTO.setState(States.PATEIKTAS);
+            document.setState(submitDTO.getState());
         }
         documentRepository.save(document);
     }
     @Transactional
-    public void approveDocument(long id, DocStatusDTO docStatusDTO) {
+    public SubmitDTO getSubmittedDocument(Long id) {
         Document document = documentRepository.getOne(id);
         if (document != null) {
-            docStatusDTO.setApprovingDate(LocalDate.now());
-            docStatusDTO.setState(States.PRIIMTAS);
-            document.setState(docStatusDTO.getState());
+            return new SubmitDTO(document.getSubmissionDate(), document.getState());
+        }
+        return null;
+    }
+
+    @Transactional
+    public void approveDocument(long id, ApproveDTO approveDTO) {
+        Document document = documentRepository.getOne(id);
+        if (document != null) {
+            approveDTO.setApprovingDate(LocalDate.now());
+            approveDTO.setState(States.PRIIMTAS);
+            document.setState(approveDTO.getState());
         }
         documentRepository.save(document);
     }
+
     @Transactional
-    public void rejectDocument(long id, DocStatusDTO docStatusDTO) {
+    public ApproveDTO getApprovedDocument(Long id) {
         Document document = documentRepository.getOne(id);
         if (document != null) {
-            docStatusDTO.setRejectionDate(LocalDate.now());
-            docStatusDTO.setRejectionReason("Įveskite atmetimo priežastį");
-            docStatusDTO.setState(States.ATMESTAS);
-            document.setState(docStatusDTO.getState());
+            return new ApproveDTO(document.getApprovingDate(), document.getState());
+        }
+        return null;
+    }
+
+    @Transactional
+    public void rejectDocument(long id, RejectDTO rejectDTO) {
+        Document document = documentRepository.getOne(id);
+        if (document != null) {
+            rejectDTO.setRejectionDate(LocalDate.now());
+            rejectDTO.setRejectionReason("Įveskite atmetimo priežastį");
+            rejectDTO.setState(States.ATMESTAS);
+            document.setState(rejectDTO.getState());
         }
         documentRepository.save(document);
+    }
+
+    @Transactional
+    public RejectDTO getRejectedDocument(Long id) {
+        Document document = documentRepository.getOne(id);
+        if (document != null) {
+            return new RejectDTO(document.getRejectionDate(), document.getRejectionReason(), document.getState());
+        }
+        return null;
     }
 
     }

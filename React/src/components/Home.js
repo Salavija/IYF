@@ -9,49 +9,49 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import withStyles from '@material-ui/core/styles/withStyles';
-// import docImg from '../Images/Documents.jpg'
-// import Background from '../Images/Documents.jpg';
 
-// Paveiksliuko stilius
-// min - height: 800px; background: url('/images/Documents.jpg') no - repeat; background - position - x: center 
+import Background from '../images/Documents.jpg';
+import Grid from '@material-ui/core/Grid';
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
 
-// docImg:{
-//    height: 800,
-//     background: url('/images/Documents.jpg') no-repeat,
-//       background-position-x: center ,
-// }
-
   main: {
-    width: 'auto',
-    display: 'block', // Fix IE 11 issue.
+    width: "auto",
+    display: "block",
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
       width: 400,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
+      marginLeft: "auto",
+      marginRight: "auto"
+    }
   },
   paper: {
     marginTop: theme.spacing.unit * 8,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
+      .spacing.unit * 3}px`
   },
   avatar: {
     margin: theme.spacing.unit,
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.secondary.main
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing.unit,
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing.unit
   },
   submit: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing.unit * 3
   },
+  background: {
+    backgroundImage: `url(${Background})`,
+    width: "100%",
+    height: "1020px",
+    backgroundSize: "cover"
+  }
 });
 
 function Home(props) {
@@ -59,7 +59,16 @@ function Home(props) {
 
   return (
     <div >
+      <div className={classes.background}>
+
     <main className={classes.main}>
+          <Grid container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+            style={{ minHeight: '100vh' }}
+          >
       <CssBaseline />
       <Paper className={classes.paper}>
         <form className={classes.form} onSubmit={props.getUser}>
@@ -80,13 +89,17 @@ function Home(props) {
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
+            // className={classes.submit}
+                  component={Link}
+                  to="/"
           >
             Prisijungti
           </Button>
         </form>
       </Paper>
+          </Grid> 
     </main>
+      </div>
     </div>
   );
 }

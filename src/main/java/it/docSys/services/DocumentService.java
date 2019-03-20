@@ -1,6 +1,7 @@
 package it.docSys.services;
 
 
+import it.docSys.DTO.DocStatusDTO;
 import it.docSys.DTO.GetDocumentDTO;
 import it.docSys.DTO.PutDocumentDTO;
 import it.docSys.enums.States;
@@ -22,7 +23,7 @@ public class DocumentService {
     @Autowired
     private DocumentRepository documentRepository;
 
-    /*Dokuemnto tipo priskyrimui*/
+    /*Dokumento tipo priskyrimui*/
     @Autowired
     private DocTypeRepo docTypeRepo;
 
@@ -43,6 +44,7 @@ public class DocumentService {
 //        document.setRejectionReason(putDocumentDTO.getRejectionReason());
 //        document.setSubmissionDate(putDocumentDTO.getSubmissionDate());
         document.setType(putDocumentDTO.getType());
+        document.setState(putDocumentDTO.getState());// States.SUKURTAS);
 
 //        if (putDocumentDTO.getSubmissionDate() != null && putDocumentDTO.getApprovingDate() == null &&
 //                putDocumentDTO.getRejectionDate() == null && (putDocumentDTO.getRejectionReason() == null ||
@@ -65,8 +67,27 @@ public class DocumentService {
 //
 //            putDocumentDTO.setState(States.SUKURTAS);
 //        }
+//        if( docStatusDTO.getSubmissionDate().equals("")) {
+//            docStatusDTO.setSubmissionDate(null);
+//        }
+//        if( docStatusDTO.getApprovingDate().equals("")) {
+//            docStatusDTO.setApprovingDate(null);
+//        }
+//        if( docStatusDTO.getApprovingDate().equals("")) {
+//            docStatusDTO.setApprovingDate(null);
+//        }
+//        if( docStatusDTO.getRejectionDate().equals("")) {
+//            docStatusDTO.setRejectionDate(null);
+//        }
+//        if ((docStatusDTO.getSubmissionDate() == null &&
+//                (docStatusDTO.getApprovingDate() == null) && (docStatusDTO.getRejectionDate() == null)
+//                && (docStatusDTO.getRejectionReason() == null || docStatusDTO.getRejectionReason().equals("")))) {
 //
-//        document.setState(putDocumentDTO.getState());
+//            docStatusDTO.setState(States.SUKURTAS);
+//        }
+//
+//
+//        document.setState(docStatusDTO.getState());
 
 
         documentRepository.save(document);
@@ -77,11 +98,14 @@ public class DocumentService {
     public GetDocumentDTO get(Long id) {
         Document document = documentRepository.getOne(id);//.orElse(null);
         if (document != null) {
-            return new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(),
+            return new GetDocumentDTO(document.getId(),
+                    document.getAuthor(), document.getType(),
                     document.getTitle(), document.getDescription(),
 //                    document.getSubmissionDate(),
 //                    document.getApprovingDate(), document.getRejectionDate(), document.getRejectionReason(),
-                    document.getAttachments(), document.getState());
+                    document.getAttachments()
+//                    , document.getState()
+            );
         }
         return null;
     }
@@ -93,7 +117,9 @@ public class DocumentService {
                         document.getTitle(), document.getDescription(),
 //                        document.getSubmissionDate(),
 //                        document.getApprovingDate(), document.getRejectionDate(), document.getRejectionReason(),
-                        document.getAttachments(), document.getState())).collect(Collectors.toList());
+                        document.getAttachments()
+//                        , document.getState()
+                )).collect(Collectors.toList());
     }
 
 
@@ -112,6 +138,8 @@ public class DocumentService {
 //            document.setSubmissionDate(putDocumentDTO.getSubmissionDate());
             document.setType(putDocumentDTO.getType());
             documentRepository.save(document);
+
+
 
 
             //TODO SECTION TO BE used for accepting, refusing... and so on
@@ -141,51 +169,6 @@ public class DocumentService {
 //        }
         }
     }
-
-
-//TODO CHECK for empty string is always failing and gives always true condition or NullPointer even on String WTF??
-//TODO Switch just in case we need it
-    //            switch (states) {
-////
-////                case PATEIKTAS: {
-////                    if (document1.getSubmissionDate() != null && document1.getApprovingDate() == null && (document1.getRejectionDate() == null)) {
-////
-////                        document1.setState(States.PATEIKTAS);
-//////                       return document.getState();
-////                        documentRepository.save(document1);
-////                        break;
-////                    }
-////                }
-////                case PRIIMTAS: {
-////                    if (document1.getSubmissionDate() == null && document1.getApprovingDate() != null && (document1.getRejectionDate() == null)) {
-////
-////                        document1.setState(States.PRIIMTAS);
-//////                        return document.getState();
-////                        documentRepository.save(document1);
-////                        break;
-////                    }
-////                }
-////                case ATMESTAS: {
-////                    if (document1.getSubmissionDate() == null && document1.getApprovingDate() == null && (document1.getRejectionDate() != null)) {
-////
-////                        document1.setState(States.ATMESTAS);
-//////                            return document.getState();
-////                        documentRepository.save(document1);
-////                        break;
-////                    }
-////
-////
-////                }
-////                default:
-////                    document1.setState(States.SUKURTAS);
-////                    break;
-////
-////            }
-////
-////
-////        }
-////
-////        return document;
 
 
 

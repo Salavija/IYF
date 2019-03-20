@@ -263,13 +263,6 @@ class EnhancedTable extends React.Component {
         'Prašau pakelti algą',
         'Jurgis',
       ),
-      createData(
-        '4',
-        'Atostogų prašymas',
-        'Prašymas',
-        'Noriu atostogų',
-        'Almutis',
-      ),
     ],
     page: 0,
     rowsPerPage: 5,

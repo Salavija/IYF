@@ -1,100 +1,77 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Group from "./Group";
-import { Table } from "reactstrap";
-// import { withStyles } from '@material-ui/core/styles';
-// import Table from '@material-ui/core/Table';
-// import TableBody from '@material-ui/core/TableBody';
-// import TableCell from '@material-ui/core/TableCell';
-// import TableHead from '@material-ui/core/TableHead';
-// import TableRow from '@material-ui/core/TableRow';
-// import Paper from '@material-ui/core/Paper';
+import { withStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import Paper from "@material-ui/core/Paper";
+import TablePagination from "@material-ui/core/TablePagination";
+import TableRow from "@material-ui/core/TableRow";
+import TablePaginationActionsWrapped from "../../../../helpers/TablePaginationActions";
+import TableFooter from "@material-ui/core/TableFooter";
+import TableCell from "@material-ui/core/TableCell";
 
-// const CustomTableCell = withStyles(theme => ({
-//   head: {
-//     backgroundColor: theme.palette.common.black,
-//     color: theme.palette.common.white,
-//   },
-//   body: {
-//     fontSize: 14,
-//   },
-// }))(TableCell);
-
-// const styles = theme => ({
-//   root: {
-//     width: '100%',
-//     marginTop: theme.spacing.unit * 3,
-//     overflowX: 'auto',
-//   },
-//   table: {
-//     minWidth: 700,
-//   },
-//   row: {
-//     '&:nth-of-type(odd)': {
-//       backgroundColor: theme.palette.background.default,
-//     },
-//   },
-// });
-
+const styles = theme => ({
+  root: {
+    width: "100%",
+    marginTop: theme.spacing.unit * 3,
+    overflowX: "auto"
+  },
+  table: {
+    minWidth: 700
+  }
+});
 
 class Groups extends Component {
-//   render() {
-//     return (
-//       <Paper className={classes.root}>
-//         <Table className={classes.table}>
-//           <TableHead>
-//             <TableRow>
-//               <CustomTableCell>Pavadinimas</CustomTableCell>
-//             </TableRow>
-//           </TableHead>
-//           <TableBody>
-//             <TableRow className={classes.row} key={group.id}>
-//               {this.props.groups.map(group => (
-//                 <CustomTableCell component="th" scope="row">
-//                 <Group 
-//                   onGroupDeleted={this.props.onGroupDeleted}
-//                   group={group}
-//                 //   a={console.log(group.id)} konsologingui
-//                   key={group.id}
-//                 />
-//                 </CustomTableCell>
-//               ))}
-// </TableRow>
-//           ))}
-//         </TableBody>
-//       </Table>
-//     </Paper >
-//   );
-//   }
-// }
-// Groups.propTypes = {
-//   groups: PropTypes.array.isRequired
-// };
-// export default withStyles(styles)(Groups);
-
-render() {
-  return (
-    <Table>
-      <thead>
-        <tr>
-          <th>Pavadinimas</th>
-        </tr>
-      </thead>
-      <tbody>
-        {this.props.groups.map(group => (
-          <Group
-            onGroupDeleted={this.props.onGroupDeleted}
-            group={group}
-            //   a={console.log(group.id)} konsologingui
-            key={group.id}
-          />
-        ))}
-      </tbody>
-    </Table>
-  );
-}
+  render() {
+    const { classes } = this.props;
+    const { groups, rowsPerPage, page } = this.props;
+    const emptyRows =
+      rowsPerPage - Math.min(rowsPerPage, groups.length - page * rowsPerPage);
+    return (
+      <Paper className={classes.root}>
+        <div className={classes.tableWrapper}>
+          <Table className={classes.table}>
+            <TableBody>
+              {this.props.groups
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map(group => (
+                  <Group
+                    onGroupDeleted={this.props.onGroupDeleted}
+                    group={group}
+                    key={group.id}
+                  />
+                ))}
+              {emptyRows > 0 && (
+                <TableRow style={{ height: 48 * emptyRows }}>
+                  <TableCell colSpan={6} />
+                </TableRow>
+              )}
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  rowsPerPageOptions={[5, 10, 25]}
+                  colSpan={3}
+                  count={groups.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  SelectProps={{
+                    native: true
+                  }}
+                  onChangePage={this.props.handleChangePage}
+                  onChangeRowsPerPage={this.props.handleChangeRowsPerPage}
+                  ActionsComponent={TablePaginationActionsWrapped}
+                />
+              </TableRow>
+            </TableFooter>
+          </Table>
+        </div>
+      </Paper>
+    );
+  }
 }
 Groups.propTypes = {
   groups: PropTypes.array.isRequired
 };
-export default Groups;
+export default withStyles(styles)(Groups);

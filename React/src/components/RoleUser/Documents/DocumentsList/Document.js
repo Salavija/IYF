@@ -1,66 +1,96 @@
-import React from 'react';
-import { Table, Container, Row, Input } from 'reactstrap';
-// import PropTypes from 'prop-types';
-import axios from 'axios';
-// import documents from './Documents';
+import React from "react";
+import axios from "axios";
+import Button from "@material-ui/core/Button"
+import TableCell from "@material-ui/core/TableCell";
+import TableRow from "@material-ui/core/TableRow";
+import Icon from "@material-ui/core/Icon";
+import { Link } from "react-router-dom";
+import SettingsEthernetIcon from "@material-ui/icons/SettingsEthernet";
+import { withStyles } from "@material-ui/core/styles";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import DeleteIcon from "@material-ui/icons/Delete";
+import Grid from "@material-ui/core/Grid";
+import PropTypes from "prop-types";
+import { red } from "@material-ui/core/colors";
+
+const styles = theme => ({
+  root: {
+    color: theme.palette.text.primary
+  },
+  icon: {
+    margin: theme.spacing.unit,
+    fontSize: 32
+  }
+});
+
 
 class Document extends React.Component {
   handleRemove = () => {
     this.props.onDocumentDeleted(this.props.document);
-    const url = "http://localhost:8081/api/documents/" + this.props.document.title;
-    axios
-      .delete(url)
-      .catch(err => {
-        console.log(err);
-      });
+    const url =
+      "http://localhost:8081/api/documents/" + this.props.document.title;
+    axios.delete(url).catch(err => {
+      console.log(err);
+    });
   };
   handleSubmit = () => {
-    this.props.onDocumentDeleted(this.props.document);
-    const url = "http://localhost:8081/api/documents/" + this.props.document.title;
-    axios
-      .delete(url)
-      .catch(err => {
-        console.log(err);
-      });
+    this.props.onDocumentSubmitted(this.props.document);
+    const url =
+      "http://localhost:8081/api/documents/" + this.props.document.title;
+    axios.delete(url).catch(err => {
+      console.log(err);
+    });
   };
+
+  checkState = () => {
+if(this.props.status === "SUKURTAS"){
+  
+}
+  }
+  
   render() {
     return (
-      // <div>
-                <tr key={this.props.key}>
-                  <td>{this.props.author}</td>
-                  <td>{this.props.title}</td>
-                  <td>{this.props.type}</td>
-                  <td>{this.props.description}</td>
-                  <td>{this.props.creationDate}</td>
-                <td>
-            <button type="submit" onClick={this.handleRemove}>
-              Ištrinti
-        </button>
-          <button type="submit" onClick={this.handleSubmit}>
-            Pateikti
-        </button>
-                {/* <button
-                  onClick={e => this.editDocument(e, document)}
-                >
-                  Redaguoti
-                </button> */}
-                  </td>
-                {/* </tr>
-                <form>
-                  <Input
-                    type="textarea"
-                    name="describtion"
-                    id="describtion"
-                    placeholder="Adresatas"
-                  />
-                  <button
-                    onClick={e => this.sendDocument(e, document)}
-                  >
-                    Pateikti
-                  </button>
-                </form>
-                </div> */}
-                </tr>
+        <TableRow hover key={this.props.id}>
+          <TableCell >
+            {this.props.document.author}
+          </TableCell>
+          <TableCell >
+            {this.props.document.title}
+          </TableCell>
+          <TableCell >
+            {this.props.document.type}
+          </TableCell>
+          <TableCell >
+            {this.props.document.description}
+          </TableCell>
+          <TableCell  />
+          <TableCell align="right">
+            <Button
+              type="submit"
+              color="default"
+              variant="contained"
+              onClick={this.handleSubmit}
+            >
+              Pateikti
+            </Button>{""}
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+            component={Link}
+            to="/detailed-document"
+            >
+              Daugiau
+            </Button>
+          <Icon 
+          style={{}}
+          component={Link}
+            to="/create-new-document">reorder</Icon>
+
+          <DeleteForeverIcon onClick={this.handleRemove} style={{fontSize: 32, color:red[800]}}/>
+            
+          </TableCell>
+        </TableRow>
     );
   }
 }

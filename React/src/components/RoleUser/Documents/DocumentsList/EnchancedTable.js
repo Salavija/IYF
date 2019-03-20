@@ -25,10 +25,6 @@ import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';
 
 
 let counter = 0;
-function createData(document_id, title, author, type, describtion, action) {
-  counter += 1;
-  return { id: counter, document_id, title, author, type, describtion, action };
-}
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -264,24 +260,7 @@ class EnhancedTable extends React.Component {
     order: 'asc',
     orderBy: 'document_id',
     selected: [],
-    data: [
-      createData(
-        '15',
-        'Algos pakelimo prašymas',
-        'Prašymas',
-        'Jurgis',
-        'Prašau pakelti algą',
-        <Button></Button>
-      ),
-      createData(
-        '4',
-        'Atostogų prašymas',
-        'Prašymas',
-        'Almutis',
-        'Noriu atostogų',
-        <Button></Button>
-      ),
-    ],
+    data: [],
     page: 0,
     rowsPerPage: 5,
   };
@@ -384,9 +363,9 @@ class EnhancedTable extends React.Component {
                       <TableCell>{n.author}</TableCell>
                       <TableCell>{n.describtion}</TableCell>
                       <TableCell>
-                        <IconButton className={classes.button} aria-label="Ištrinti">
-                          <DeleteIcon />
-                        </IconButton>
+                        <Button variant="contained" color="default" to="/create-new-document" >
+                          Pateikti
+                </Button>{' '}
                         <IconButton className={classes.button} aria-label="Daugiau">
                           <SettingsEthernetIcon />
                         </IconButton>

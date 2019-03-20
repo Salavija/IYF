@@ -1,22 +1,11 @@
 import React from "react";
-// import tableD from './Document';
-import {
-  Form,
-  FormGroup,
-  Input,
-  FormText,
-  Container,
-  Button,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  Dropdown
-} from "reactstrap";
-import { Jumbotron } from "reactstrap";
+import { Form, FormGroup, Input, FormText, Container, Col, Row } from "reactstrap";
 import axios from "axios";
 import FileUpl from "./FileUpl";
-// import TypesListGet from "../Types/TypesListGet";
 import fetchTypes from "../../../../helpers/fetchTypes";
+import { withRouter, Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
 
 class CreateNew extends React.Component {
   constructor(props) {
@@ -24,38 +13,56 @@ class CreateNew extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      type:"",
+      type: "",
       types: [],
       title: "",
-      describtion: "",
-      dropdownOpen: false
+      description: "",
+      author: "",
+      status: "SUKURTAS",
+      approvingDate: null,
+      dropdownOpen: false,
+      rejectionDate: null,
+      rejectionReason: "Labai reikejo",
+      submissionDate: null,
+      attachments: 1,
+      userName: "Belekas"
     };
   }
 
   toggle() {
     this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen
-      //gavimas praeito state
     }));
   }
 
-componentDidMount = () => {
-  fetchTypes().then(answer => {
-    this.setState({ types: answer.data });
-  })
-}
+  componentDidMount = () => {
+    fetchTypes().then(answer => {
+      this.setState({ types: answer });
+    });
+  };
 
-  addNewDocument = () => {
+  addNewDocument = e => {
+    e.preventDefault();
     const newDocument = {
       title: this.state.title,
       type: this.state.type,
-      describtion: this.state.describtion,
+      description: this.state.description,
+      author: this.state.author,
+      user_name: this.state.userName,
+      state: this.state.status,
+      approvingDate: this.state.approvingDate,
+      dropdownOpen: this.state.dropdownOpen,
+      rejection_date: this.state.rejectionDate,
+      rejection_reason: this.state.rejectionReason,
+      submission_date: this.state.submissionDate,
+      attachments: this.state.attachments
     };
-    this.props.onDocumentAdded(newDocument);
+
     axios
       .post("http://localhost:8081/api/documents", newDocument)
-      .then(function(response) {
+      .then(response => {
         console.log(response);
+        this.props.history.push("/documents");
       })
       .catch(error => {
         console.log(error);
@@ -74,41 +81,53 @@ componentDidMount = () => {
     });
   };
 
-  onInputDescribtionChange = event => {
+  onInputDescriptionChange = event => {
     this.setState({
-      describtion: event.target.value
+      description: event.target.value
     });
   };
 
-  // }
-  // Groups.propTypes = {
-  //   groups: PropTypes.array.isRequired
-  // }
+  onInputAuthorChange = event => {
+    this.setState({
+      author: event.target.value
+    });
+  };
+
+  changeType = e => {
+    let value = e.target.value;
+    this.setState({ type: value });
+  };
 
   render() {
     return (
       <div>
-        <Container>
-          <br />
-          <Jumbotron>
-            <h3>
-              <b>Dokumento kūrimo forma</b>
-            </h3>
+        <br />
+        <Paper>
+          <Container>
+            <br />
+            <h3>Dokumento kūrimo forma</h3>
             <p className="lead">
               <i>Užpildykite visus laukus</i>
             </p>
-
             <Form onSubmit={this.addNewDocument}>
-              <FormGroup>
-                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                  <DropdownToggle caret>Dokumento Tipas</DropdownToggle>
-                  <DropdownMenu>
-                    {this.state.types.map(types => (
-                      <DropdownItem >{types.title}</DropdownItem>
-                    ))}
-                  </DropdownMenu>
-                </Dropdown>
-              </FormGroup>
+              <Row form>
+                <Col md={4}>
+                  <FormGroup>
+                    <Input
+                      type="select"
+                      name="backdrop"
+                      id="backdrop"
+                      placeholder="Dokumento tipas"
+                      onChange={this.changeType}
+                    >
+                      {this.state.types.map(type => (
+                        <option value={type.title}>{type.title}</option>
+                      ))}
+                    </Input>
+                    <FormText>Nurodykite dokumento tipą</FormText>
+                  </FormGroup>
+                </Col>
+              </Row>
               <FormGroup>
                 <Input
                   type="text"
@@ -122,24 +141,44 @@ componentDidMount = () => {
               <FormGroup>
                 <Input
                   type="textarea"
-                  name="describtion"
-                  id="describtion"
+                  name="p"
+                  id="p"
                   placeholder="Aprašymas"
-                  onChange={this.onInputDescribtionChange}
+                  onChange={this.onInputDescriptionChange}
                 />
                 <FormText>Trumpas dokumento aprašymas</FormText>
               </FormGroup>
+              <FormGroup>
+                <Input
+                  type="text"
+                  name="author"
+                  id="author"
+                  placeholder="Autoriaus vardas"
+                  onChange={this.onInputAuthorChange}
+                />
+                <FormText>Nurodykite autorių</FormText>
+              </FormGroup>
               <br />
               <FileUpl />
-              <Button type="submit" color="primary">
+              <Button variant="contained" type="submit" color="primary">
                 Pridėti
               </Button>{" "}
+              <Button
+                variant="contained"
+                type="submit"
+                color="default"
+                component={Link}
+                to="/documents"
+              >
+                Grįžti
+              </Button>{" "}
             </Form>
-          </Jumbotron>
-        </Container>
+          </Container>
+          <br />
+        </Paper>
       </div>
     );
   }
 }
 
-export default CreateNew;
+export default withRouter(CreateNew);

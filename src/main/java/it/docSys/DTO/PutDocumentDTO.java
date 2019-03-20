@@ -17,14 +17,15 @@ public class PutDocumentDTO implements Serializable {
 //    private LocalDate rejectionDate;
 //    private String rejectionReason;
     private byte attachments;
-    private States state;
+    private States state = it.docSys.enums.States.SUKURTAS;
 
 
 
     public PutDocumentDTO(String author, String type, String title, String description,
 //                          LocalDate submissionDate, LocalDate approvingDate, LocalDate rejectionDate,
 //                          String rejectionReason,
-                          byte attachments, States state) {
+                          byte attachments, States state
+                           ) {
 //        this.id = id;
         this.author = author;
         this.type = type;
@@ -125,7 +126,7 @@ public class PutDocumentDTO implements Serializable {
         return state;
     }
 
-    public void setState(States state) {
-        this.state = state;
-    }
+//    public void setState(States state) {
+//        this.state = state;
+//    }
 }

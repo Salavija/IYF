@@ -1,14 +1,8 @@
 import React from "react";
-import {
-  Form,
-  FormGroup,
-  Input,
-  FormText,
-  Container,
-  Button
-} from "reactstrap";
-import { Jumbotron } from "reactstrap";
+import { Form, FormGroup, Input, FormText, Container } from "reactstrap";
 import axios from "axios";
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
 
 class NewGroup extends React.Component {
   constructor(props) {
@@ -16,7 +10,7 @@ class NewGroup extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      title: '', // pradinis
+      title: "", // pradinis
       dropdownOpen: false
     };
   }
@@ -47,23 +41,16 @@ class NewGroup extends React.Component {
   onInputChange = event => {
     console.log(event.target.value);
     this.setState({ title: event.target.value });
-    //paemimas inputo ir idejimas i state
   };
-
-  // }
-  // Groups.propTypes = {
-  //   groups: PropTypes.array.isRequired
-  // }
 
   render() {
     return (
       <div>
-        <Container>
-          <br />
-          <Jumbotron>
-            <h3>
-              <b>Sukurti naują grupę</b>
-            </h3>
+        <br />
+        <Paper>
+          <Container>
+            <br />
+            <h3>Sukurti naują grupę</h3>
             <Form onSubmit={this.addNewGroup}>
               <FormGroup>
                 <Input
@@ -76,12 +63,13 @@ class NewGroup extends React.Component {
                 <FormText>Nurodykite grupės pavadinimą</FormText>
               </FormGroup>
               <br />
-              <Button type="submit" color="primary">
+              <Button variant="contained" type="submit" color="primary">
                 Pridėti
-              </Button>{" "}
+              </Button>
             </Form>
-          </Jumbotron>
-        </Container>
+          </Container>
+          <br />
+        </Paper>
       </div>
     );
   }

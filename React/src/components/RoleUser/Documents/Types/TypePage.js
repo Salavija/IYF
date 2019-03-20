@@ -1,48 +1,62 @@
-import React from 'react';
+import React from "react";
 import axios from "axios";
-import TypeCreation from './TypeCreation'
-import Types from './Types'
-import fetchTypes from '../../../../helpers/fetchTypes';
-
+import TypeCreation from "./TypeCreation";
+import Types from "./TypesComponent";
+import fetchTypes from "../../../../helpers/fetchTypes";
 
 class TypePage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            types: []
-        };
-    }
-    componentDidMount = () => {
-        axios
-            .get("http://localhost:8081/api/documents/types")
-            .then(answer => {
-                this.setState({ types: answer.data });
-            })
-            .catch(error => {
-                console.log(error);
-            });
+  constructor(props) {
+    super(props);
+    this.state = {
+      types: [],
+      page: 0,
+      rowsPerPage: 5
     };
+  }
+  handleChangePage = (event, page) => {
+    this.setState({ page });
+  };
 
-    onTypeAdded = type => {
-        this.setState({ types: [...this.state.types, type] });
-    };
+  handleChangeRowsPerPage = event => {
+    this.setState({ page: 0, rowsPerPage: event.target.value });
+  };
+  componentDidMount = () => {
+    axios
+      .get("http://localhost:8081/api/documents/types")
+      .then(answer => {
+        this.setState({ types: answer.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
-    onTypeDeleted = type => {
-        this.setState(previousState => {
-            return {
-                types: previousState.types.filter(d => d.title !== type.title)
-            };
-        })
-    }
-    render() {
-        console.log(this.state.types)
-        return (
-            <div>
-                <TypeCreation onTypeAdded={this.onTypeAdded} />
-                <Types types={this.state.types} onTypeDeleted={this.onTypeDeleted} />
-            </div>
-        );
-    }
+  onTypeAdded = type => {
+    this.setState({ types: [...this.state.types, type] });
+  };
+
+  onTypeDeleted = type => {
+    this.setState(previousState => {
+      return {
+        types: previousState.types.filter(d => d.title !== type.title)
+      };
+    });
+  };
+  render() {
+    return (
+      <div>
+        <TypeCreation onTypeAdded={this.onTypeAdded} />
+        <Types
+          handleChangePage={this.handleChangePage}
+          handleChangeRowsPerPage={this.handleChangeRowsPerPage}
+          types={this.state.types}
+          page={this.state.page}
+          rowsPerPage={this.state.rowsPerPage}
+          onTypeDeleted={this.onTypeDeleted}
+        />
+      </div>
+    );
+  }
 }
 
 export default TypePage;

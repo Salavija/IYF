@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @Api(value = "Document Status Controller")
 @RequestMapping(value = "/api/documents/Status")
@@ -25,6 +27,15 @@ public class StatusController {
 
     private static Logger logger = LoggerFactory.getLogger(DocumentController.class);
 
+    /*---get all documents Statuses---*/
+
+    @GetMapping
+    @ApiOperation(value = "Get all statuses", notes = "Returns all documents statuses")
+    public List<OnlyStatusDTO> getAllDocuments() {
+        logger.info("List of all documents");
+        return statusService.getAllStates();
+    }
+
     //Get Document Status
 
     @GetMapping(value = "/GetStatus/{id}")
@@ -33,7 +44,7 @@ public class StatusController {
             @ApiParam(value = "id", required = true)
             @PathVariable final Long id) {
         logger.info("Specific document Status exists");
-        return statusService.getDocumentStatus(id);
+        return statusService.getDocumentState(id);
     }
 
     //Submit Document

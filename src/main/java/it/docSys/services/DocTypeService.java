@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DOKU TIPU PAVADINIMUS. NEMANAU. PAKLAUSTI PRODUCT OWNERIO PASKAICIUS REIKALAVIMUS.
+public class DocTypeService {
 
     @Autowired
     private DocTypeRepo docTypeRepo; //ar ne geriau asigninti su autowired per kosntruktoriu?
@@ -87,7 +87,7 @@ public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DO
 //                            document.getSubmissionDate(), document.getApprovingDate(),
 //                            document.getRejectionDate(), document.getRejectionReason(),
                             document.getAttachments()
-//                            , document.getState()
+                            , document.getState()
                     )).collect(Collectors.toList());
         }
         return null;
@@ -106,17 +106,6 @@ public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DO
         return null;
     }
 
-
-//    /*Grupes priskyrimas dokumento tipui (pagal id)*/
-//
-//    @Transactional //TODO
-//    public void asignGroupToDocType (long docType_id, long group_id) {
-//        GroupEntity group = groupRepo.findById(group_id);
-//        DocType docType = docTypeRepo.findById(docType_id);
-//        if (group != null) {
-//            group.getDocTypes().add(docType);
-//        }
-//    }
 
 
     /*Grupes priskyrimas dokumento tipui (pagal title)*/

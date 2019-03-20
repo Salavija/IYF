@@ -3,9 +3,18 @@ import axios from "axios";
 import Button from "@material-ui/core/Button"
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
-import { confirmAlert } from "react-confirm-alert";
+import { Link } from "react-router-dom";
+import SettingsEthernetIcon from "@material-ui/icons/SettingsEthernet";
+import { withStyles } from "@material-ui/core/styles";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import DeleteIcon from "@material-ui/icons/Delete";
+import Grid from "@material-ui/core/Grid";
+import PropTypes from "prop-types";
+import { red } from "@material-ui/core/colors";
+import { confirmAlert } from "react-confirm-alert"; 
 import "react-confirm-alert/src/react-confirm-alert.css";
-
+import Icon from "@material-ui/core/Icon";
+import { IconButton } from "@material-ui/core";
 
 const styles = theme => ({
   root: {
@@ -18,28 +27,26 @@ const styles = theme => ({
 });
 
 
-class DocumentSubmittedContainer extends React.Component {
+class DocumentAcceptedContainer extends React.Component {
   handleRemoveAlert = () => {
     confirmAlert({
-      title: 'Patvirtinkite trynimą',
-      message: 'Ar tikrai norite ištrinti dokumentą?',
+      title: "Patvirtinkite trynimą",
+      message: "Ar tikrai norite ištrinti dokumentą?",
       buttons: [
         {
-          label: 'Taip',
+          label: "Taip",
           onClick: () => this.handleRemove()
         },
         {
-          label: 'No',
+          label: "No"
         }
       ]
     });
   };
 
-
   handleRemove = () => {
     this.props.onDocumentDeleted(this.props.document);
-    const url =
-      "http://localhost:8081/api/documents/" + this.props.document.id;
+    const url = "http://localhost:8081/api/documents/" + this.props.document.id;
     axios.delete(url).catch(err => {
       console.log(err);
     });
@@ -55,9 +62,8 @@ class DocumentSubmittedContainer extends React.Component {
 
   checkState = () => {
     if (this.props.status === "SUKURTAS") {
-
     }
-  }
+  };
 
   render() {
     return (
@@ -68,27 +74,7 @@ class DocumentSubmittedContainer extends React.Component {
         <TableCell>{this.props.document.type}</TableCell>
         <TableCell>{this.props.document.description}</TableCell>
         <TableCell>{this.props.document.submissionDate}</TableCell>
-        <TableCell>{this.props.document.submissionDate}</TableCell>
-        <TableCell align="right">
-          <Button
-            type="submit"
-            color="default"
-            variant="contained"
-            onClick={this.handleSubmit}
-            style={{ maxWidth: '90px',  minWidth: '90px' }}
-          >
-            Patvirtinti{""}
-          </Button>
-          <Button
-            type="submit"
-            color="secondary"
-            variant="contained"
-            onClick={this.handleRemoveAlert}
-            style={{ maxWidth: '90px', minWidth: '90px',}}
-          >
-            Atmesti{"      "}
-          </Button>
-        </TableCell>
+        <TableCell>{this.props.document.approvingDate}</TableCell>
       </TableRow>
     );
   }
@@ -101,4 +87,4 @@ class DocumentSubmittedContainer extends React.Component {
 //     describtion: PropTypes.string.isRequired,
 // };
 
-export default DocumentSubmittedContainer;
+export default DocumentAcceptedContainer;

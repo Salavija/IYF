@@ -1,5 +1,5 @@
 import React from "react";
-import Users from "./Users";
+import Users from "./UsersComponent";
 import UsersSearch from "./UsersSearch";
 import { Container } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -25,15 +25,17 @@ class UserPage extends React.Component {
   };
   componentDidMount = () => {
     axios
-      .get("https://localhost:8081/api/users")
+      .get("https://localhost:8081/api/docUsers")
       .then(response => {
         this.setState({ users: response.data });
       })
-      .catch(error => this.setState({ error, isLoading: false }));
+      .catch(error => {
+        console.log(error);
+      });
   };
-  onUserAdded = user => {
-    this.setState({ users: [...this.state.users, user] });
-  };
+  // onUserAdded = user => {
+  //   this.setState({ users: [...this.state.users, user] });
+  // };
 
   onUserDeleted = user => {
     this.setState(previousState => {

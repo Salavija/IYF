@@ -7,7 +7,7 @@ import Home from "./components/Home";
 import Error from "./components/Error";
 // import Navigation from "./components/Navigation";
 import Docs from "./components/RoleUser/Documents/DocumentsList/DocumentsPage";
-import NewDocument from "./components/RoleUser/Documents/DocumentsList/NewDocument";
+import NewDocument from "./components/RoleUser/Documents/DocumentsList/NewDocument/NewDocument";
 import Types from "./components/RoleUser/Documents/Types/TypePage";
 import Paperbase from "./components/Header/Paperbase";
 // import Navi from './components/Navi';

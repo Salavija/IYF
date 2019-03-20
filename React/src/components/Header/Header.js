@@ -12,6 +12,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
+import Icon from "@material-ui/core/Icon";
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
@@ -66,7 +67,8 @@ function Header(props) {
 
                         <Grid item>
                             <IconButton color="inherit" className={classes.iconButtonAvatar}>
-                                <Avatar className={classes.avatar} src="http://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png" />
+                            <Icon style={{fontSize:"40px"}}>face</Icon>
+                                {/* <Avatar className={classes.avatar} src="http://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png" /> */}
                             </IconButton>
                         </Grid>
                         <Button color="inherit" component={Link} to="/login">Atsijungti</Button>

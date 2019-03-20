@@ -7,7 +7,7 @@ import Home from "./components/Home";
 import Error from "./components/Error";
 // import Navigation from "./components/Navigation";
 import Docs from "./components/RoleUser/Documents/DocumentsList/DocumentsPage";
-import NewDocument from "./components/RoleUser/Documents/DocumentsList/NewDocument";
+import NewDocument from "./components/RoleUser/Documents/DocumentsList/NewDocument/NewDocument";
 import Types from "./components/RoleUser/Documents/Types/TypePage";
 import Paperbase from "./components/Header/Paperbase";
 // import Navi from './components/Navi';
@@ -26,6 +26,10 @@ import Header from "./components/Header/Header";
 // import history from "./history";
 // import Footer from "./components/Footer/Footer"
 import DetailedDocument from "./components/RoleUser/Documents/DocumentsList/DetailedDocument"
+import SubmittedDocs from "./components/RoleUser/Documents/DocumentsList/Submitted/DocumentSubmittedPage"
+import AcceptedDocs from "./components/RoleUser/Documents/DocumentsList/Accepted/DocumentsAcceptedPage"
+import RefusedDocs from "./components/RoleUser/Documents/DocumentsList/Refused/DocumentRefusedPage"
+
 
 // function loggedIn() {
 //   // ...
@@ -60,13 +64,16 @@ class App extends Component {
                 {/* <NavBarSide /> */}
                 {/* <Navi /> */}
                   <Switch>
-                    <Route path="/" component={Admin} exact />
+                    <Route path="/" component={User} exact />
                     {/* <Route component={EnsureLoggedInContainer}> */}
                     <Route path="/home-admin" component={Admin} />
                     <Route path="/home-user" component={User} />
                     <Route path="/users" component={UserPage} />
                     <Route path="/create-user" component={CreateUserPage} />
                     <Route path="/documents" component={Docs} />
+                    <Route path="/submitted-documents" component={SubmittedDocs} />
+                    <Route path="/accepted-documents" component={AcceptedDocs} />
+                    <Route path="/refused-documents" component={RefusedDocs} />
                     <Route path="/create-new-document" component={NewDocument} />
                     <Route path="/types" component={Types} />
                     <Route path="/groups" component={GroupPage} />

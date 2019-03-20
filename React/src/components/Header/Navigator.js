@@ -25,7 +25,7 @@ const categories = [
         { id: "Pagrindinis", icon: <Icon>dashboard</Icon>, link: "/home-user" },
       {
         id: "Naujas dokumentas",
-        icon: <Icon>event note</Icon>,
+        icon: <Icon>assignment</Icon>,
         link: "/create-new-document"
       },
         { id: "Dokumentai", icon: <Icon>all_inbox</Icon>, link: "/documents" },

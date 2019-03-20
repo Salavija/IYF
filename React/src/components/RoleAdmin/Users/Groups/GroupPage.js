@@ -9,9 +9,12 @@ class GroupPage extends React.Component {
     super(props);
     this.state = {
       groups: [],
+      types: [],
+      sub:[],
       page: 0,
       rowsPerPage: 5,
-      types: [],
+      selectedType: null,
+      group:"",
     };
   }
   handleChangePage = (event, page) => {
@@ -43,6 +46,11 @@ class GroupPage extends React.Component {
       };
     });
   };
+
+onSelectedType = e => {
+this.setState({selectedType: e.target.value})
+}
+
   render() {
     return (
       <div>
@@ -50,6 +58,7 @@ class GroupPage extends React.Component {
         <TypesForGroups 
           groups={this.state.groups}
           types={this.state.types}
+          group={this.state.group}
         />
         <Groups
           groups={this.state.groups}

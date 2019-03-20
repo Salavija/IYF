@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import TypeCreation from "./TypeCreation";
-import Types from "./Types";
+import Types from "./TypesComponent";
 import fetchTypes from "../../../../helpers/fetchTypes";
 
 class TypePage extends React.Component {

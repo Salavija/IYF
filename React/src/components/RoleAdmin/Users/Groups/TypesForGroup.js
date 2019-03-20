@@ -4,16 +4,15 @@ import axios from "axios";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import fetchTypes from "../../../../helpers/fetchTypes";
-import group from "./Group";
+import Group from "./Group";
 
 class TypesForGroup extends React.Component {
     constructor(props) {
         super(props);
-
         this.toggle = this.toggle.bind(this);
         this.state = {
             types: [], 
-            groups:[],
+            title: "",
         };
     }
     toggle() {
@@ -24,12 +23,13 @@ class TypesForGroup extends React.Component {
 
     addNewTypeForGroup = e => {
         e.preventDefault();
-        const newGroup = {
+        const newGroupType = {
             title: this.state.title
         };
-        this.props.onGroupAdded(newGroup);
+        this.props.onGroupAdded(newGroupType);
         axios
-            .post("http://localhost:8081/api/groups", newGroup)
+            .post("http://localhost:8081/api/groups"
+            + this.state.type + "/docTypes" + newGroupType)
             .then(function (response) {
                 console.log(response);
             })
@@ -89,8 +89,10 @@ class TypesForGroup extends React.Component {
                                     placeholder="Dokumento tipas"
                                     onChange={this.changeGroup}
                                 >
-                                    {this.state.groups.map(groups => (
-                                        <option value={group.title}>{group.title}</option>
+                                    <option value="select">Pasirinkite grupę</option>
+                                    {this.props.groups.map(group => (
+                                        <option value={group.title}>
+                                        {group.title}</option>
                                     ))}
                                 </Input>
                                 <FormText>Pasirinkite grupę</FormText>
@@ -104,6 +106,7 @@ class TypesForGroup extends React.Component {
                                     placeholder="Dokumento tipas"
                                     onChange={this.changeType}
                                 >
+                                    <option value="select">Pasirinkite dokumento tipą</option>
                                     {this.state.types.map(type => (
                                         <option value={type.title}>{type.title}</option>
                                     ))}

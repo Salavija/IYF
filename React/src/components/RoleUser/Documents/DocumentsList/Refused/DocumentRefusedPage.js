@@ -1,9 +1,9 @@
 import React from "react";
-import Documents from "./DocumentSubmittedComponent";
+import Documents from "./DocumentRefusedComponent";
 import axios from "axios";
 import DocumentsButtons from "../components/DocumentsButtons";
 
-class DocumentSubmittedPage extends React.Component {
+class DocumentRefusedPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -77,4 +77,4 @@ class DocumentSubmittedPage extends React.Component {
     }
 }
 
-export default DocumentSubmittedPage;
+export default DocumentRefusedPage;

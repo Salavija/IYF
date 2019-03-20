@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import Document from './DocumentSubmittedContainer';
+import Document from './DocumentRefusedContainer';
 import { withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -42,8 +42,8 @@ class DocumentsSubmittedComponent extends Component {
                 <TableCell>Tipas</TableCell>
                 <TableCell>Aprašymas</TableCell>
                 <TableCell>Pateikimo data</TableCell>
-                <TableCell></TableCell>
-                <TableCell align="right"></TableCell>
+                <TableCell>Atmetimo data</TableCell>
+                <TableCell align="right">Atmetimo priežastis</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

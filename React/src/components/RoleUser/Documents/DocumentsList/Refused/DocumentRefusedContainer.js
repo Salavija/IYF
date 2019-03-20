@@ -5,7 +5,8 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-
+import Icon from "@material-ui/core/Icon";
+import { IconButton } from "@material-ui/core";
 
 const styles = theme => ({
   root: {
@@ -68,37 +69,10 @@ class DocumentSubmittedContainer extends React.Component {
         <TableCell>{this.props.document.type}</TableCell>
         <TableCell>{this.props.document.description}</TableCell>
         <TableCell>{this.props.document.submissionDate}</TableCell>
-        <TableCell>{this.props.document.submissionDate}</TableCell>
-        <TableCell align="right">
-          <Button
-            type="submit"
-            color="default"
-            variant="contained"
-            onClick={this.handleSubmit}
-            style={{ maxWidth: '90px',  minWidth: '90px' }}
-          >
-            Patvirtinti{""}
-          </Button>
-          <Button
-            type="submit"
-            color="secondary"
-            variant="contained"
-            onClick={this.handleRemoveAlert}
-            style={{ maxWidth: '90px', minWidth: '90px',}}
-          >
-            Atmesti{"      "}
-          </Button>
-        </TableCell>
+        <TableCell>{this.props.document.rejectionDate}</TableCell>
+        <TableCell>{this.props.document.rejectionReason}</TableCell>
       </TableRow>
     );
   }
 }
-// Document.Prototypes = {
-//     id: PropTypes.string.isRequired,
-//     author: PropTypes.string.isRequired,
-//     title: PropTypes.string.isRequired,
-//     type: PropTypes.string.isRequired,
-//     describtion: PropTypes.string.isRequired,
-// };
-
 export default DocumentSubmittedContainer;

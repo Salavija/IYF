@@ -1,9 +1,9 @@
 import React from "react";
-import Documents from "./DocumentsComponent";
+import Documents from "./DocumentsAcceptedComponent";
 import axios from "axios";
-import DocumentsButtons from "./components/DocumentsButtons";
+import DocumentsButtons from "../components/DocumentsButtons";
 
-class DocumentPage extends React.Component {
+class DocumentAcceptedPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,22 +16,20 @@ class DocumentPage extends React.Component {
     this.setState({ page });
   };
 
-
-downloadFile = (e) => {
-  axios.get()
-
-}
-fileNameGetter = value => {
-  let fileName = "";
-  if (value && value.indexOf("attachment") !== -1){
-    let fileNameLink = /fileName[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-    let sameFile = fileNameLink.exec(value);
-    if (sameFile != null && sameFile[1] ){
-      fileName = sameFile[1].replace(/['"]/g, "");
+  downloadFile = e => {
+    axios.get();
+  };
+  fileNameGetter = value => {
+    let fileName = "";
+    if (value && value.indexOf("attachment") !== -1) {
+      let fileNameLink = /fileName[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+      let sameFile = fileNameLink.exec(value);
+      if (sameFile != null && sameFile[1]) {
+        fileName = sameFile[1].replace(/['"]/g, "");
+      }
     }
-  }
-  return fileName;
-}
+    return fileName;
+  };
 
   handleChangeRowsPerPage = event => {
     this.setState({ page: 0, rowsPerPage: event.target.value });
@@ -62,8 +60,8 @@ fileNameGetter = value => {
   };
   render() {
     return (
-      <div>
-        <DocumentsButtons />
+  <div>
+    <DocumentsButtons />
         <Documents
           handleChangePage={this.handleChangePage}
           handleChangeRowsPerPage={this.handleChangeRowsPerPage}
@@ -71,11 +69,11 @@ fileNameGetter = value => {
           rowsPerPage={this.state.rowsPerPage}
           documents={this.state.documents}
           onDocumentDeleted={this.onDocumentDeleted}
-          downloadFile = {this.downloadFile}
+          downloadFile={this.downloadFile}
         />
       </div>
     );
   }
 }
 
-export default DocumentPage;
+export default DocumentAcceptedPage;

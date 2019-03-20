@@ -1,10 +1,8 @@
 package it.docSys.services;
 
 
-import it.docSys.DTO.DocStatusDTO;
 import it.docSys.DTO.GetDocumentDTO;
 import it.docSys.DTO.PutDocumentDTO;
-import it.docSys.enums.States;
 import it.docSys.entities.DocType;
 import it.docSys.entities.Document;
 import it.docSys.repository.DocTypeRepo;

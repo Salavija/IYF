@@ -1,4 +1,4 @@
-package it.docSys.DTO;
+package it.docSys.DTO.statusDTO;
 
 import it.docSys.enums.States;
 

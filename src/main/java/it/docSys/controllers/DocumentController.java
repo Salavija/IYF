@@ -3,7 +3,6 @@ package it.docSys.controllers;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import it.docSys.DTO.DocStatusDTO;
 import it.docSys.DTO.GetDocumentDTO;
 import it.docSys.DTO.PutDocumentDTO;
 import it.docSys.services.DocumentService;

@@ -21,7 +21,7 @@ class TypeController extends React.Component {
           {this.props.type.title}
         </TableCell>
         <TableCell align="right">
-          <Button type="submit" color="secondary" onClick={this.handleRemove}>
+                <Button type="submit" variant="outlined" color="secondary" onClick={this.handleRemove}>
             Ištrinti
           </Button>
         </TableCell>

@@ -47,8 +47,8 @@ class UserContainer extends React.Component {
           <TableCell component="th" scope="row">
             {this.props.user.roles}
           </TableCell>
-          <TableCell align="right">
-            <Button type="submit" color="secondary" onClick={this.handleRemoveAlert}>
+          <TableCell >
+          <Button type="submit" variant="outlined" color="secondary" onClick={this.handleRemoveAlert}>
               Ištrinti
             </Button>
             {/* <button type="submit" onClick={e => this.editType(e, Type)}>

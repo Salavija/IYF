@@ -76,25 +76,30 @@ class DocumentContainer extends React.Component {
             </Icon>
           </IconButton>
         </TableCell>
-        <TableCell >
+        <TableCell>
           <div style={{ display: "flex" }}>
             <Button
               type="submit"
               variant="outlined"
-               color="primary"
+              color="primary"
               onClick={this.handleSubmit}
             >
               Pateikti
             </Button>
             &nbsp;
-            <Button type="submit" color="default"
+            <Button
+              type="submit"
+              variant="outlined"
+              color="default"
               component={Link}
-            to="/document-edit">
+              to="/document-edit"
+            >
               Redaguoti
             </Button>
             <Button
               type="submit"
               color="secondary"
+              variant="outlined"
               onClick={this.handleRemoveAlert}
             >
               Ištrinti

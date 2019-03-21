@@ -24,7 +24,7 @@ import java.util.List;
 public class DocumentTypeController {
 
     @Autowired
-    private DocTypeService docTypeServ; //pas Juliu per laukus suautowirinta. Kur geriau ir kada kaip??????
+    private DocTypeService docTypeServ;
 
     public DocumentTypeController(DocTypeService docTypeServ) {
         this.docTypeServ = docTypeServ;
@@ -48,7 +48,7 @@ public class DocumentTypeController {
     @ApiOperation(value = "Get document type by id")
     public DocTypeGetDTO getById (
             @ApiParam(value = "id", required = true)
-            @PathVariable long id) { //KADA REIKALINGAS FINAL PRIE PATH VARIABLE????????
+            @PathVariable long id) {
         return docTypeServ.getById(id);
     }
 
@@ -105,7 +105,6 @@ public class DocumentTypeController {
     }
 
 
-    /*Grupes atskyrimas nuo dokumento tipo*/
     @DeleteMapping("/{dt_title}/{g_title}")
     @ApiOperation(value = "Remove group from document type")
     public void deleteGroupFromDocType (@PathVariable final String dt_title, @PathVariable final String g_title) {

@@ -42,7 +42,7 @@ public class GroupController {
     @ApiOperation(value = "Get group by id")
     public GroupGetDTO getGroupById (
             @ApiParam(value = "id", required = true)
-            @PathVariable long id) { //KADA REIKALINGAS FINAL PRIE PATH VARIABLE????????
+            @PathVariable long id) {
         return groupService.getGroupById(id);
     }
 

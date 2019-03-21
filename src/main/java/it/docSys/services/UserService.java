@@ -40,7 +40,7 @@ public class UserService {
     public UserService() {
     }
 
-    public UserService(UserRepository userRepository, GroupRepo groupRepository//, DocumentRepository documentRepository
+    public UserService(UserRepository userRepository, GroupRepo groupRepository
     ) {
         this.userRepository = userRepository;
         this.groupRepository = groupRepository;

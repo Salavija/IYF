@@ -32,7 +32,7 @@ public class GroupService {
     @Transactional
     public List<GroupGetDTO> getAllGroups() {
         return groupRepo.findAll().stream().map(groupEntity ->
-                new GroupGetDTO(groupEntity.getId(), groupEntity.getTitle())).collect(Collectors.toList()); //cannot resolve constructor????????
+                new GroupGetDTO(groupEntity.getId(), groupEntity.getTitle())).collect(Collectors.toList());
     }
 
 

@@ -4,7 +4,6 @@ public class GroupGetDTO {
 
     private Long id;
     private String title;
-//    private String members;
 
 
     public GroupGetDTO(Long id, String title) {
@@ -32,11 +31,5 @@ public class GroupGetDTO {
         this.title = title;
     }
 
-//    public String getMembers() {
-//        return members;
-//    }
-//
-//    public void setMembers(String members) {
-//        this.members = members;
-//    }
+
 }

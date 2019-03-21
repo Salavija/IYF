@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @Api(value = "Document Status Controller")
 @RequestMapping(value = "/api/documents/Status")
@@ -25,7 +27,14 @@ public class StatusController {
 
     private static Logger logger = LoggerFactory.getLogger(DocumentController.class);
 
-    //Get Document Status
+
+    @GetMapping
+    @ApiOperation(value = "Get all statuses", notes = "Returns all documents statuses")
+    public List<OnlyStatusDTO> getAllDocuments() {
+        logger.info("List of all documents");
+        return statusService.getAllStates();
+    }
+
 
     @GetMapping(value = "/GetStatus/{id}")
     @ApiOperation(value = "Get document status by id", notes = "Returns specific document status")
@@ -33,10 +42,9 @@ public class StatusController {
             @ApiParam(value = "id", required = true)
             @PathVariable final Long id) {
         logger.info("Specific document Status exists");
-        return statusService.getDocumentStatus(id);
+        return statusService.getDocumentState(id);
     }
 
-    //Submit Document
 
     @PutMapping("/submitted/{id}")
     @ApiOperation(value = "Submit document")
@@ -45,7 +53,14 @@ public class StatusController {
         statusService.submitDocument(id, submitDTO);
     }
 
-    //Approve Document
+
+    @GetMapping("/getSubmitted/{id}")
+    @ApiOperation(value = "Get submitted document")
+    public SubmitDTO getSubmittedDocumentById(@ApiParam(value = "id", required = true) @PathVariable final Long id) {
+        logger.info("Getting submitted document");
+        return statusService.getSubmittedDocument(id);
+    }
+
 
     @PutMapping("/approved/{id}")
     @ApiOperation(value = "Approve document")
@@ -54,12 +69,27 @@ public class StatusController {
         statusService.approveDocument(id, approveDTO);
     }
 
-    //Reject Document
+
+    @GetMapping("/getApproved/{id}")
+    @ApiOperation(value = "Get approved document")
+    public ApproveDTO getApprovedDocumentById(@ApiParam(value = "id", required = true) @PathVariable final Long id) {
+        logger.info("Getting approved document");
+        return statusService.getApprovedDocument(id);
+    }
+
 
     @PutMapping("/rejected/{id}")
     @ApiOperation(value = "Reject document")
     public void rejectDocumentById(@PathVariable final Long id, @RequestBody RejectDTO rejectDTO) {
         logger.info("A document has been rejected");
         statusService.rejectDocument(id, rejectDTO);
+    }
+
+
+    @GetMapping("/getRejected/{id}")
+    @ApiOperation(value = "Get rejected document")
+    public RejectDTO getRejectedDocumentById(@ApiParam(value = "id", required = true) @PathVariable final Long id) {
+        logger.info("Getting rejected document");
+        return statusService.getRejectedDocument(id);
     }
 }

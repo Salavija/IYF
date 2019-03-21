@@ -16,10 +16,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DOKU TIPU PAVADINIMUS. NEMANAU. PAKLAUSTI PRODUCT OWNERIO PASKAICIUS REIKALAVIMUS.
+public class DocTypeService {
 
     @Autowired
-    private DocTypeRepo docTypeRepo; //ar ne geriau asigninti su autowired per kosntruktoriu?
+    private DocTypeRepo docTypeRepo;
 
     @Autowired
     private GroupRepo groupRepo;
@@ -39,7 +39,7 @@ public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DO
 
     @Transactional
     public DocTypeGetDTO getById(Long id) {
-        DocType docType = docTypeRepo.getOne(id);//.orElse(null);
+        DocType docType = docTypeRepo.getOne(id);
         if (docType != null) {
             return new DocTypeGetDTO(docType.getId(), docType.getTitle());
         }
@@ -74,7 +74,6 @@ public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DO
 
 
 
-    /*Dokumentu priskirtu konkreciam dokumento tipui suradimas*/
 
     @Transactional
     public List<GetDocumentDTO> getDocuments (String dt_title) {
@@ -84,17 +83,13 @@ public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DO
                     new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(),
                             document.getTitle(),
                             document.getDescription(),
-//                            document.getSubmissionDate(), document.getApprovingDate(),
-//                            document.getRejectionDate(), document.getRejectionReason(),
                             document.getAttachments()
-//                            , document.getState()
+                            , document.getState()
                     )).collect(Collectors.toList());
         }
         return null;
     }
 
-
-    /*Visu grupiu, kurioms priskirtas dokumento tipas, suradimas*/ /*title yra dokumento tipo pavadinimas*/
 
     @Transactional
     public List<GroupGetDTO> getGroupsOfDocType (String title) {
@@ -107,19 +102,6 @@ public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DO
     }
 
 
-//    /*Grupes priskyrimas dokumento tipui (pagal id)*/
-//
-//    @Transactional //TODO
-//    public void asignGroupToDocType (long docType_id, long group_id) {
-//        GroupEntity group = groupRepo.findById(group_id);
-//        DocType docType = docTypeRepo.findById(docType_id);
-//        if (group != null) {
-//            group.getDocTypes().add(docType);
-//        }
-//    }
-
-
-    /*Grupes priskyrimas dokumento tipui (pagal title)*/
 
     @Transactional
     public void assignGroupToDocTypeByTitle (String dt_title, String g_title) {
@@ -130,7 +112,6 @@ public class DocTypeService { //TODO AR TURETU LEISTI IVESTI KELIS TOKIUS PAT DO
         }
     }
 
-    /*Grupes atskyrimas nuo dokumento tipo*/
 
     @Transactional
     public void deleteGroupFromDocType (String dt_title, String g_title) {

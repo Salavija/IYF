@@ -33,7 +33,6 @@ public class SubmittedDocumentController {
 
     private static Logger logger = LoggerFactory.getLogger(SubmittedDocumentController.class);
 
-    /*---Add new submittedDocument---*/
 
     @PostMapping
     @ApiOperation(value = "Save new submittedDocument", notes = "Adds new submittedDocument and saves to database")
@@ -42,7 +41,6 @@ public class SubmittedDocumentController {
         submittedDocumentService.create(putSubmittedDocumentDTO);
     }
 
-    /*---Update createdDocument by id---*/
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Update existing submittedDocument")
@@ -51,7 +49,6 @@ public class SubmittedDocumentController {
         submittedDocumentService.update(id, putSubmittedDocumentDTO);
     }
 
-    /*---get submittedDocument by id---*/
 
     @GetMapping(value = "/{id}")
     @ApiOperation(value = "Get submittedDocument by id", notes = "Returns specific submittedDocument by id")
@@ -62,7 +59,6 @@ public class SubmittedDocumentController {
         return submittedDocumentService.get(id);
     }
 
-    /*---get all submittedDocuments---*/
 
     @GetMapping
     @ApiOperation(value = "Get all submittedDocuments", notes = "Returns all submittedDocuments from database")
@@ -71,7 +67,6 @@ public class SubmittedDocumentController {
         return submittedDocumentService.listAll();
     }
 
-    /*---Delete a submittedDocument by id---*/
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Delete submittedDocument by id")

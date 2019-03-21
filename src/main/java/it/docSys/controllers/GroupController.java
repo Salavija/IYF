@@ -30,7 +30,6 @@ public class GroupController {
     private static Logger logger = LoggerFactory.getLogger(GroupController.class);
 
 
-    /*Visu grupiu suradimas*/
 
     @GetMapping
     @ApiOperation(value = "Get all groups")
@@ -39,7 +38,6 @@ public class GroupController {
         return groupService.getAllGroups();
     }
 
-    /*Grupes  pagal id suradimas*/
     @GetMapping("/{id}")
     @ApiOperation(value = "Get group by id")
     public GroupGetDTO getGroupById (
@@ -49,7 +47,6 @@ public class GroupController {
     }
 
 
-    /*Grupes istrynimas*/
 
     @DeleteMapping("/{title}")
     @ApiOperation(value = "Delete group")
@@ -59,7 +56,6 @@ public class GroupController {
     }
 
 
-    /*Naujos grupes ivedimas*/
 
     @PostMapping
     @ApiOperation (value = "Add new group")
@@ -69,7 +65,6 @@ public class GroupController {
     }
 
 
-    /*Grupes atnaujinimas*/
 
     @PutMapping ("/{title}")
     @ApiOperation(value = "Update group")
@@ -78,8 +73,6 @@ public class GroupController {
         logger.info("GroupEntity {} was updated", title);
     }
 
-
-    /*Grupei priklausanciu dokumentu tipu suradimas*/ /* title yra grupes pavadinimas*/
 
     @GetMapping("/{title}/docTypes")
     @ApiOperation(value = "Get all document types of the group")

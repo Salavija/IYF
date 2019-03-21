@@ -36,6 +36,9 @@ class NewGroup extends React.Component {
       .catch(error => {
         console.log(error);
       });
+    this.setState({
+      title: ""
+    });
   };
 
   onInputChange = event => {
@@ -59,10 +62,10 @@ class NewGroup extends React.Component {
                   id="title"
                   placeholder="Pavadinimas"
                   onChange={this.onInputChange}
+                  required
                 />
                 <FormText>Nurodykite grupės pavadinimą</FormText>
               </FormGroup>
-              <br />
               <Button variant="contained" type="submit" color="primary">
                 Pridėti
               </Button>

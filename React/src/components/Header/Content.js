@@ -12,7 +12,6 @@ import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import UserPage from '../RoleAdmin/Users/Users.js/UserPage';
 
 // import EnchancedTable from '../../Table/EnchancedTable';
 
@@ -82,7 +81,6 @@ function Content(props) {
         </Typography>
             </div>
         </Paper>
-        {/* <EnchancedTable /> */}
 </div>
     );
 }

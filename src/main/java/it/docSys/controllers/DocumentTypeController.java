@@ -33,7 +33,7 @@ public class DocumentTypeController {
     private static Logger logger = LoggerFactory.getLogger(DocumentTypeController.class);
 
 
-    /*Visu dokumentu tipu suradimas*/
+
 
     @GetMapping
     @ApiOperation(value = "Get all documentType types")
@@ -42,9 +42,7 @@ public class DocumentTypeController {
         return docTypeServ.getAllDocTypes();
     }
 
-    /*Dokumento tipo pagal id suradimas*/
 
-    //Trying to change mapping to avoid: Ambiguous handler methods mapped for '/api/documents/types/33
 
     @GetMapping("/api/documents/types/{id}")
     @ApiOperation(value = "Get document type by id")
@@ -55,7 +53,6 @@ public class DocumentTypeController {
     }
 
 
-    /*Naujo dokumento tipo ivedimas*/
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -67,7 +64,6 @@ public class DocumentTypeController {
     }
 
 
-    /*Dokumento tipo istrynimas*/
 
     @DeleteMapping("/{title}")
     @ApiOperation(value ="Delete documentType type")
@@ -77,7 +73,6 @@ public class DocumentTypeController {
     }
 
 
-    /*Dokumento tipo atnaujinimas/keitimas*/
 
     @PutMapping ("/{title}")
     @ApiOperation(value = "Update documentType type")
@@ -86,7 +81,6 @@ public class DocumentTypeController {
         logger.info("Document type {} was updated", title);
     }
 
-    /*Dokumentu priskirtu konkreciam dokumento tipui suradimas*/
 
     @GetMapping("/{dt_title}")
     @ApiOperation(value = "Gets all documents assigned to particular document type")
@@ -95,7 +89,6 @@ public class DocumentTypeController {
     }
 
 
-    /*Grupiu, kurioms priklauso konkretus dokumento tipas(by doc title), suradimas*/
 
     @GetMapping("/{title}/groups")
     @ApiOperation(value = "Get all groups assigned to a particular document type")
@@ -104,15 +97,6 @@ public class DocumentTypeController {
     }
 
 
-//    /*Grupiu dokumento tipui priskyrimas (pagal id)*/
-//
-//    @PutMapping ("/{docType_id}/{group_id}") //TODO sutikrinti ar tikrai taip pavadinimai ir su kuo jie turi sutapti (pagal Juliu).
-//    @ApiOperation(value = "Add a group to a document type")
-//    public void asignGroupToDocType(@PathVariable final long docType_id, @PathVariable final long group_id) {
-//        docTypeServ.asignGroupToDocType (docType_id, group_id);
-//    }
-
-    /*Grupiu priskyrimas dokumento tipui (pagal title)*/
 
     @PutMapping ("/{dt_title}/{g_title}")
     @ApiOperation(value = "Assign group to a document type")
@@ -127,15 +111,6 @@ public class DocumentTypeController {
     public void deleteGroupFromDocType (@PathVariable final String dt_title, @PathVariable final String g_title) {
         docTypeServ.deleteGroupFromDocType(dt_title, g_title);
     }
-
-
-
-//    @DeleteMapping("/{title}")
-//    @ApiOperation(value ="Delete documentType type")
-//    public void deleteDocType(@PathVariable final String title) {
-//        docTypeServ.deleteDocType(title);
-//        logger.info("Document type {} was deleted", title);
-//    }
 
 
 }

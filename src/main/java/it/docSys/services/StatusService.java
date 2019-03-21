@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StatusService {
@@ -81,9 +83,15 @@ public class StatusService {
         }
     }
 
+    @Transactional
+    public List<OnlyStatusDTO> getAllStates() {
+        return documentRepository.findAll().stream().map(document ->
+                new OnlyStatusDTO(document.getState()
+                )).collect(Collectors.toList());
+    }
 
     @Transactional
-    public OnlyStatusDTO getDocumentStatus (Long id) {
+    public OnlyStatusDTO getDocumentState (Long id) {
         Document document = documentRepository.getOne(id);
         if (document != null) {
             return new OnlyStatusDTO(document.getState());
@@ -102,6 +110,15 @@ public class StatusService {
         documentRepository.save(document);
     }
     @Transactional
+    public SubmitDTO getSubmittedDocument(Long id) {
+        Document document = documentRepository.getOne(id);
+        if (document != null) {
+            return new SubmitDTO(document.getSubmissionDate(), document.getState());
+        }
+        return null;
+    }
+
+    @Transactional
     public void approveDocument(long id, ApproveDTO approveDTO) {
         Document document = documentRepository.getOne(id);
         if (document != null) {
@@ -111,6 +128,16 @@ public class StatusService {
         }
         documentRepository.save(document);
     }
+
+    @Transactional
+    public ApproveDTO getApprovedDocument(Long id) {
+        Document document = documentRepository.getOne(id);
+        if (document != null) {
+            return new ApproveDTO(document.getApprovingDate(), document.getState());
+        }
+        return null;
+    }
+
     @Transactional
     public void rejectDocument(long id, RejectDTO rejectDTO) {
         Document document = documentRepository.getOne(id);
@@ -121,6 +148,15 @@ public class StatusService {
             document.setState(rejectDTO.getState());
         }
         documentRepository.save(document);
+    }
+
+    @Transactional
+    public RejectDTO getRejectedDocument(Long id) {
+        Document document = documentRepository.getOne(id);
+        if (document != null) {
+            return new RejectDTO(document.getRejectionDate(), document.getRejectionReason(), document.getState());
+        }
+        return null;
     }
 
     }

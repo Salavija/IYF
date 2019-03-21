@@ -29,7 +29,6 @@ public class ApprovedDocumentController {
 
     private static Logger logger = LoggerFactory.getLogger(ApprovedDocumentController.class);
 
-    /*---Add new approvedDocument---*/
 
     @PostMapping
     @ApiOperation(value = "Save new approvedDocument", notes = "Adds new approvedDocument and saves to database")
@@ -38,7 +37,6 @@ public class ApprovedDocumentController {
         approvedDocumentService.create(putApprovedDocumentDTO);
     }
 
-    /*---Update approvedDocument by id---*/
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Update existing approvedDocument")
@@ -47,7 +45,6 @@ public class ApprovedDocumentController {
         approvedDocumentService.update(id, putApprovedDocumentDTO);
     }
 
-    /*---get approvedDocument by id---*/
 
     @GetMapping(value = "/{id}")
     @ApiOperation(value = "Get approvedDocument by id", notes = "Returns specific approvedDocument by id")
@@ -58,7 +55,6 @@ public class ApprovedDocumentController {
         return approvedDocumentService.get(id);
     }
 
-    /*---get all approvedDocument---*/
 
     @GetMapping
     @ApiOperation(value = "Get all approvedDocuments", notes = "Returns all approvedDocuments from database")
@@ -67,7 +63,6 @@ public class ApprovedDocumentController {
         return approvedDocumentService.listAll();
     }
 
-    /*---Delete a approvedDocument by id---*/
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Delete approvedDocument by id")

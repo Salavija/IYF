@@ -6,7 +6,6 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import Document from "./DocumentContainer"
 
 const styles = {
   card: {
@@ -27,7 +26,7 @@ const styles = {
 
 function DetailedDocument(props) {
   const { classes } = props;
-  const bull = <span className={classes.bullet}>•</span>;
+  // const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Card className={classes.card}>

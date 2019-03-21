@@ -9,11 +9,10 @@ public class GroupPutDTO {
     @NotNull
     @Length(min = 1, max = 200)
     private String title;
-//    private String members;
+
 
     public GroupPutDTO(@NotNull @Length(min = 1, max = 200) String title) {
         this.title = title;
-//        this.members = members;
     }
 
     public GroupPutDTO() {
@@ -27,11 +26,5 @@ public class GroupPutDTO {
         this.title = title;
     }
 
-//    public String getMembers() {
-//        return members;
-//    }
-//
-//    public void setMembers(String members) {
-//        this.members = members;
-//    }
+
 }

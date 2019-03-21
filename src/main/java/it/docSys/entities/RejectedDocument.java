@@ -22,7 +22,6 @@ public class RejectedDocument {
         this.name = name;
         this.description = description;
         this.submissionDate = submissionDate;
-//        this.approvingDate = approvingDate;
         this.rejectionDate = rejectionDate;
         this.rejectionReason = rejectionReason;
         this.addressee = addressee;
@@ -51,9 +50,6 @@ public class RejectedDocument {
     @Column(name = "submission_date")
     private LocalDate submissionDate;
 
-
-//    @Column(name = "approving_date")          NOT APPROVED
-//    private LocalDate approvingDate;
 
 
     @Column(name = "rejection_date")
@@ -148,14 +144,6 @@ public class RejectedDocument {
     public void setRejectionReason(String rejectionReason) {
         this.rejectionReason = rejectionReason;
     }
-
-//    public LocalDate getApprovingDate() {
-//        return approvingDate;
-//    }
-//
-//    public void setApprovingDate(LocalDate approvingDate) {
-//        this.approvingDate = approvingDate;
-//    }
 
 
     @Override

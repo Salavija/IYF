@@ -12,9 +12,7 @@ public class GetApprovedDocumentDTO implements Serializable {
     private String description;
     private LocalDate submissionDate;
     private LocalDate approvingDate;
-    //    private LocalDate rejectionDate;
     private String addressee;
-    //    private String rejectionReason;
     private byte attachments;
 
 
@@ -29,9 +27,7 @@ public class GetApprovedDocumentDTO implements Serializable {
         this.description = description;
         this.submissionDate = submissionDate;
         this.approvingDate = approvingDate;
-//        this.rejectionDate = rejectionDate;
         this.addressee = addressee;
-//        this.rejectionReason = rejectionReason;
         this.attachments = attachments;
     }
 
@@ -93,13 +89,6 @@ public class GetApprovedDocumentDTO implements Serializable {
         this.approvingDate = approvingDate;
     }
 
-//    public LocalDate getRejectionDate() {
-//        return rejectionDate;
-//    }
-//
-//    public void setRejectionDate(LocalDate rejectionDate) {
-//        this.rejectionDate = rejectionDate;
-//    }
 
     public String getAddressee() {
         return addressee;
@@ -109,13 +98,6 @@ public class GetApprovedDocumentDTO implements Serializable {
         this.addressee = addressee;
     }
 
-//    public String getRejectionReason() {
-//        return rejectionReason;
-//    }
-//
-//    public void setRejectionReason(String rejectionReason) {
-//        this.rejectionReason = rejectionReason;
-//    }
 
     public byte getAttachments() {
         return attachments;

@@ -25,7 +25,7 @@ class UserPage extends React.Component {
   };
   componentDidMount = () => {
     axios
-      .get("https://localhost:8081/api/docUsers")
+      .get("http://localhost:8081/api/docUsers")
       .then(response => {
         this.setState({ users: response.data });
       })
@@ -40,7 +40,7 @@ class UserPage extends React.Component {
   onUserDeleted = user => {
     this.setState(previousState => {
       return {
-        users: previousState.users.filter(d => d.userName !== user.userName)
+        users: previousState.users.filter(d => d.id !== user.id)
       };
     });
   };

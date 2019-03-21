@@ -10,7 +10,6 @@ public class DocUser {
 
     public DocUser() {}
 
-    //TESTING changing roles data type from Set<Role> to Set<String>
     public DocUser(Long docUserId, String userName, String firstName, String lastName,
                    String password, String roles, Set<GroupEntity> groups, Set<Document> documents
     ) {
@@ -19,26 +18,17 @@ public class DocUser {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.groups = groups;                           //Maybe it should be deleted?
+        this.groups = groups;
         this.documents = documents;
-        this.roles = roles;                             //Admin or User
+        this.roles = roles;
 
-      //TODO Should be min 2 Roles; 1. Admin 2. Employee; Just to redirect after login;
-      //TODO It will be just a field;
-      //TODO depending on Group it is Assigned (exact String to be checked as a Variant) privileges (Might be Other Entity) are assigned;
 
     }
     @Transient
     private String passwordConfirm;
 
-//    @ManyToOne
     private String roles;
 
-//JJ version
-//    @ManyToMany
-//    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    private Set<String> roles = new HashSet<>();
 
     public String getPasswordConfirm() {
         return passwordConfirm;
@@ -73,13 +63,10 @@ public class DocUser {
     @Column(name = "password")
     private String password;
 
-//    @Column(name = "role")
-//    private Roles role;
 
     @ManyToMany(mappedBy = "docUsers")
     private Set<GroupEntity> groups = new HashSet<>();
 
-    /*Sarysis su dokumentu one to many - daug doku vienas autorius*/
 
     @OneToMany (mappedBy = "docUser")
     private Set<Document> documents = new HashSet<>();
@@ -100,17 +87,6 @@ public class DocUser {
     public void setDocuments(Set<Document> documents) {
         this.documents = documents;
     }
-
-
-//    public void addGroup(GroupEntity groupEntity){
-//        this.groups.add(groupEntity);
-//        groupEntity.addUser(this);
-//    }
-//
-//    public void addDocument(Document document){
-//        this.documents.add(document);
-//        document.addUser(this);
-//    }
 
 
     public String getUserName() {
@@ -152,15 +128,6 @@ public class DocUser {
     public void setPassword(String password) {
         this.password = password;
     }
-
-//    public Role getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(Role role) {
-//        this.roles = role;
-//    }
-
 
 
     @Override

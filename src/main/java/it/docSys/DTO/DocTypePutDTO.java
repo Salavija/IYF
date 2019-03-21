@@ -6,7 +6,6 @@ import javax.validation.constraints.NotNull;
 
 public class DocTypePutDTO {
 
-//    private Long id; ID sukuriamas DB, kir yra tik vidinis parametras, neturi pasiekti userio.
 
     @NotNull
     @Length(min = 1, max = 200)

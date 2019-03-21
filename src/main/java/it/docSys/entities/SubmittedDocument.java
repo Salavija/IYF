@@ -31,7 +31,7 @@ public class SubmittedDocument {
     private String author;
 
     @Column(name ="type", nullable = false)
-    private String type; // Or some other type of data???
+    private String type;
 
     @Column(name = "title", nullable = false, unique = true)
     @Length(min = 2, message = "*Title must have at least 2 characters")
@@ -44,17 +44,10 @@ public class SubmittedDocument {
     @Column(name = "submission_date")
     private LocalDate submissionDate;
 
-//    @Column(name = "approving_date")      NOT APPROVED ONLY SUBMITTED
-//    private LocalDate approvingDate;
-
-//    @Column(name = "rejection_date")      NOT REJECTED ONLY SUBMITTED
-//    private LocalDate rejectionDate;
 
     @Column(name = "addressee")
     private String addressee;
 
-//    @Column(name = "rejection_reason")    NOT REJECTED ONLY SUBMITTED
-//    private String rejectionReason;
 
     @Column(name = "attachments")
     private byte attachments;

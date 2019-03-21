@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
-import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
-// import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
@@ -71,7 +69,9 @@ function Header(props) {
                                 {/* <Avatar className={classes.avatar} src="http://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png" /> */}
                             </IconButton>
                         </Grid>
-                        <Button color="inherit" component={Link} to="/login">Atsijungti</Button>
+                        <Button color="inherit" 
+                            style={{  }}
+                        component={Link} to="/login">Atsijungti</Button>
                     </Grid>
                 </Toolbar>
             </AppBar>

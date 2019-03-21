@@ -21,7 +21,6 @@ public class DocType implements Serializable {
     private String title;
 
 
-    /*Sarysis  one to many su sukurtais dokais - 1 doko tipas gali tureti daug doku*/
     @OneToMany (mappedBy = "docType")
     private List<Document> documents = new ArrayList<>();
 
@@ -30,7 +29,6 @@ public class DocType implements Serializable {
         document.setType(this.title);
     }
 
-    /*Many to many sarysis su grupemis (1 doko tipas daug grupiu ir atvirksciai)*/
     @ManyToMany(mappedBy = "docTypes")
     private Set<GroupEntity> groups = new HashSet<>();
 
@@ -44,7 +42,6 @@ public class DocType implements Serializable {
         this.groups = groups;
     }
 
-    /*geteriai ir seteriai*/
 
     public Long getId() {
         return id;

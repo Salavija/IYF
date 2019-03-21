@@ -23,8 +23,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-//    @Autowired
-//    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     protected final Log logger = LogFactory.getLog(getClass());
 

@@ -16,23 +16,6 @@ class DocumentPage extends React.Component {
     this.setState({ page });
   };
 
-
-downloadFile = (e) => {
-  axios.get()
-
-}
-fileNameGetter = value => {
-  let fileName = "";
-  if (value && value.indexOf("attachment") !== -1){
-    let fileNameLink = /fileName[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-    let sameFile = fileNameLink.exec(value);
-    if (sameFile != null && sameFile[1] ){
-      fileName = sameFile[1].replace(/['"]/g, "");
-    }
-  }
-  return fileName;
-}
-
   handleChangeRowsPerPage = event => {
     this.setState({ page: 0, rowsPerPage: event.target.value });
   };
@@ -47,19 +30,22 @@ fileNameGetter = value => {
       });
   };
 
-  // onDocumentAdded = document => {
-  //     this.setState({ documents: [...this.state.documents, document] });
-  // };
-
   onDocumentDeleted = document => {
     this.setState(previousState => {
       return {
-        documents: previousState.documents.filter(
-          d => d.title !== document.title
-        )
+        documents: previousState.documents.filter(d => d.id !== document.id)
       };
     });
   };
+
+  onDocumentSubmitted = document => {
+    this.setState(previousState => {
+      return {
+        documents: previousState.documents.filter(d => d.id !== document.id)
+      };
+    });
+  };
+
   render() {
     return (
       <div>
@@ -71,7 +57,8 @@ fileNameGetter = value => {
           rowsPerPage={this.state.rowsPerPage}
           documents={this.state.documents}
           onDocumentDeleted={this.onDocumentDeleted}
-          downloadFile = {this.downloadFile}
+          onDocumentSubmitted={this.onDocumentSubmitted}
+          downloadFile={this.downloadFile}
         />
       </div>
     );

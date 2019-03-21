@@ -19,19 +19,16 @@ public class GroupEntity implements Serializable {
     private String title;
 
 
-
-    /*@ManyToMany su doko tipu, viena grupe gali tureti daug doku tipu ir atvirksciai.*/
-
     @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(name= "G_Dt",
-            joinColumns = @JoinColumn (name="G_ID"), //nurodo esamos lenteles eilute
-            inverseJoinColumns = @JoinColumn (name= "Dt_ID")) //nurodo susietos lenteles (DocType) eilute
+            joinColumns = @JoinColumn (name="G_ID"),
+            inverseJoinColumns = @JoinColumn (name= "Dt_ID"))
     private Set<DocType> docTypes = new HashSet<>();
 
     @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(name= "G_Us",
-            joinColumns = @JoinColumn (name="G_ID"), //nurodo esamos lenteles eilute
-            inverseJoinColumns = @JoinColumn (name= "Us_ID")) //nurodo susietos lenteles (User) eilute
+            joinColumns = @JoinColumn (name="G_ID"),
+            inverseJoinColumns = @JoinColumn (name= "Us_ID"))
     private Set<DocUser> docUsers = new HashSet<>();
 
 

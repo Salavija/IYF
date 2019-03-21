@@ -4,7 +4,6 @@ import axios from "axios";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import fetchTypes from "../../../../helpers/fetchTypes";
-import Group from "./Group";
 
 class TypesForGroup extends React.Component {
     constructor(props) {
@@ -29,7 +28,7 @@ class TypesForGroup extends React.Component {
         this.props.onGroupAdded(newGroupType);
         axios
             .post("http://localhost:8081/api/groups"
-            + this.state.type + "/docTypes" + newGroupType)
+            + this.state.type + "/docTypes/" + newGroupType)
             .then(function (response) {
                 console.log(response);
             })
@@ -72,57 +71,88 @@ class TypesForGroup extends React.Component {
     };
 
     render() {
-        const {groups} = this.props;
         return (
-            <div>
+          <div>
+            <br />
+            <Paper>
+              <Container>
                 <br />
-                <Paper>
-                    <Container>
-                        <br />
-                        <h3>Priskirti grupei tipą</h3>
-                        <Form onSubmit={this.addNewTypeForGroup}>
-                            <FormGroup>
-                                <Input
-                                    type="select"
-                                    name="backdrop"
-                                    id="backdrop"
-                                    placeholder="Dokumento tipas"
-                                    onChange={this.changeGroup}
-                                >
-                                    <option value="select">Pasirinkite grupę</option>
-                                    {this.props.groups.map(group => (
-                                        <option value={group.title}>
-                                        {group.title}</option>
-                                    ))}
-                                </Input>
-                                <FormText>Pasirinkite grupę</FormText>
-                            </FormGroup>
+                <h3>Grupių tipų nustatymas</h3>
+                <Form onSubmit={this.addNewTypeForGroup}>
+                  <FormGroup>
+                    <Input
+                      type="select"
+                      name="backdrop"
+                      id="backdrop"
+                      placeholder="Dokumento tipas"
+                      onChange={this.changeGroup}
+                    >
+                      <option value="select">Pasirinkite grupę</option>
+                      {this.props.groups.map(group => (
+                        <option value={group.title}>
+                          {group.title}
+                        </option>
+                      ))}
+                    </Input>
+                    <FormText>Pasirinkite grupę</FormText>
+                  </FormGroup>
 
-                            <FormGroup>
-                                <Input
-                                    type="select"
-                                    name="backdrop"
-                                    id="backdrop"
-                                    placeholder="Dokumento tipas"
-                                    onChange={this.changeType}
-                                >
-                                    <option value="select">Pasirinkite dokumento tipą</option>
-                                    {this.state.types.map(type => (
-                                        <option value={type.title}>{type.title}</option>
-                                    ))}
-                                </Input>
-                                <FormText>Pasirinkite dokumento tipą</FormText>
-                            </FormGroup>
+                  <FormGroup>
+                    <Input
+                      type="select"
+                      name="selectMulti"
+                      id="selectMulti"
+                      placeholder="Dokumento tipas"
+                      onChange={this.changeType}
+                      multiple
+                    >
+                      <option value="select">
+                        Pasirinkite dokumento tipą
+                      </option>
+                      {this.state.types.map(type => (
+                        <option value={type.title}>{type.title}</option>
+                      ))}
+                    </Input>
+                    <FormText>
+                      Pasirinkite, kokius dokumentų tipus grupė galės
+                      <b> atmesti</b>
+                    </FormText>
+                  </FormGroup>
 
-                            <br />
-                            <Button variant="contained" type="submit" color="primary">
-                                Priskirti
-              </Button>
-                        </Form>
-                    </Container>
-                    <br />
-                </Paper>
-            </div>
+                  <FormGroup>
+                    <Input
+                      type="select"
+                      name="selectMulti2"
+                      id="selectMulti2"
+                      placeholder="Dokumento tipas"
+                      onChange={this.changeType}
+                      multiple
+                    >
+                      <option value="select">
+                        Pasirinkite dokumento tipą
+                      </option>
+                      {this.state.types.map(type => (
+                        <option value={type.title}>{type.title}</option>
+                      ))}
+                    </Input>
+                    <FormText>
+                      Pasirinkite, kokius dokumentų tipus grupė galės
+                      <b> patvirtinti</b>
+                    </FormText>
+                  </FormGroup>
+                  <br />
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    color="primary"
+                  >
+                    Priskirti
+                  </Button>
+                </Form>
+              </Container>
+              <br />
+            </Paper>
+          </div>
         );
     }
 }

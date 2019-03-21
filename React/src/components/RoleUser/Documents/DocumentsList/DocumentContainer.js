@@ -36,16 +36,16 @@ class DocumentContainer extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const newSubmittedDocument = {
-      state: this.props.state,
-      submissionDate: this.props.submissionDate
-    };
     this.props.onDocumentSubmitted(this.props.document);
     const url =
       "http://localhost:8081/api/documents/Status/submitted/" +
       this.props.document.id;
     axios
-      .post(url, newSubmittedDocument)
+      .put(url)
+      // .then((res) => {
+      //   console.log(res + "dokumento statusas pakeistas");
+      //   axios.get("http://localhost:8081/api/documents/" + )
+      // })
       .then(response => {
         console.log(response);
         this.props.history.push("/submitted-documents");

@@ -114,7 +114,7 @@ class DocumentEdit extends React.Component {
         <Paper>
           <Container>
             <br />
-            <h3>Dokumento kūrimo forma</h3>
+            <h3>Dokumento redagavimo forma</h3>
             <p className="lead">
               <i>Užpildykite visus laukus</i>
             </p>

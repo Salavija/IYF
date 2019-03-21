@@ -28,6 +28,10 @@ class DocumentSubmittedPage extends React.Component {
             .catch(error => {
                 console.log(error);
             });
+        if (document.state === "PATEIKTAS") {
+            return 
+        }
+        
     };
 
     // onDocumentAdded = document => {

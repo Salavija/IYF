@@ -69,7 +69,9 @@ function Header(props) {
                                 {/* <Avatar className={classes.avatar} src="http://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png" /> */}
                             </IconButton>
                         </Grid>
-                        <Button color="inherit" component={Link} to="/login">Atsijungti</Button>
+                        <Button color="inherit" 
+                            style={{  }}
+                        component={Link} to="/login">Atsijungti</Button>
                     </Grid>
                 </Toolbar>
             </AppBar>

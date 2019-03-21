@@ -6,15 +6,14 @@ import {
   FormText,
   Container,
   Col,
-  Row,
+  Row
 } from "reactstrap";
 import axios from "axios";
 import fetchTypes from "../../../../helpers/fetchTypes";
 import { withRouter, Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
-import Upload from "./upload/Upload"
-
+import Upload from "./upload/Upload";
 
 class CreateNew extends React.Component {
   constructor(props) {
@@ -49,21 +48,6 @@ class CreateNew extends React.Component {
     fetchTypes().then(answer => {
       this.setState({ types: answer });
     });
-  };
-
-  downloadFile = e => {
-    axios.get();
-  };
-  fileNameGetter = value => {
-    let fileName = "";
-    if (value && value.indexOf("attachment") !== -1) {
-      let fileNameLink = /fileName[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-      let sameFile = fileNameLink.exec(value);
-      if (sameFile != null && sameFile[1]) {
-        fileName = sameFile[1].replace(/['"]/g, "");
-      }
-    }
-    return fileName;
   };
 
   addNewDocument = e => {
@@ -132,7 +116,7 @@ class CreateNew extends React.Component {
         <Paper>
           <Container>
             <br />
-            <h3>Dokumento redagavimo forma</h3>
+            <h3>Dokumento kūrimo forma</h3>
             <p className="lead">
               <i>Užpildykite visus laukus</i>
             </p>

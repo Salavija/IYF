@@ -14,7 +14,7 @@ import CreateUserPage from "./components/RoleAdmin/Users/CreateUser/CreateUserPa
 import Admin from "./components/RoleAdmin/AdminHome";
 import User from "./components/RoleUser/UserHomePage/UserHome";
 import Header from "./components/Header/Header";
-// import Footer from "./components/Footer/Footer"
+import Footer from "./components/Footer/Footer"
 import DetailedDocument from "./components/RoleUser/Documents/DocumentsList/DetailedDocument"
 import SubmittedDocs from "./components/RoleUser/Documents/DocumentsList/Submitted/DocumentSubmittedPage"
 import AcceptedDocs from "./components/RoleUser/Documents/DocumentsList/Accepted/DocumentsAcceptedPage"
@@ -96,7 +96,7 @@ class App extends Component {
           
               </div>
             </div>
-              {/* <Footer /> */}
+              <Footer />
             </div>
         )}/>
         </Switch>

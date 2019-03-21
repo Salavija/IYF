@@ -11,6 +11,7 @@ import TablePaginationActionsWrapped from "../../../../../helpers/TablePaginatio
 import TableFooter from "@material-ui/core/TableFooter";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
+import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
     root: {
@@ -32,8 +33,17 @@ class DocumentsSubmittedComponent extends Component {
       Math.min(rowsPerPage, documents.length - page * rowsPerPage);
     return (
       <Paper className={classes.root}>
-        <div className={classes.tableWrapper}>
           <Table className={classes.table}>
+            <div
+              style={{ marginLeft: "0.8rem", marginTop: "0.6 rem", marginBottom: "0.5 rem" }}
+            >
+              <TableHead>
+                <Typography variant="h6" id="tableTitle">
+                  Pateikti dokumentai
+                  </Typography>
+              </TableHead>
+            </div>
+          <div className={classes.tableWrapper}>
             <TableHead>
               <TableRow>
                 <TableCell>Nr.</TableCell>
@@ -42,8 +52,7 @@ class DocumentsSubmittedComponent extends Component {
                 <TableCell>Tipas</TableCell>
                 <TableCell>Aprašymas</TableCell>
                 <TableCell>Pateikimo data</TableCell>
-                <TableCell></TableCell>
-                <TableCell align="right"></TableCell>
+              <TableCell align="center">Veiksmas</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -85,8 +94,8 @@ class DocumentsSubmittedComponent extends Component {
                 />
               </TableRow>
             </TableFooter>
+          </div>
           </Table>
-        </div>
       </Paper>
     );
   }

@@ -1,17 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+import Typography from "@material-ui/core/Typography";
 
-const styles = {
-    root: {
-        width: 500,
-    },
-};
+const styles = theme => ({
+  root: {
+    width: 500,
+    position: "fixed",
+    alignItems: "center"
+  },
+  footer: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing.unit * 2
+  }
+});
 
 class Footer extends React.Component {
     state = {
@@ -24,29 +26,24 @@ class Footer extends React.Component {
 
     render() {
         const { classes } = this.props;
-        const { value } = this.state;
-
         return (
-            <BottomNavigation
-                value={value}
-                onChange={this.handleChange}
-                showLabels
-                className={classes.root}
+            <footer position="sticky" className={classes.footer}>
+            <Typography variant="h6" align="center" gutterBottom>
+              DoSistema
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              align="center"
+              color="textSecondary"
+              component="p"
             >
-                <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-                <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-                <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
-                <a
-                    href="https://github.com/sivadass/react-shopping-cart"
-                    target="_blank"
-                >
-                    View Source on Github
-        </a>
-                <p>
-                    &copy; 2019 <strong>DocSm</strong> - Dokumentų valdymo sistema
-      </p>
-            </BottomNavigation>
-
+              &copy; 2019 - Dokumentų valdymo sistema
+              <br />
+              {/* <a href="https://github.com/Salavija/IYF" target="_blank">
+                Nuoroda į kodą GitHub'e
+              </a> */}
+            </Typography>
+          </footer>
         );
     }
 }

@@ -18,7 +18,7 @@ class Group extends React.Component {
       <TableRow key={this.props.key}>
       <TableCell component="th" scope="row">{this.props.group.title}</TableCell>
         <TableCell align="right">
-        <Button type="submit" color="secondary" onClick={this.handleRemove}>
+          <Button type="submit" variant="outlined" color="secondary" onClick={this.handleRemove}>
           Ištrinti
         </Button>
         {/* <button type="submit" onClick={e => this.editGroup(e, Group)}>

@@ -34,7 +34,6 @@ class UserContainer extends React.Component {
 
   render() {
     return (
-      <div>
         <TableRow key={this.props.id}>
           <TableCell component="th" scope="row">
             {this.props.user.userName}
@@ -46,13 +45,10 @@ class UserContainer extends React.Component {
             {this.props.user.lastName}
           </TableCell>
           <TableCell component="th" scope="row">
-            {this.props.user.email}
-          </TableCell>
-          <TableCell component="th" scope="row">
             {this.props.user.roles}
           </TableCell>
-          <TableCell align="right">
-            <Button type="submit" color="secondary" onClick={this.handleRemoveAlert}>
+          <TableCell >
+          <Button type="submit" variant="outlined" color="secondary" onClick={this.handleRemoveAlert}>
               Ištrinti
             </Button>
             {/* <button type="submit" onClick={e => this.editType(e, Type)}>
@@ -60,7 +56,6 @@ class UserContainer extends React.Component {
                 </button> */}
           </TableCell>
         </TableRow>
-      </div>
     );
   }
 }

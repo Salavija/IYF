@@ -63,11 +63,10 @@ class TypeCreation extends React.Component {
                   id="titlet"
                   placeholder="Pavadinimas"
                   onChange={this.onInputChange}
+                  required
                 />
                 <FormText>Nurodykite tipo pavadinimą</FormText>
               </FormGroup>
-              <br />
-
               <Button variant="contained" type="submit" color="primary">
                 Pridėti
               </Button>

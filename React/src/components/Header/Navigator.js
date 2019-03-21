@@ -105,7 +105,7 @@ function Navigator(props) {
             classes.itemCategory
           )}
         >
-          DocSm
+          DoSistema
         </ListItem>
         <ListItem className={classNames(classes.item, classes.itemCategory)}>
           <ListItemIcon>

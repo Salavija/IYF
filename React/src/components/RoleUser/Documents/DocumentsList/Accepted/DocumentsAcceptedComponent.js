@@ -11,6 +11,7 @@ import TablePaginationActionsWrapped from "../../../../../helpers/TablePaginatio
 import TableFooter from "@material-ui/core/TableFooter";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
+import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
     root: {
@@ -31,6 +32,17 @@ class DocumentsAcceptedComponent extends Component {
             rowsPerPage - Math.min(rowsPerPage, documents.length - page * rowsPerPage);
         return (
           <Paper className={classes.root}>
+            <div
+              style={{
+                marginLeft: "0.8rem",
+                marginTop: "0.6 rem",
+                marginBottom: "0.5 rem"
+              }}
+            >
+              <Typography variant="h6" id="tableTitle">
+                Patvirtinti dokumentai
+            </Typography>
+            </div>
             <div className={classes.tableWrapper}>
               <Table className={classes.table}>
                 <TableHead>

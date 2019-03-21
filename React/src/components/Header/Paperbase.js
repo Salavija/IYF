@@ -4,9 +4,6 @@ import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
 import Navigator from './Navigator';
-// import Content from './Content';
-import Header from './Header';
-// import AppBarComponent from './AppBarComponent';
 
 let theme = createMuiTheme({
     typography: {

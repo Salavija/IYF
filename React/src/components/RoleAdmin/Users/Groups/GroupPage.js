@@ -55,11 +55,6 @@ this.setState({selectedType: e.target.value})
     return (
       <div>
         <NewGroup onGroupAdded={this.onGroupAdded} />
-        <TypesForGroups 
-          groups={this.state.groups}
-          types={this.state.types}
-          group={this.state.group}
-        />
         <Groups
           groups={this.state.groups}
           onGroupDeleted={this.onGroupDeleted}
@@ -67,6 +62,11 @@ this.setState({selectedType: e.target.value})
           rowsPerPage={this.state.rowsPerPage}
           handleChangePage={this.handleChangePage}
           handleChangeRowsPerPage={this.handleChangeRowsPerPage}
+        />
+        <TypesForGroups
+          groups={this.state.groups}
+          types={this.state.types}
+          group={this.state.group}
         />
       </div>
     );

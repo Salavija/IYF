@@ -39,45 +39,39 @@ class CreateUser extends React.Component {
       roles: this.state.roles,
       userName: this.state.userName
     };
-    axios.
-      post("http://localhost:8081/api/docUsers/create", newUser)
+    axios
+      .post("http://localhost:8081/api/docUsers/create", newUser)
       .then(response => {
         this.props.history.push("/users");
       })
       .catch(error => {
         console.log(error);
       });
-  }
+  };
 
   onInputUserNameChange = event => {
     this.setState({
       userName: event.target.value
     });
-  }
+  };
 
   onInputFirstNameChange = event => {
     this.setState({
       firstName: event.target.value
     });
-  }
+  };
 
   onInputLasNameChange = event => {
     this.setState({
       lastName: event.target.value
     });
-  }
-
-  onInputEmailChange = event => {
-    this.setState({
-      email: event.target.value
-    });
-  }
+  };
 
   onInputPasswordChange = event => {
     this.setState({
       password: event.target.value
     });
-  }
+  };
 
   render() {
     return (
@@ -97,6 +91,7 @@ class CreateUser extends React.Component {
                   name="user_name"
                   id="user_name"
                   placeholder="Prisijungimo vardas"
+                  required
                   onChange={this.onInputUserNameChange}
                 />
                 <FormText>Nurodykite asmens prisijungimo vardą</FormText>
@@ -107,6 +102,7 @@ class CreateUser extends React.Component {
                   name="first_name"
                   id="first_name"
                   placeholder="Vardas"
+                  required
                   onChange={this.onInputFirstNameChange}
                 />
                 <FormText>Nurodykite asmens vardą</FormText>
@@ -117,19 +113,10 @@ class CreateUser extends React.Component {
                   name="last_name"
                   id="last_name"
                   placeholder="Pavardė"
+                  required
                   onChange={this.onInputLasNameChange}
                 />
                 <FormText>Nurodykite asmens pavardę</FormText>
-              </FormGroup>
-              <FormGroup>
-                <Input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="El. paštas"
-                  onChange={this.onInputEmailChange}
-                />
-                <FormText>Nurodykite elektroninį paštą</FormText>
               </FormGroup>
               <FormGroup>
                 <Input
@@ -137,16 +124,13 @@ class CreateUser extends React.Component {
                   name="password"
                   id="password"
                   placeholder="********"
+                  required
                   onChange={this.onInputPasswordChange}
                 />
                 <FormText>Nurodykite asmens slaptažodį</FormText>
               </FormGroup>
               <br />
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-              >
+              <Button variant="contained" color="primary" type="submit">
                 Pridėti
               </Button>{" "}
               <Link to={"/users"}>

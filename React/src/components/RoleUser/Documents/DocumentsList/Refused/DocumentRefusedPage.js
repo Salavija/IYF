@@ -16,22 +16,6 @@ class DocumentRefusedPage extends React.Component {
         this.setState({ page });
     };
 
-    downloadFile = (e) => {
-        axios.get()
-
-    }
-    fileNameGetter = value => {
-        let fileName = "";
-        if (value && value.indexOf("attachment") !== -1) {
-            let fileNameLink = /fileName[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-            let sameFile = fileNameLink.exec(value);
-            if (sameFile != null && sameFile[1]) {
-                fileName = sameFile[1].replace(/['"]/g, "");
-            }
-        }
-        return fileName;
-    }
-
     handleChangeRowsPerPage = event => {
         this.setState({ page: 0, rowsPerPage: event.target.value });
     };

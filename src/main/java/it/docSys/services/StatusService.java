@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StatusService {
@@ -81,9 +83,15 @@ public class StatusService {
         }
     }
 
+    @Transactional
+    public List<OnlyStatusDTO> getAllStates() {
+        return documentRepository.findAll().stream().map(document ->
+                new OnlyStatusDTO(document.getState()
+                )).collect(Collectors.toList());
+    }
 
     @Transactional
-    public OnlyStatusDTO getDocumentStatus (Long id) {
+    public OnlyStatusDTO getDocumentState (Long id) {
         Document document = documentRepository.getOne(id);
         if (document != null) {
             return new OnlyStatusDTO(document.getState());

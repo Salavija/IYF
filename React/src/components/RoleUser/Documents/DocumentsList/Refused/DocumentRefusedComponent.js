@@ -11,6 +11,7 @@ import TablePaginationActionsWrapped from "../../../../../helpers/TablePaginatio
 import TableFooter from "@material-ui/core/TableFooter";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
+import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
     root: {
@@ -23,7 +24,7 @@ const styles = theme => ({
     }
 });
 
-class DocumentsSubmittedComponent extends Component {
+class DocumentsRefusedComponent extends Component {
   render() {
     const { classes } = this.props;
     const { documents, rowsPerPage, page } = this.props;
@@ -32,6 +33,17 @@ class DocumentsSubmittedComponent extends Component {
       Math.min(rowsPerPage, documents.length - page * rowsPerPage);
     return (
       <Paper className={classes.root}>
+        <div
+          style={{
+            marginLeft: "0.8rem",
+            marginTop: "0.6 rem",
+            marginBottom: "0.5 rem"
+          }}
+        >
+          <Typography variant="h6" id="tableTitle">
+            Atmesti dokumentai
+          </Typography>
+        </div>
         <div className={classes.tableWrapper}>
           <Table className={classes.table}>
             <TableHead>
@@ -91,7 +103,7 @@ class DocumentsSubmittedComponent extends Component {
     );
   }
 }
-DocumentsSubmittedComponent.propTypes = {
+DocumentsRefusedComponent.propTypes = {
   documents: PropTypes.array.isRequired
 };
-export default withStyles(styles)(DocumentsSubmittedComponent);
+export default withStyles(styles)(DocumentsRefusedComponent);

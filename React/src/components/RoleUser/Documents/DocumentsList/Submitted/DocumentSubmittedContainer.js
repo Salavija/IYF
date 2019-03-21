@@ -6,30 +6,19 @@ import TableRow from "@material-ui/core/TableRow";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
-
-const styles = theme => ({
-  root: {
-    color: theme.palette.text.primary
-  },
-  icon: {
-    margin: theme.spacing.unit,
-    fontSize: 32
-  }
-});
-
-
 class DocumentSubmittedContainer extends React.Component {
   handleRemoveAlert = () => {
     confirmAlert({
-      title: 'Patvirtinkite trynimą',
-      message: 'Ar tikrai norite ištrinti dokumentą?',
+      title: 'Kodėl norite atmesti dokumentą',
+      message: 'Nurodykite priežastį',
+      input: 'text',
       buttons: [
         {
-          label: 'Taip',
-          onClick: () => this.handleRemove()
+          label: 'Tvirtinu',
+          onClick: () => this.handleRefuse()
         },
         {
-          label: 'No',
+          label: 'Nenoriu',
         }
       ]
     });
@@ -68,26 +57,28 @@ class DocumentSubmittedContainer extends React.Component {
         <TableCell>{this.props.document.type}</TableCell>
         <TableCell>{this.props.document.description}</TableCell>
         <TableCell>{this.props.document.submissionDate}</TableCell>
-        <TableCell>{this.props.document.submissionDate}</TableCell>
         <TableCell align="right">
-          <Button
-            type="submit"
-            color="default"
-            variant="contained"
-            onClick={this.handleSubmit}
-            style={{ maxWidth: '90px',  minWidth: '90px' }}
-          >
-            Patvirtinti{""}
-          </Button>
-          <Button
-            type="submit"
-            color="secondary"
-            variant="contained"
-            onClick={this.handleRemoveAlert}
-            style={{ maxWidth: '90px', minWidth: '90px',}}
-          >
-            Atmesti{"      "}
-          </Button>
+          <div style={{ display: "flex" }}>
+            <Button
+              type="submit"
+              color="default"
+              variant="outlined"
+              onClick={this.handleAcception}
+              style={{ maxWidth: "90px", minWidth: "90px" }}
+            >
+              Patvirtinti
+            </Button>
+            &nbsp;
+            <Button
+              type="submit"
+              color="secondary"
+              variant="outlined"
+              onClick={this.handleRefuseAlert}
+              style={{ maxWidth: "90px", minWidth: "90px" }}
+            >
+              Atmesti{"      "}
+            </Button>
+          </div>
         </TableCell>
       </TableRow>
     );

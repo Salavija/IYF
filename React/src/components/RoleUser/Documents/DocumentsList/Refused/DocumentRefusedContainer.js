@@ -1,25 +1,11 @@
 import React from "react";
 import axios from "axios";
-import Button from "@material-ui/core/Button"
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import Icon from "@material-ui/core/Icon";
-import { IconButton } from "@material-ui/core";
 
-const styles = theme => ({
-  root: {
-    color: theme.palette.text.primary
-  },
-  icon: {
-    margin: theme.spacing.unit,
-    fontSize: 32
-  }
-});
-
-
-class DocumentSubmittedContainer extends React.Component {
+class DocumentRefusedContainer extends React.Component {
   handleRemoveAlert = () => {
     confirmAlert({
       title: 'Patvirtinkite trynimą',
@@ -35,7 +21,6 @@ class DocumentSubmittedContainer extends React.Component {
       ]
     });
   };
-
 
   handleRemove = () => {
     this.props.onDocumentDeleted(this.props.document);
@@ -75,4 +60,4 @@ class DocumentSubmittedContainer extends React.Component {
     );
   }
 }
-export default DocumentSubmittedContainer;
+export default DocumentRefusedContainer;

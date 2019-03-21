@@ -34,7 +34,6 @@ class UserContainer extends React.Component {
 
   render() {
     return (
-      <div>
         <TableRow key={this.props.id}>
           <TableCell component="th" scope="row">
             {this.props.user.userName}
@@ -44,9 +43,6 @@ class UserContainer extends React.Component {
           </TableCell>
           <TableCell component="th" scope="row">
             {this.props.user.lastName}
-          </TableCell>
-          <TableCell component="th" scope="row">
-            {this.props.user.email}
           </TableCell>
           <TableCell component="th" scope="row">
             {this.props.user.roles}
@@ -60,7 +56,6 @@ class UserContainer extends React.Component {
                 </button> */}
           </TableCell>
         </TableRow>
-      </div>
     );
   }
 }

@@ -6,17 +6,20 @@ import {
   FormText,
   Container,
   Col,
-  Row
+  Row,
 } from "reactstrap";
 import axios from "axios";
 import fetchTypes from "../../../../helpers/fetchTypes";
 import { withRouter, Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
+import Upload from "./upload/Upload"
 
-class DocumentEdit extends React.Component {
+
+class CreateNew extends React.Component {
   constructor(props) {
     super(props);
+
     this.toggle = this.toggle.bind(this);
     this.state = {
       type: "",
@@ -46,6 +49,21 @@ class DocumentEdit extends React.Component {
     fetchTypes().then(answer => {
       this.setState({ types: answer });
     });
+  };
+
+  downloadFile = e => {
+    axios.get();
+  };
+  fileNameGetter = value => {
+    let fileName = "";
+    if (value && value.indexOf("attachment") !== -1) {
+      let fileNameLink = /fileName[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+      let sameFile = fileNameLink.exec(value);
+      if (sameFile != null && sameFile[1]) {
+        fileName = sameFile[1].replace(/['"]/g, "");
+      }
+    }
+    return fileName;
   };
 
   addNewDocument = e => {
@@ -114,7 +132,7 @@ class DocumentEdit extends React.Component {
         <Paper>
           <Container>
             <br />
-            <h3>Dokumento kūrimo forma</h3>
+            <h3>Dokumento redagavimo forma</h3>
             <p className="lead">
               <i>Užpildykite visus laukus</i>
             </p>
@@ -130,7 +148,9 @@ class DocumentEdit extends React.Component {
                       onChange={this.changeType}
                       required
                     >
-                      <option value="select">Pasirinkite dokumento tipą</option>
+                      <option value="select">
+                        Pasirinkite dokumento tipą
+                      </option>
                       {this.state.types.map(type => (
                         <option value={type.title}>{type.title}</option>
                       ))}
@@ -173,8 +193,15 @@ class DocumentEdit extends React.Component {
                 />
                 <FormText>Nurodykite autorių</FormText>
               </FormGroup>
+              <br />
+              {/* <FileUpl
+                fileNameGetter={this.fileNameGetter}
+                handleFIleUpload={this.handleFIleUpload}
+              /> */}
+              <Upload />
+              <br />
               <Button variant="contained" type="submit" color="primary">
-                Redaguoti
+                Pridėti
               </Button>{" "}
               <Button
                 variant="contained"
@@ -195,4 +222,4 @@ class DocumentEdit extends React.Component {
   }
 }
 
-export default withRouter(DocumentEdit);
+export default withRouter(CreateNew);

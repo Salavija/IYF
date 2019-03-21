@@ -1,35 +1,25 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch} from "react-router-dom";
 import "./App.css";
-// , Redirect in router dom
 import Home from "./components/Home";
-// import About from "./components/About";
 import Error from "./components/Error";
-// import Navigation from "./components/Navigation";
 import Docs from "./components/RoleUser/Documents/DocumentsList/DocumentsPage";
-import NewDocument from "./components/RoleUser/Documents/DocumentsList/NewDocument/NewDocument";
+import NewDocument from "./components/RoleUser/Documents/NewDocument/NewDocument";
 import Types from "./components/RoleUser/Documents/Types/TypePage";
 import Paperbase from "./components/Header/Paperbase";
-// import Navi from './components/Navi';
 import { Container } from "reactstrap";
 import GroupPage from "./components/RoleAdmin/Users/Groups/GroupPage";
 import UserPage from "./components/RoleAdmin/Users/Users.js/UserPage";
 import CreateUserPage from "./components/RoleAdmin/Users/CreateUser/CreateUserPage";
-// import Login from "./components/Login";
 import Admin from "./components/RoleAdmin/AdminHome";
 import User from "./components/RoleUser/UserHomePage/UserHome";
 import Header from "./components/Header/Header";
-// import LoginPage from "./Login/LoginPage";
-// import EnsureLoggedInContainer from "./components/Authentication/EnsureLoggedInContainer";
-// import NavBarSide from './components/SideBar/NavBarSide'
-// import Root from "./Root";
-// import history from "./history";
 // import Footer from "./components/Footer/Footer"
 import DetailedDocument from "./components/RoleUser/Documents/DocumentsList/DetailedDocument"
 import SubmittedDocs from "./components/RoleUser/Documents/DocumentsList/Submitted/DocumentSubmittedPage"
 import AcceptedDocs from "./components/RoleUser/Documents/DocumentsList/Accepted/DocumentsAcceptedPage"
 import RefusedDocs from "./components/RoleUser/Documents/DocumentsList/Refused/DocumentRefusedPage"
-
+import DocumentEdit from "./components/RoleUser/Documents/DocumentEdit/DocumentEdit";
 
 // function loggedIn() {
 //   // ...
@@ -60,9 +50,6 @@ class App extends Component {
             <div style={{display: "flex"}}>
               <Paperbase />
               <Container>
-                {/* <Navigation /> */}
-                {/* <NavBarSide /> */}
-                {/* <Navi /> */}
                   <Switch>
                     <Route path="/" component={User} exact />
                     {/* <Route component={EnsureLoggedInContainer}> */}
@@ -71,6 +58,7 @@ class App extends Component {
                     <Route path="/users" component={UserPage} />
                     <Route path="/create-user" component={CreateUserPage} />
                     <Route path="/documents" component={Docs} />
+                    <Route path="/document-edit" component={DocumentEdit} />
                     <Route path="/submitted-documents" component={SubmittedDocs} />
                     <Route path="/accepted-documents" component={AcceptedDocs} />
                     <Route path="/refused-documents" component={RefusedDocs} />

@@ -35,6 +35,7 @@ class Groups extends Component {
             <TableBody>
               {this.props.groups
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .reverse()
                 .map(group => (
                   <Group
                     onGroupDeleted={this.props.onGroupDeleted}

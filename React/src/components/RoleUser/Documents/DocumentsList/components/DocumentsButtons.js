@@ -25,6 +25,8 @@ class DocumentsButtons extends React.Component {
         >
           Sukurti dokumentai
         </Button>{" "}
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <Button
           variant="contained"
           color="primary"
@@ -33,6 +35,7 @@ class DocumentsButtons extends React.Component {
         >
           Pateikti dokumentai
         </Button>{" "}
+        &nbsp;&nbsp;
         <Button
           variant="contained"
           color="default"
@@ -41,6 +44,7 @@ class DocumentsButtons extends React.Component {
         >
           Patvirtinti dokumentai
         </Button>{" "}
+        &nbsp;&nbsp;
         <Button
           variant="contained"
           color="secondary"

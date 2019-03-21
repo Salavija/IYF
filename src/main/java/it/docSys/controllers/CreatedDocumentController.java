@@ -14,7 +14,6 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 
-//Trying to ignore controller not to show in swaagger; And It works!!!
 
 @RestController
 @ApiIgnore
@@ -32,7 +31,6 @@ public class CreatedDocumentController {
 
     private static Logger logger = LoggerFactory.getLogger(CreatedDocumentController.class);
 
-    /*---Add new createdDocument---*/
 
     @PostMapping
     @ApiOperation(value = "Save new createdDocument", notes = "Adds new createdDocument and saves to database")
@@ -41,7 +39,6 @@ public class CreatedDocumentController {
         createdDocumentService.create(putCreatedDocumentDTO);
     }
 
-    /*---Update createdDocument by id---*/
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Update existing createdDocument")
@@ -50,7 +47,6 @@ public class CreatedDocumentController {
         createdDocumentService.update(id, putCreatedDocumentDTO);
     }
 
-    /*---get createdDocument by id---*/
 
     @GetMapping(value = "/{id}")
     @ApiOperation(value = "Get createdDocument by id", notes = "Returns specific createdDocument by id")
@@ -61,7 +57,6 @@ public class CreatedDocumentController {
         return createdDocumentService.get(id);
     }
 
-    /*---get all createdDocuments---*/
 
     @GetMapping
     @ApiOperation(value = "Get all createdDocuments", notes = "Returns all createdDocuments from database")
@@ -70,7 +65,6 @@ public class CreatedDocumentController {
         return createdDocumentService.listAll();
     }
 
-    /*---Delete a createdDocument by id---*/
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Delete createdDocument by id")

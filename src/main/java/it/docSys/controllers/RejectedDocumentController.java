@@ -29,7 +29,6 @@ public class RejectedDocumentController {
 
     private static Logger logger = LoggerFactory.getLogger(RejectedDocumentController.class);
 
-    /*---Add new rejectedDocument---*/
 
     @PostMapping
     @ApiOperation(value = "Save new rejectedDocument", notes = "Adds new rejectedDocument and saves to database")
@@ -38,7 +37,6 @@ public class RejectedDocumentController {
         rejectedDocumentService.create(putRejectedDocumentDTO);
     }
 
-    /*---Update rejectedDocument by id---*/
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Update existing rejectedDocument")
@@ -47,7 +45,6 @@ public class RejectedDocumentController {
         rejectedDocumentService.update(id, putRejectedDocumentDTO);
     }
 
-    /*---get rejectedDocument by id---*/
 
     @GetMapping(value = "/{id}")
     @ApiOperation(value = "Get rejectedDocument by id", notes = "Returns specific rejectedDocument by id")
@@ -58,7 +55,6 @@ public class RejectedDocumentController {
         return rejectedDocumentService.get(id);
     }
 
-    /*---get all rejectedDocument---*/
 
     @GetMapping
     @ApiOperation(value = "Get all rejectedDocuments", notes = "Returns all rejectedDocuments from database")
@@ -67,7 +63,6 @@ public class RejectedDocumentController {
         return rejectedDocumentService.listAll();
     }
 
-    /*---Delete a rejectedDocument by id---*/
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Delete rejectedDocument by id")

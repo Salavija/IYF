@@ -57,11 +57,7 @@ public class UserDBLoader {
         );
 
 
-//        userRepository.saveAll(users);
 
-        // Add simpleUser
-
-//        for (int i = 1; i <= numOfUsers; i++ ) {
             DocUser user1 = new DocUser();
             user1.setUserName("simpleuser");
             user1.setPassword(bCryptPasswordEncoder.encode("password"));
@@ -71,9 +67,7 @@ public class UserDBLoader {
             users.add(user1);
             userRepository.save(user1);
         userRepository.saveAll(users);
-//        }
 
-        // Add admin
 
 
         DocUser user = new DocUser();

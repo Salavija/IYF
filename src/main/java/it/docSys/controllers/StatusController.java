@@ -27,7 +27,6 @@ public class StatusController {
 
     private static Logger logger = LoggerFactory.getLogger(DocumentController.class);
 
-    /*---get all documents Statuses---*/
 
     @GetMapping
     @ApiOperation(value = "Get all statuses", notes = "Returns all documents statuses")
@@ -36,7 +35,6 @@ public class StatusController {
         return statusService.getAllStates();
     }
 
-    //Get Document Status
 
     @GetMapping(value = "/GetStatus/{id}")
     @ApiOperation(value = "Get document status by id", notes = "Returns specific document status")
@@ -47,7 +45,6 @@ public class StatusController {
         return statusService.getDocumentState(id);
     }
 
-    //Submit Document
 
     @PutMapping("/submitted/{id}")
     @ApiOperation(value = "Submit document")
@@ -56,7 +53,6 @@ public class StatusController {
         statusService.submitDocument(id, submitDTO);
     }
 
-    //Get Submitted Document
 
     @GetMapping("/getSubmitted/{id}")
     @ApiOperation(value = "Get submitted document")
@@ -65,7 +61,6 @@ public class StatusController {
         return statusService.getSubmittedDocument(id);
     }
 
-    //Approve Document
 
     @PutMapping("/approved/{id}")
     @ApiOperation(value = "Approve document")
@@ -74,7 +69,6 @@ public class StatusController {
         statusService.approveDocument(id, approveDTO);
     }
 
-    //Get Approved Document
 
     @GetMapping("/getApproved/{id}")
     @ApiOperation(value = "Get approved document")
@@ -83,7 +77,6 @@ public class StatusController {
         return statusService.getApprovedDocument(id);
     }
 
-    //Reject Document
 
     @PutMapping("/rejected/{id}")
     @ApiOperation(value = "Reject document")
@@ -92,7 +85,6 @@ public class StatusController {
         statusService.rejectDocument(id, rejectDTO);
     }
 
-    //Get Rejected Document
 
     @GetMapping("/getRejected/{id}")
     @ApiOperation(value = "Get rejected document")

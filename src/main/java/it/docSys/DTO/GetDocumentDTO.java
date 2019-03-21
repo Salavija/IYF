@@ -86,37 +86,6 @@ public class GetDocumentDTO {
         this.description = description;
     }
 
-//    public LocalDate getSubmissionDate() {
-//        return submissionDate;
-//    }
-//
-//    public void setSubmissionDate(LocalDate submissionDate) {
-//        this.submissionDate = submissionDate;
-//    }
-//
-//    public LocalDate getApprovingDate() {
-//        return approvingDate;
-//    }
-//
-//    public void setApprovingDate(LocalDate approvingDate) {
-//        this.approvingDate = approvingDate;
-//    }
-//
-//    public LocalDate getRejectionDate() {
-//        return rejectionDate;
-//    }
-//
-//    public void setRejectionDate(LocalDate rejectionDate) {
-//        this.rejectionDate = rejectionDate;
-//    }
-//
-//    public String getRejectionReason() {
-//        return rejectionReason;
-//    }
-//
-//    public void setRejectionReason(String rejectionReason) {
-//        this.rejectionReason = rejectionReason;
-//    }
 
     public byte getAttachments() {
         return attachments;
@@ -130,7 +99,4 @@ public class GetDocumentDTO {
         return state;
     }
 
-//    public void setState(States state) {
-//        this.state = state;
-//    }
 }

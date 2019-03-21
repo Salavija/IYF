@@ -5,16 +5,13 @@ import java.time.LocalDate;
 
 public class PutApprovedDocumentDTO implements Serializable {
 
-    //    private Long id;
     private String author;
     private String type;
     private String name;
     private String description;
     private LocalDate submissionDate;
     private LocalDate approvingDate;
-    //    private LocalDate rejectionDate;
     private String addressee;
-    //    private String rejectionReason;
     private byte attachments;
 
 
@@ -22,28 +19,18 @@ public class PutApprovedDocumentDTO implements Serializable {
     public PutApprovedDocumentDTO(String author, String type, String name, String description,
                                   LocalDate submissionDate, LocalDate approvingDate,
                                   String addressee, byte attachments) {
-//        this.id = id;
         this.author = author;
         this.type = type;
         this.name = name;
         this.description = description;
         this.submissionDate = submissionDate;
         this.approvingDate = approvingDate;
-//        this.rejectionDate = rejectionDate;
         this.addressee = addressee;
-//        this.rejectionReason = rejectionReason;
         this.attachments = attachments;
     }
 
     public PutApprovedDocumentDTO() {}
 
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 
     public String getAuthor() {
         return author;
@@ -92,14 +79,7 @@ public class PutApprovedDocumentDTO implements Serializable {
     public void setApprovingDate(LocalDate approvingDate) {
         this.approvingDate = approvingDate;
     }
-//
-//    public LocalDate getRejectionDate() {
-//        return rejectionDate;
-//    }
-//
-//    public void setRejectionDate(LocalDate rejectionDate) {
-//        this.rejectionDate = rejectionDate;
-//    }
+
 
     public String getAddressee() {
         return addressee;
@@ -109,13 +89,7 @@ public class PutApprovedDocumentDTO implements Serializable {
         this.addressee = addressee;
     }
 
-//    public String getRejectionReason() {
-//        return rejectionReason;
-//    }
-//
-//    public void setRejectionReason(String rejectionReason) {
-//        this.rejectionReason = rejectionReason;
-//    }
+
 
     public byte getAttachments() {
         return attachments;

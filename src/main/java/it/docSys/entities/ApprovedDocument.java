@@ -53,14 +53,9 @@ public class ApprovedDocument {
     @Column(name = "approving_date")
     private LocalDate approvingDate;
 
-//    @Column(name = "rejection_date")      NOT REJECTED
-//    private LocalDate rejectionDate;
 
     @Column(name = "addressee")
     private String addressee;
-
-//    @Column(name = "rejection_reason")    NOT REJECTED
-//    private String rejectionReason;
 
     @Column(name = "attachments")
     private byte attachments;

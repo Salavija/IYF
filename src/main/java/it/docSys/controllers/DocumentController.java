@@ -27,7 +27,6 @@ public class DocumentController {
 
     private static Logger logger = LoggerFactory.getLogger(DocumentController.class);
 
-    /*---Add new document---*/
 
     @PostMapping
     @ApiOperation(value = "Save new document", notes = "Creates new document and saves to database")
@@ -36,7 +35,6 @@ public class DocumentController {
         documentService.create(putDocumentDTO);
     }
 
-    /*---Update existing document by id---*/
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Update existing document")
@@ -44,8 +42,6 @@ public class DocumentController {
         logger.info("A document has been updated");
         documentService.update(id, putDocumentDTO);
     }
-
-    /*---get document by id---*/
 
     @GetMapping(value = "/{id}")
     @ApiOperation(value = "Get document by id", notes = "Returns specific document by id")
@@ -56,7 +52,7 @@ public class DocumentController {
         return documentService.get(id);
     }
 
-    /*---get all documents---*/
+
 
     @GetMapping
     @ApiOperation(value = "Get all documents", notes = "Returns all documents from database")
@@ -65,7 +61,7 @@ public class DocumentController {
         return documentService.listAll();
     }
 
-    /*---Delete a document by id---*/
+
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Delete document by id")
@@ -74,7 +70,7 @@ public class DocumentController {
         documentService.delete(id);
     }
 
-    /*Dokumento tipo priskyrimas dokumentui*/
+
     @PutMapping("/{d_id}/{dt_title}")
     @ApiOperation(value = "Assign document type to a document")
     public void assignDocTypeToDocument(@PathVariable final Long d_id, @PathVariable final String dt_title) {

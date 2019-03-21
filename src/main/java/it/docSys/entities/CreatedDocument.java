@@ -42,20 +42,10 @@ public class CreatedDocument {
     @Column(name = "description")
     private String description;
 
-//    @Column(name = "submission_date")     NOT SUBMITTED ONLY CREATED
-//    private LocalDate submissionDate;
-
-//    @Column(name = "approving_date")      NOT APPROVED ONLY CREATED
-//    private LocalDate approvingDate;
-
-//    @Column(name = "rejection_date")      NOT REJECTED ONLY CREATED
-//    private LocalDate rejectionDate;
 
     @Column(name = "addressee")
     private String addressee;
 
-//    @Column(name = "rejection_reason")    NOT REJECTED ONLY CREATED
-//    private String rejectionReason;
 
     @Column(name = "attachments")
     private byte attachments;

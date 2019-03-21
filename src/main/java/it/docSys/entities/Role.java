@@ -13,8 +13,6 @@ public class Role {
 
     private String name;
 
-//    @OneToMany(mappedBy = "roles")
-
     @ElementCollection(targetClass=String.class)
     private Set<DocUser> users;
 

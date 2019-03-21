@@ -36,14 +36,13 @@ public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "document_id")
-//    @ElementCollection
     private Long id;
 
     @Column(name = "author", nullable = false)
     private String author;
 
     @Column(name ="type", nullable = false)
-    private String type; // Or some other type of data???
+    private String type;
 
     @Column(name = "title", nullable = false, unique = true)
     @Length(min = 2, message = "*Title must have at least 2 characters")
@@ -90,7 +89,6 @@ public class Document {
         return docType;
     }
 
-    /*Sarysis su Useriu many to one - daug doku vienas autorius/Useris*/
 
     @ManyToOne
     @JoinColumn(name="user_name")
@@ -109,13 +107,6 @@ public class Document {
     }
 
 
-//    public void addUser(DocUser docUser) {
-//        this.users.add(docUser);
-//    }
-//
-//    public void removeUser(DocUser docUser) {
-//        this.users.remove(docUser);
-//    }
 
     public States getState() {
         return state;
@@ -145,9 +136,6 @@ public class Document {
         return author;
     }
 
-//    public void setAuthor(String author) {
-//        this.author = author;
-//    }
 
     public String getType() {
         return type;

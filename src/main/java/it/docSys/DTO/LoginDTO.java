@@ -83,11 +83,6 @@ public class LoginDTO {
         this.role= role;
     }
 
-//    public String getRole() {
-//        return Roles.values().toString();
-//    }
-//
-//    public void setRole(String roles) {
-//        this.roles = Roles.values().toString();
+
     }
 

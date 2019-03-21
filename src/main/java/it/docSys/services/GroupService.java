@@ -32,13 +32,13 @@ public class GroupService {
     @Transactional
     public List<GroupGetDTO> getAllGroups() {
         return groupRepo.findAll().stream().map(groupEntity ->
-                new GroupGetDTO(groupEntity.getId(), groupEntity.getTitle())).collect(Collectors.toList()); //cannot resolve constructor????????
+                new GroupGetDTO(groupEntity.getId(), groupEntity.getTitle())).collect(Collectors.toList());
     }
 
 
     @Transactional
     public GroupGetDTO getGroupById (Long id) {
-        GroupEntity group = groupRepo.getOne(id);//.orElse(null);
+        GroupEntity group = groupRepo.getOne(id);
         if (group != null) {
             return new GroupGetDTO(group.getId(), group.getTitle());
         }
@@ -78,8 +78,6 @@ public class GroupService {
         }
     }
 
-
-    /*Visu dokumentu tipu priklausanciu grupei suradimas*/ /*String title yra grupes title, ateina is controlerio*/
 
     @Transactional
     public List<DocTypeGetDTO> getGroupDocTypes (String title) {

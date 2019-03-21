@@ -28,14 +28,10 @@ public class CreatedDocumentService {
     public void create(PutCreatedDocumentDTO putCreatedDocumentDTO) {
         CreatedDocument createdDocument = new CreatedDocument();
         createdDocument.setAddressee(putCreatedDocumentDTO.getAddressee());
-//        document.setApprovingDate(putCreatedDocumentDTO.getApprovingDate());
         createdDocument.setAttachments(putCreatedDocumentDTO.getAttachments());
         createdDocument.setAuthor(putCreatedDocumentDTO.getAuthor());
         createdDocument.setDescription(putCreatedDocumentDTO.getDescription());
         createdDocument.setName(putCreatedDocumentDTO.getName());
-//        document.setRejectionDate(putCreatedDocumentDTO.getRejectionDate());
-//        document.setRejectionReason(putCreatedDocumentDTO.getRejectionReason());
-//        document.setSubmissionDate(putCreatedDocumentDTO.getSubmissionDate());
         createdDocument.setType(putCreatedDocumentDTO.getType());
         createdDocumentRepository.save(createdDocument);
     }
@@ -67,16 +63,11 @@ public class CreatedDocumentService {
     public void update(long id, PutCreatedDocumentDTO putCreatedDocumentDTO) {
         CreatedDocument createdDocument = createdDocumentRepository.findById(id).orElse(null);
         if (createdDocument != null){
-//            document.setId(putDocumentDTO.getId());
             createdDocument.setAddressee(putCreatedDocumentDTO.getAddressee());
-//            createdDocument.setApprovingDate(putDocumentDTO.getApprovingDate());
             createdDocument.setAttachments(putCreatedDocumentDTO.getAttachments());
             createdDocument.setAuthor(putCreatedDocumentDTO.getAuthor());
             createdDocument.setDescription(putCreatedDocumentDTO.getDescription());
             createdDocument.setName(putCreatedDocumentDTO.getName());
-//            createdDocument.setRejectionDate(putDocumentDTO.getRejectionDate());
-//            createdDocument.setRejectionReason(putDocumentDTO.getRejectionReason());
-//            createdDocument.setSubmissionDate(putDocumentDTO.getSubmissionDate());
             createdDocument.setType(putCreatedDocumentDTO.getType());
         }
     }

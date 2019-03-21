@@ -29,7 +29,6 @@ public class RejectedDocumentService {
     public void create(PutRejectedDocumentDTO putRejectedDocumentDTO) {
         RejectedDocument rejectedDocument = new RejectedDocument();
         rejectedDocument.setAddressee(putRejectedDocumentDTO.getAddressee());
-//        rejectedDocument.setApprovingDate(putApprovedDocumentDTO.getApprovingDate());
         rejectedDocument.setAttachments(putRejectedDocumentDTO.getAttachments());
         rejectedDocument.setAuthor(putRejectedDocumentDTO.getAuthor());
         rejectedDocument.setDescription(putRejectedDocumentDTO.getDescription());
@@ -71,9 +70,7 @@ public class RejectedDocumentService {
     public void update(long id, PutRejectedDocumentDTO putRejectedDocumentDTO) {
         RejectedDocument rejectedDocument = rejectedDocumentRepository.findById(id).orElse(null);
         if (rejectedDocument != null){
-//            document.setId(putDocumentDTO.getId());
             rejectedDocument.setAddressee(putRejectedDocumentDTO.getAddressee());
-//            rejectedDocument.setApprovingDate(putApprovedDocumentDTO.getApprovingDate());
             rejectedDocument.setAttachments(putRejectedDocumentDTO.getAttachments());
             rejectedDocument.setAuthor(putRejectedDocumentDTO.getAuthor());
             rejectedDocument.setDescription(putRejectedDocumentDTO.getDescription());

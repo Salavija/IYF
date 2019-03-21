@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class DocTypeService {
 
     @Autowired
-    private DocTypeRepo docTypeRepo; //ar ne geriau asigninti su autowired per kosntruktoriu?
+    private DocTypeRepo docTypeRepo;
 
     @Autowired
     private GroupRepo groupRepo;
@@ -34,18 +34,16 @@ public class DocTypeService {
     public List<DocTypeGetDTO> getAllDocTypes () {
         return docTypeRepo.findAll().stream().map((doc) ->
                 new DocTypeGetDTO (doc.getId(), doc.getTitle())).collect(Collectors.toList());
-
     }
 
     @Transactional
     public DocTypeGetDTO getById(Long id) {
-        DocType docType = docTypeRepo.getOne(id);//.orElse(null);
+        DocType docType = docTypeRepo.getOne(id);
         if (docType != null) {
             return new DocTypeGetDTO(docType.getId(), docType.getTitle());
         }
         return null;
     }
-
 
 
     @Transactional
@@ -73,9 +71,6 @@ public class DocTypeService {
     }
 
 
-
-    /*Dokumentu priskirtu konkreciam dokumento tipui suradimas*/
-
     @Transactional
     public List<GetDocumentDTO> getDocuments (String dt_title) {
         DocType docType = docTypeRepo.getByTitle(dt_title);
@@ -84,8 +79,6 @@ public class DocTypeService {
                     new GetDocumentDTO(document.getId(), document.getAuthor(), document.getType(),
                             document.getTitle(),
                             document.getDescription(),
-//                            document.getSubmissionDate(), document.getApprovingDate(),
-//                            document.getRejectionDate(), document.getRejectionReason(),
                             document.getAttachments()
                             , document.getState()
                     )).collect(Collectors.toList());
@@ -93,8 +86,6 @@ public class DocTypeService {
         return null;
     }
 
-
-    /*Visu grupiu, kurioms priskirtas dokumento tipas, suradimas*/ /*title yra dokumento tipo pavadinimas*/
 
     @Transactional
     public List<GroupGetDTO> getGroupsOfDocType (String title) {
@@ -107,9 +98,6 @@ public class DocTypeService {
     }
 
 
-
-    /*Grupes priskyrimas dokumento tipui (pagal title)*/
-
     @Transactional
     public void assignGroupToDocTypeByTitle (String dt_title, String g_title) {
         GroupEntity groupEntity = groupRepo.getByTitle(g_title);
@@ -119,7 +107,6 @@ public class DocTypeService {
         }
     }
 
-    /*Grupes atskyrimas nuo dokumento tipo*/
 
     @Transactional
     public void deleteGroupFromDocType (String dt_title, String g_title) {

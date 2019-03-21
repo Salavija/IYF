@@ -33,8 +33,6 @@ public class ApprovedDocumentService {
         approvedDocument.setAuthor(putApprovedDocumentDTO.getAuthor());
         approvedDocument.setDescription(putApprovedDocumentDTO.getDescription());
         approvedDocument.setName(putApprovedDocumentDTO.getName());
-//        document.setRejectionDate(putCreatedDocumentDTO.getRejectionDate());
-//        document.setRejectionReason(putCreatedDocumentDTO.getRejectionReason());
         approvedDocument.setSubmissionDate(putApprovedDocumentDTO.getSubmissionDate());
         approvedDocument.setType(putApprovedDocumentDTO.getType());
         approvedDocumentRepository.save(approvedDocument);
@@ -70,15 +68,12 @@ public class ApprovedDocumentService {
     public void update(long id, PutApprovedDocumentDTO putApprovedDocumentDTO) {
         ApprovedDocument approvedDocument = approvedDocumentRepository.findById(id).orElse(null);
         if (approvedDocument != null){
-//            document.setId(putDocumentDTO.getId());
             approvedDocument.setAddressee(putApprovedDocumentDTO.getAddressee());
             approvedDocument.setApprovingDate(putApprovedDocumentDTO.getApprovingDate());
             approvedDocument.setAttachments(putApprovedDocumentDTO.getAttachments());
             approvedDocument.setAuthor(putApprovedDocumentDTO.getAuthor());
             approvedDocument.setDescription(putApprovedDocumentDTO.getDescription());
             approvedDocument.setName(putApprovedDocumentDTO.getName());
-//            createdDocument.setRejectionDate(putDocumentDTO.getRejectionDate());
-//            createdDocument.setRejectionReason(putDocumentDTO.getRejectionReason());
             approvedDocument.setSubmissionDate(putApprovedDocumentDTO.getSubmissionDate());
             approvedDocument.setType(putApprovedDocumentDTO.getType());
         }

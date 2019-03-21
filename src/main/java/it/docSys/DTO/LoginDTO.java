@@ -1,13 +1,9 @@
 package it.docSys.DTO;
 
 
-import it.docSys.entities.Role;
-import it.docSys.enums.Roles;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Set;
 
 public class LoginDTO {
 

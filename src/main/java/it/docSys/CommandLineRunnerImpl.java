@@ -83,9 +83,11 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+
         boolean letsAddUsers = true;
         int docUsers = 2;
         int roles = 2;
+
 
         if (letsAddUsers
                 && roleRepository.count() == 0
@@ -94,5 +96,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
             userDBLoader.load2UsersToDB(docUsers, roles);
         }
 
-    }
-}
+            }
+
+        }
+

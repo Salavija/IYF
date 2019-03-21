@@ -39,6 +39,9 @@ public class DocumentService {
         document.setTitle(putDocumentDTO.getTitle());
         document.setType(putDocumentDTO.getType());
         document.setState(putDocumentDTO.getState());
+
+
+
         documentRepository.save(document);
     }
 
@@ -50,7 +53,8 @@ public class DocumentService {
             return new GetDocumentDTO(document.getId(),
                     document.getAuthor(), document.getType(),
                     document.getTitle(), document.getDescription(),
-                    document.getAttachments(), document.getState()
+                    document.getAttachments()
+                    , document.getState()
             );
         }
         return null;
@@ -65,6 +69,8 @@ public class DocumentService {
                         , document.getState()
                 )).collect(Collectors.toList());
     }
+
+
 
 
     @Transactional
@@ -82,6 +88,8 @@ public class DocumentService {
     }
 
 
+
+
     @Transactional
     public void delete(long id) {
         documentRepository.deleteById(id);
@@ -96,7 +104,6 @@ public class DocumentService {
             docType.getDocuments().add(document);
         }
     }
-
 
     @Transactional
     public void deleteDocTypeFromDocument(Long d_id, String dt_title) {

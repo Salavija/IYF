@@ -40,7 +40,7 @@ public class UserService {
     public UserService() {
     }
 
-    public UserService(UserRepository userRepository, GroupRepo groupRepository
+    public UserService(UserRepository userRepository, GroupRepo groupRepository//, DocumentRepository documentRepository
     ) {
         this.userRepository = userRepository;
         this.groupRepository = groupRepository;
@@ -48,6 +48,7 @@ public class UserService {
 
     @Transactional
     public void addTwoUsersForLogin(LoginDTO loginDTO) {
+
         DocUser user = new DocUser();
         user.setUserName(loginDTO.getUsername());
         user.setFirstName(loginDTO.getFirstname());
@@ -55,8 +56,8 @@ public class UserService {
         user.setPassword((bCryptPasswordEncoder.encode(loginDTO.getPassword())));
         user.setRoles(loginDTO.getRole());
         BeanUtils.copyProperties(loginDTO, user);
-        userRepository.save(user);
-    }
+         userRepository.save(user);
+        }
 
 
     @Transactional(readOnly = true)
@@ -64,7 +65,6 @@ public class UserService {
         return userRepository.findAll().stream().map((user) ->
                 new UserGetDTO(user.getDocUserId(), user.getUserName(), user.getFirstName(), user.getLastName(),
                         user.getPassword(), user.getRoles())).collect(Collectors.toList());
-
     }
 
 
@@ -129,7 +129,6 @@ public class UserService {
         return null;
     }
 
-
     @Transactional
     public void assignDocumentToUser(Long docId, String userName) {
         DocUser user = userRepository.findByUserName(userName);
@@ -156,7 +155,4 @@ public class UserService {
         }
     }
 }
-
-
-
 

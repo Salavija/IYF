@@ -34,6 +34,7 @@ public class DocTypeService {
     public List<DocTypeGetDTO> getAllDocTypes () {
         return docTypeRepo.findAll().stream().map((doc) ->
                 new DocTypeGetDTO (doc.getId(), doc.getTitle())).collect(Collectors.toList());
+
     }
 
     @Transactional
@@ -44,6 +45,7 @@ public class DocTypeService {
         }
         return null;
     }
+
 
 
     @Transactional
@@ -71,6 +73,8 @@ public class DocTypeService {
     }
 
 
+
+
     @Transactional
     public List<GetDocumentDTO> getDocuments (String dt_title) {
         DocType docType = docTypeRepo.getByTitle(dt_title);
@@ -96,6 +100,7 @@ public class DocTypeService {
         }
         return null;
     }
+
 
 
     @Transactional

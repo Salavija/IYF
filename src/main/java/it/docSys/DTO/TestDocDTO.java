@@ -3,9 +3,6 @@ package it.docSys.DTO;
 public class TestDocDTO {
 
 
-
-//TODO Team Example ID's ALL Strings (2 nd Edition fixed to be List<Long>), My version was Long; Trying to get them Strings;
-
         private Long id;
         private String author;
         private String type;

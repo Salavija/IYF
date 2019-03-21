@@ -2,9 +2,8 @@ package it.docSys.DTO;
 
 import it.docSys.enums.States;
 
-import java.time.LocalDate;
 
-//TODO Team Example ID's ALL Strings (2 nd Edition fixed to be List<Long>), My version was Long; Trying to get them Strings;
+
 
 public class GetDocumentDTO {
 
@@ -13,18 +12,12 @@ public class GetDocumentDTO {
     private String type;
     private String title;
     private String description;
-//    private LocalDate submissionDate;
-//    private LocalDate approvingDate;
-//    private LocalDate rejectionDate;
-//    private String rejectionReason;
     private byte attachments;
     private States state;
 
 
 
     public GetDocumentDTO(Long id, String author, String type, String title, String description,
-//                          LocalDate submissionDate, LocalDate approvingDate, LocalDate rejectionDate,
-//                           String rejectionReason,
                           byte attachments, States state
                            ) {
         this.id = id;
@@ -32,19 +25,12 @@ public class GetDocumentDTO {
         this.type = type;
         this.title = title;
         this.description = description;
-//        this.submissionDate = submissionDate;
-//        this.approvingDate = approvingDate;
-//        this.rejectionDate = rejectionDate;
-//        this.rejectionReason = rejectionReason;
         this.attachments = attachments;
         this.state = state;
     }
 
     public GetDocumentDTO() {}
 
-//    public Long getId() {
-//        return id;
-//    }
 
     public void setId(Long id) {
         this.id = id;

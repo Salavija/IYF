@@ -1,6 +1,5 @@
 package it.docSys.services;
 
-import it.docSys.DTO.GetDocumentDTO;
 import it.docSys.DTO.statusDTO.*;
 import it.docSys.entities.Document;
 import it.docSys.enums.States;
@@ -111,6 +110,15 @@ public class StatusService {
         documentRepository.save(document);
     }
     @Transactional
+    public SubmitDTO getSubmittedDocument(Long id) {
+        Document document = documentRepository.getOne(id);
+        if (document != null) {
+            return new SubmitDTO(document.getSubmissionDate(), document.getState());
+        }
+        return null;
+    }
+
+    @Transactional
     public void approveDocument(long id, ApproveDTO approveDTO) {
         Document document = documentRepository.getOne(id);
         if (document != null) {
@@ -120,6 +128,16 @@ public class StatusService {
         }
         documentRepository.save(document);
     }
+
+    @Transactional
+    public ApproveDTO getApprovedDocument(Long id) {
+        Document document = documentRepository.getOne(id);
+        if (document != null) {
+            return new ApproveDTO(document.getApprovingDate(), document.getState());
+        }
+        return null;
+    }
+
     @Transactional
     public void rejectDocument(long id, RejectDTO rejectDTO) {
         Document document = documentRepository.getOne(id);
@@ -130,6 +148,15 @@ public class StatusService {
             document.setState(rejectDTO.getState());
         }
         documentRepository.save(document);
+    }
+
+    @Transactional
+    public RejectDTO getRejectedDocument(Long id) {
+        Document document = documentRepository.getOne(id);
+        if (document != null) {
+            return new RejectDTO(document.getRejectionDate(), document.getRejectionReason(), document.getState());
+        }
+        return null;
     }
 
     }

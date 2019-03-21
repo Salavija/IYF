@@ -6,7 +6,6 @@ import java.io.Serializable;
 
 public class PutDocumentDTO implements Serializable {
 
-    //private Long id;
     private String author;
     private String type;
     private String title;
